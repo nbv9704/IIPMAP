@@ -2,7 +2,7 @@ import HomeOne from "@/components/homes/home-one";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-  title: "Homy - Real Estate React Next js Template",
+  title: "IIPMAPAI",
 };
 const index = () => {
   return (
