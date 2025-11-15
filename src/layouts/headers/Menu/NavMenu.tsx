@@ -1,79 +1,51 @@
-"use client";
-import menu_data from "@/data/home-data/MenuData";
-import Link from "next/link.js";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { useState } from "react";
+"use client"
 
-import logo from "@/assets/images/logo/logo_01.svg";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+type NavItem = {
+  href: string
+  label: string
+  variant?: "phone"
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { href: "/listing_01", label: "Tin mua bán" },
+  { href: "/video", label: "Video" },
+  { href: "/blog_01", label: "Tin tức" },
+  { href: "/services", label: "Dịch vụ" },
+  { href: "/contact", label: "Liên hệ" },
+  { href: "/booking", label: "Đặt lịch" },
+  { href: "tel:1900888858", label: "1900.8888.58", variant: "phone" },
+]
 
 const NavMenu = () => {
-    const pathname = usePathname();
-    const currentRoute = usePathname();
-    const [navTitle, setNavTitle] = useState("");
+  const pathname = usePathname()
 
-    const isMenuItemActive = (menuLink: string) => {
-        return currentRoute === menuLink;
-    };
+  return (
+    <ul className="navbar-nav align-items-lg-center">
+      {NAV_ITEMS.map((item) => (
+        <li key={item.href} className="nav-item">
+          {item.variant === "phone" ? (
+            // Số điện thoại gọi trực tiếp
+            <a
+              href={item.href}
+              className="nav-link nav-link--phone text-danger fw-600"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <Link
+              href={item.href}
+              className={`nav-link ${pathname === item.href ? "active" : ""}`}
+            >
+              {item.label}
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-    const isSubMenuItemActive = (subMenuLink: string) => {
-        return currentRoute === subMenuLink;
-    };
-
-    //openMobileMenu
-    const openMobileMenu = (menu: any) => {
-        if (navTitle === menu) {
-            setNavTitle("");
-        } else {
-            setNavTitle(menu);
-        }
-    };
-
-    return (
-        <ul className="navbar-nav align-items-lg-center">
-            <li className="d-block d-lg-none"><div className="logo"><Link href="/" className="d-block"><Image src={logo} alt="" /></Link></div></li>
-            <li className="nav-item dashboard-menu">
-                <Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">Dashboard</Link>
-            </li>
-            {menu_data.map((menu: any) => (
-                <li key={menu.id} className={`nav-item dropdown ${menu.class_name}`}>
-                    <Link href={menu.link} className={`nav-link dropdown-toggle ${pathname === menu.link ? 'active' : ''}
-                     ${navTitle === menu.title ? "show" : ""}`} onClick={() => openMobileMenu(menu.title)}>
-                        {menu.title}
-                    </Link>
-                    {menu.has_dropdown && (
-                        <>
-                            <ul className={`dropdown-menu ${navTitle === menu.title ? "show" : ""}`}>
-                                {menu.sub_menus && menu.sub_menus.map((sub_m: any, i: any) => (
-                                    <li key={i}>
-                                        <Link href={sub_m.link} className={`dropdown-item ${pathname === sub_m.link ? 'active' : ''}`}>
-                                            <span>{sub_m.title}</span>
-                                        </Link>
-                                    </li>
-                                ))}
-                                {menu.menu_column && (
-                                    <li className="row gx-1">
-                                        {menu.menu_column.map((item: any) => (
-                                            <div key={item.id} className="col-lg-4">
-                                                <div className="menu-column">
-                                                    <h6 className="mega-menu-title">{item.mega_title}</h6>
-                                                    <ul className="style-none mega-dropdown-list">
-                                                        {item.mega_menus.map((mega_m: any, i: any) => (
-                                                            <li key={i}><Link href={mega_m.link} className={`dropdown-item ${pathname === mega_m.link ? 'active' : ''}`}><span>{mega_m.title}</span></Link></li>))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </li>
-                                )}
-                            </ul>
-                        </>
-                    )}
-                </li>
-            ))}
-        </ul>
-    );
-};
-
-export default NavMenu;
-
+export default NavMenu

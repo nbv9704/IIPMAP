@@ -69,8 +69,8 @@
   .fancy-banner-six .text-slide-wrapper .marquee p {font-size: 70px;}
   .fancy-banner-six .country-list .list-block .title {font-size: 20px; margin-bottom: 8px;}
   .footer-two .news-letter-area .form-wrapper form {height: 70px;}
-  .theme-main-menu .login-btn-two,.theme-main-menu .search-btn-one {width: 50px; height: 50px; font-size: 1.1em;}
-  .theme-main-menu .search-btn-one:before {left: -42px;}
+  /* .theme-main-menu .login-btn-two,.theme-main-menu .search-btn-one {width: 50px; height: 50px; font-size: 1.1em;}
+  .theme-main-menu .search-btn-one:before {left: -42px;} */
   .search-wrapper-two .bg-wrapper {padding: 30px 20px 20px;}
   .listing-card-four {padding: 15px;}
   .listing-card-four .tag {left: 15px;}

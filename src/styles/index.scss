@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "react-toastify/dist/ReactToastify.css";
-@import 'node_modules/react-modal-video/scss/modal-video.scss';
+@import "node_modules/react-modal-video/scss/modal-video.scss";
 @import "slick-carousel/slick/slick.css";
 
 @import "../../public/assets/fonts/gordita/stylesheet.css";
@@ -8,11 +8,15 @@
 @import "../../public/assets/fonts/font-awesome-6.4.2/css/all.css";
 @import "../../public/assets/scss/style.scss";
 
+/* =========================
+   TOP MENU (giữ của template)
+   ========================= */
+
 .theme-main-menu .nav-item .nav-link {
   font-family: "Gordita", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: #111827;
+  color: #0b1d37;
 }
 
 .theme-main-menu .nav-item:hover .nav-link,
@@ -20,13 +24,20 @@
   color: #0a4da2;
 }
 
+/* =========================
+   HEADER IIP – REWRITE
+   ========================= */
+
 .iip-header {
   background-color: #ffffff;
   box-shadow: 0 4px 18px rgba(9, 43, 128, 0.08);
   border-bottom: 1px solid rgba(6, 58, 199, 0.05);
 
+  /* cho content full width & logo sát trái hơn 1 chút */
   .inner-content {
-    padding: 12px 32px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 6px 16px;
   }
 
   &__inner {
@@ -34,6 +45,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    flex-wrap: nowrap; /* luôn 1 hàng trên desktop */
+    min-height: 52px;
   }
 
   &__logo {
@@ -41,51 +54,73 @@
     align-items: center;
   }
 
+  /* logo to hơn */
   &__logo-img {
-    height: 38px;
+    height: 36px;
     width: auto;
   }
 
+  /* NAV DESKTOP */
   &__nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    flex: 1;
+    flex: 1 1 auto;
+    margin-left: 32px;
+    min-width: 0;
   }
 
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* override style nav-link của template để chữ nhỏ & 1 dòng */
+  .nav-item .nav-link,
   &__nav-link {
-    font-size: 16px;
+    font-family: "Gordita", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
     text-decoration: none;
     color: #0b1d37;
+    white-space: nowrap; /* BẮT BUỘC 1 dòng */
     transition: color 0.2s ease;
+  }
 
-    &:hover,
-    &:focus-visible {
-      color: #0a4da2;
-    }
+  .nav-item:hover .nav-link,
+  .nav-item .nav-link:focus-visible,
+  &__nav-link:hover,
+  &__nav-link:focus-visible {
+    color: #0a4da2;
   }
 
   &__nav-link--phone {
     color: #d92c1a;
     font-weight: 700;
+    font-size: 16px;
   }
 
+  /* ACTIONS – hotline + cờ + login sát phải */
   &__actions {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
+    flex-wrap: nowrap;
   }
 
   &__language-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 4px;
   }
 
   &__language-btn {
-    width: 46px;
-    height: 30px;
+    width: 40px;
+    height: 26px;
     padding: 0;
     border: none;
     background: transparent;
@@ -110,76 +145,309 @@
     display: block;
   }
 
+  /* nút Đăng nhập bo tròn xanh + bóng */
   &__login {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
-    padding: 10px 20px;
+    min-width: 130px;
+    padding: 8px 22px;
     border-radius: 999px;
     background: linear-gradient(135deg, #0a4da2 0%, #1b6de6 100%);
     color: #ffffff;
     font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
+    box-shadow: 0 8px 22px rgba(14, 76, 168, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover,
     &:focus-visible {
       transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(14, 76, 168, 0.25);
+      box-shadow: 0 10px 26px rgba(14, 76, 168, 0.4);
     }
   }
 
-  &__divider {
-    height: 4px;
-    background: linear-gradient(90deg, #0d4cf2 0%, #0c1a74 100%);
+  /* HAMBURGER – desktop ẩn, mobile hiện ở media dưới */
+  &__nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 29, 55, 0.15);
+    background: #ffffff;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__nav-toggle-line {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: #0b1d37;
+
+    & + .iip-header__nav-toggle-line {
+      margin-top: 3px;
+    }
   }
 }
 
+/* Header – tablet */
 @media (max-width: 991px) {
   .iip-header {
     .inner-content {
-      padding: 12px 20px;
+      padding: 10px 16px;
     }
 
     &__inner {
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
     }
 
-    &__nav {
-      order: 3;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    &__actions {
-      order: 2;
-      width: 100%;
-      justify-content: flex-end;
+    &__logo-img {
+      height: 32px;
     }
   }
 }
 
-@media (max-width: 575px) {
+/* Header – mobile */
+@media (max-width: 767px) {
   .iip-header {
-    &__nav {
-      gap: 16px;
+    &__inner {
+      align-items: center;
     }
 
-    &__nav-link {
-      flex: 1 0 45%;
-      text-align: center;
+    &__nav-toggle {
+      display: inline-flex;
+    }
+
+    &__nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    &__nav.is-open {
+      display: flex;
     }
 
     &__actions {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 12px;
+      margin-left: auto;
+      gap: 8px;
+    }
+
+    &__language-group {
+      gap: 6px;
     }
 
     &__login {
-      width: 100%;
+      padding-inline: 14px;
+      min-width: auto;
     }
+  }
+}
+
+/* Header – mobile nhỏ */
+@media (max-width: 575px) {
+  .iip-header {
+    &__inner {
+      gap: 10px;
+    }
+
+    &__actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__login {
+      max-width: 200px;
+    }
+  }
+}
+
+
+/* =========================
+   HERO IIP
+   ========================= */
+
+.iip-hero {
+  position: relative;
+  padding: clamp(72px, 12vh, 110px) 0 clamp(64px, 10vh, 96px);
+  background: linear-gradient(135deg, #0b37d1 0%, #0c8ef7 50%, #081366 100%);
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.iip-hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 55%),
+    radial-gradient(circle at 75% 15%, rgba(255, 255, 255, 0.2), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.18), transparent 55%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.iip-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.iip-hero__pill {
+  width: min(420px, 80%);
+  height: 44px;
+  margin: 0 auto 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.45);
+  opacity: 0.8;
+}
+
+.iip-hero__title {
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.iip-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.iip-hero__stat-card {
+  position: relative;
+  padding: 20px 26px;
+  width: 100%;
+  max-width: 230px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 18px 35px rgba(5, 26, 120, 0.25);
+  backdrop-filter: blur(18px);
+}
+
+.iip-hero__stat-card::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  bottom: -17px;
+  left: 18px;
+  filter: blur(0.3px);
+}
+
+.iip-hero__stat-card:nth-child(2)::after {
+  left: calc(50% - 17px);
+}
+
+.iip-hero__stat-card:nth-child(3)::after {
+  left: auto;
+  right: 18px;
+}
+
+.iip-hero__stat-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.iip-hero__stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Hero – tablet */
+@media (max-width: 991px) {
+  .iip-hero {
+    padding: 80px 0 80px;
+  }
+
+  .iip-hero__title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .iip-hero__stat-card {
+    max-width: 260px;
+  }
+}
+
+/* Hero – mobile */
+@media (max-width: 767px) {
+  .iip-hero {
+    padding: 72px 0 72px;
+  }
+
+  .iip-hero__content {
+    max-width: 600px;
+  }
+
+  .iip-hero__pill {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 20px;
+  }
+
+  .iip-hero__title {
+    font-size: 22px;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .iip-hero__stats {
+    gap: 16px;
+  }
+
+  .iip-hero__stat-card {
+    max-width: 260px;
+  }
+
+  .iip-hero__stat-card::after {
+    display: none;
+  }
+}
+
+/* Hero – mobile nhỏ */
+@media (max-width: 575px) {
+  .iip-hero {
+    padding: 64px 0 64px;
+  }
+
+  .iip-hero__title {
+    font-size: 20px;
+  }
+
+  .iip-hero__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .iip-hero__stat-card {
+    max-width: 100%;
+    padding: 16px 20px;
+  }
+
+  .iip-hero__stat-value {
+    font-size: 22px;
   }
 }
