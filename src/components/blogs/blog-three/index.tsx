@@ -7,7 +7,6 @@ import FancyBanner from "@/components/common/FancyBanner"
 const BlogThree = () => {
    return (
       <>
-         <HeaderOne style={true} />
          <BreadcrumbOne title="Blog Full Width" link="#" link_title="Pages" sub_title="Blog" style={true} />
          <BlogThreeArea />
          <FancyBanner />

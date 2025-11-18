@@ -82,7 +82,7 @@ const HeaderOne = () => {
           <div className="iip-header__inner">
             {/* LOGO */}
             <Link
-              href="/listing_01"
+              href="/"
               className="iip-header__logo"
               aria-label="Trang chủ"
             >

@@ -11,7 +11,6 @@ import FancyBannerCommon from "@/components/common/FancyBanner"
 const ServiceOne = () => {
    return (
       <>
-         <HeaderOne style={true} />
          <BreadcrumbOne title="Our Services" link="#" link_title="Pages" sub_title="Services" style={false} />
          <BlockFeatureOne/>
          <HomeBLockFeatureOne />

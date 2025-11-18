@@ -8,7 +8,6 @@ import FancyBanner from "../../projects/project-one/FancyBanner"
 const PricingOne = () => {
    return (
       <>
-         <HeaderOne style={true} />
          <BreadcrumbOne title="Pricing Plan" link="#" link_title="Pages" sub_title="Pricing" style={true} />
          <PricingOneArea />
          <FancyBanner/>

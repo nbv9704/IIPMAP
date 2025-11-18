@@ -1,30 +1,34 @@
 "use client";
 
-import { useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+import { useEffect, ReactNode } from "react";
 import { animationCreate } from "@/utils/utils";
 import ScrollToTop from "@/components/common/ScrollToTop";
 
 if (typeof window !== "undefined") {
-    require("bootstrap/dist/js/bootstrap");
+  // load bootstrap JS 1 lần ở client
+  require("bootstrap/dist/js/bootstrap");
 }
 
-const Wrapper = ({ children }: any) => {
-    useEffect(() => {
-        // animation
-        const timer = setTimeout(() => {
-            animationCreate();
-        }, 100);
+type WrapperProps = {
+  children: ReactNode;
+};
 
-        return () => clearTimeout(timer);
-    }, []);
+const Wrapper = ({ children }: WrapperProps) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      animationCreate();
+    }, 100);
 
+    return () => clearTimeout(timer);
+  }, []);
 
-    return <>
-        {children}
-        <ScrollToTop />
-        <ToastContainer position="top-center" />
-    </>;
-}
+  return (
+    <>
+      {children}
+      {/* nút kéo lên đầu trang */}
+      <ScrollToTop />
+    </>
+  );
+};
 
-export default Wrapper
+export default Wrapper;
