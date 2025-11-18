@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "buy": "买卖信息",
+    "video": "视频",
+    "news": "新闻",
+    "service": "服务",
+    "contact": "联系",
+    "booking": "预约",
+    "hotline": "1900.8888.58"
+  },
+  "header": {
+    "login": "登录",
+    "logout": "退出"
+  },
+   "hero": {
+    "pill": "数字化工业园区地图",
+    "titleLine1": "连接投资者与全国",
+    "titleLine2": "重点工业园区",
+    "stats": [
+      { "label": "工业园区", "value": "1,000" },
+      { "label": "工业集群", "value": "800" },
+      { "label": "土地规模", "value": "5,000 公顷" },
+      { "label": "集成 AI", "value": "AI 集成", "textOnly": true }
+    ]
+  }
+}

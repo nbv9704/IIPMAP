@@ -451,3 +451,26 @@
     font-size: 22px;
   }
 }
+
+/* Nút auth (login / register) dùng chung tone màu banner */
+.iip-auth-btn {
+  background: linear-gradient(90deg, #004cff, #004cff); // xanh lá kiểu tailwind
+  border: none;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.iip-auth-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.iip-auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

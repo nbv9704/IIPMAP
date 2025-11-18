@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "buy": "Tin mua bán",
+    "video": "Video",
+    "news": "Tin tức",
+    "service": "Dịch vụ",
+    "contact": "Liên hệ",
+    "booking": "Đặt lịch",
+    "hotline": "1900.8888.58"
+  },
+  "header": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất"
+  },
+  "hero": {
+    "pill": "Bản đồ số hóa",
+    "titleLine1": "Kết nối các nhà đầu tư với các",
+    "titleLine2": "khu công nghiệp trọng điểm toàn quốc",
+    "stats": [
+      { "label": "Khu công nghiệp", "value": "1.000" },
+      { "label": "Cụm công nghiệp", "value": "800" },
+      { "label": "Quy mô quỹ đất", "value": "5.000 ha" },
+      { "label": "Tích hợp AI", "value": "Tích hợp AI", "textOnly": true }
+    ]
+  }
+}

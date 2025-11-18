@@ -4,58 +4,72 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 import UseSticky from "@/hooks/UseSticky";
 import LoginModal from "@/modals/LoginModal";
+import { useAuth } from "@/lib/auth/AuthContext";
 
 import logo_1 from "@/assets/images/logo/image.png";
-
-// ảnh cờ
 import flagCN from "@/assets/images/flag/TrungQuoc.png";
 import flagEN from "@/assets/images/flag/Anh.png";
 import flagVN from "@/assets/images/flag/VietNam.webp";
 
-type LocaleCode = "zh" | "en" | "vi";
+type LocaleCode = "vi" | "en" | "zh";
 
 type NavItem = {
   href: string;
-  label: string;
+  key: "buy" | "video" | "news" | "service" | "contact" | "booking" | "hotline";
   variant?: "phone";
 };
 
-type HeaderOneProps = {
-  initialLocale?: LocaleCode;
-  onLanguageChange?: (locale: LocaleCode) => void;
-};
-
-/** MENU CHÍNH */
 const NAV_ITEMS: NavItem[] = [
-  { href: "/listing_01", label: "Tin mua bán" },
-  { href: "/video", label: "Video" },
-  { href: "/blog_01", label: "Tin tức" },
-  { href: "/services", label: "Dịch vụ" },
-  { href: "/contact", label: "Liên hệ" },
-  { href: "/booking", label: "Đặt lịch" },
-  { href: "tel:1900888858", label: "1900.8888.58", variant: "phone" },
+  { href: "/listing_01", key: "buy" },
+  { href: "/video", key: "video" },
+  { href: "/blog_01", key: "news" },
+  { href: "/services", key: "service" },
+  { href: "/contact", key: "contact" },
+  { href: "/booking", key: "booking" },
+  { href: "tel:1900888858", key: "hotline", variant: "phone" },
 ];
 
-// map locale -> ảnh cờ
 const FLAG_IMAGES: Record<LocaleCode, { src: StaticImageData; alt: string }> = {
-  zh: { src: flagCN, alt: "Tiếng Trung" },
-  en: { src: flagEN, alt: "Tiếng Anh" },
+  zh: { src: flagCN, alt: "中文" },
+  en: { src: flagEN, alt: "English" },
   vi: { src: flagVN, alt: "Tiếng Việt" },
 };
 
-const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) => {
-  const { sticky } = UseSticky();
-  const [currentLocale, setCurrentLocale] = useState<LocaleCode>(initialLocale);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const LANG_ORDER: LocaleCode[] = ["zh", "en", "vi"];
 
-  const handleLocaleClick = (locale: LocaleCode) => {
-    setCurrentLocale(locale);
-    onLanguageChange?.(locale);
+const HeaderOne = () => {
+  const { sticky } = UseSticky();
+  const { t, i18n } = useTranslation("common");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const { user, isAuthenticated, logout } = useAuth();
+
+  // chuẩn hoá current language về vi / en / zh
+  const rawLang = i18n.language || "vi";
+  const currentLang: LocaleCode =
+    (["vi", "en", "zh"].find((l) => rawLang.startsWith(l)) as LocaleCode) ||
+    "vi";
+
+  const handleLocaleClick = (code: LocaleCode) => {
+    i18n.changeLanguage(code);
   };
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  const displayName =
+    user?.fullName?.trim().split(" ").slice(-1)[0] || user?.email || "";
+
+  const handleLogout = () => {
+    logout();
+    setIsUserMenuOpen(false);
+    toast.success("Đã đăng xuất", { position: "top-center" });
+  };
 
   return (
     <>
@@ -66,9 +80,18 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
       >
         <div className="inner-content">
           <div className="iip-header__inner">
-            {/* LOGO sát trái */}
-            <Link href="/listing_01" className="iip-header__logo" aria-label="Trang chủ">
-              <Image src={logo_1} alt="IIP" priority className="iip-header__logo-img" />
+            {/* LOGO */}
+            <Link
+              href="/listing_01"
+              className="iip-header__logo"
+              aria-label="Trang chủ"
+            >
+              <Image
+                src={logo_1}
+                alt="IIP"
+                priority
+                className="iip-header__logo-img"
+              />
             </Link>
 
             {/* MENU DESKTOP */}
@@ -76,18 +99,21 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
               <ul className="iip-header__nav-list">
                 {NAV_ITEMS.map((item) =>
                   item.variant === "phone" ? (
-                    <li key={item.href} className="nav-item">
+                    <li key={item.key} className="nav-item">
                       <a
                         href={item.href}
                         className="nav-link iip-header__nav-link iip-header__nav-link--phone"
                       >
-                        {item.label}
+                        {t(`nav.${item.key}`)}
                       </a>
                     </li>
                   ) : (
-                    <li key={item.href} className="nav-item">
-                      <Link href={item.href} className="nav-link iip-header__nav-link">
-                        {item.label}
+                    <li key={item.key} className="nav-item">
+                      <Link
+                        href={item.href}
+                        className="nav-link iip-header__nav-link"
+                      >
+                        {t(`nav.${item.key}`)}
                       </Link>
                     </li>
                   )
@@ -95,20 +121,23 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
               </ul>
             </nav>
 
-            {/* CỜ + ĐĂNG NHẬP sát phải */}
+            {/* CỜ + ĐĂNG NHẬP / USER */}
             <div className="iip-header__actions">
-              <div className="iip-header__language-group" aria-label="Language selection">
-                {(["zh", "en", "vi"] as LocaleCode[]).map((locale) => {
-                  const img = FLAG_IMAGES[locale];
+              <div
+                className="iip-header__language-group"
+                aria-label="Language selection"
+              >
+                {LANG_ORDER.map((code) => {
+                  const img = FLAG_IMAGES[code];
                   return (
                     <button
-                      key={locale}
+                      key={code}
                       type="button"
                       className={`iip-header__language-btn ${
-                        currentLocale === locale ? "is-active" : ""
+                        currentLang === code ? "is-active" : ""
                       }`}
-                      onClick={() => handleLocaleClick(locale)}
-                      aria-pressed={currentLocale === locale}
+                      onClick={() => handleLocaleClick(code)}
+                      aria-pressed={currentLang === code}
                     >
                       <Image
                         src={img.src}
@@ -120,15 +149,40 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
                 })}
               </div>
 
-              {/* ĐĂNG NHẬP mở Bootstrap modal #loginModal */}
-              <button
-                type="button"
-                className="iip-header__login"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal"
-              >
-                Đăng nhập
-              </button>
+              {/* Nếu chưa login -> nút Đăng nhập.
+                  Nếu đã login -> icon user + menu Logout */}
+              {isAuthenticated ? (
+                <div className="iip-header__user">
+                  <button
+                    type="button"
+                    className="iip-header__user-btn"
+                    onClick={() => setIsUserMenuOpen((v) => !v)}
+                  >
+                    <i className="bi bi-person-circle iip-header__user-icon" />
+                    <span className="iip-header__user-name">{displayName}</span>
+                  </button>
+                  {isUserMenuOpen && (
+                    <div className="iip-header__user-menu">
+                      <button
+                        type="button"
+                        className="iip-header__user-menu-item"
+                        onClick={handleLogout}
+                      >
+                        {t("header.logout") ?? "Đăng xuất"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="iip-header__login"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  {t("header.login")}
+                </button>
+              )}
 
               {/* HAMBURGER – mobile */}
               <button
@@ -166,14 +220,14 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
 
           <nav className="iip-header__mobile-nav">
             {NAV_ITEMS.map((item) => (
-              <div key={item.href} className="iip-header__mobile-item">
+              <div key={item.key} className="iip-header__mobile-item">
                 {item.variant === "phone" ? (
                   <a
                     href={item.href}
                     className="iip-header__mobile-link iip-header__mobile-link--phone"
                     onClick={closeMenu}
                   >
-                    {item.label}
+                    {t(`nav.${item.key}`)}
                   </a>
                 ) : (
                   <Link
@@ -181,7 +235,7 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
                     className="iip-header__mobile-link"
                     onClick={closeMenu}
                   >
-                    {item.label}
+                    {t(`nav.${item.key}`)}
                   </Link>
                 )}
               </div>
@@ -198,226 +252,67 @@ const HeaderOne = ({ initialLocale = "vi", onLanguageChange }: HeaderOneProps) =
         )}
       </header>
 
-      {/* Modal Bootstrap (dùng id="loginModal") */}
+      {/* Modal Bootstrap dùng id="loginModal" */}
       <LoginModal />
 
+      {/* STYLE riêng cho user menu (phần còn lại em giữ trong SCSS cũng được) */}
       <style jsx>{`
-        .iip-header {
-          width: 100%;
+        .iip-header__user {
+          position: relative;
+        }
+
+        .iip-header__user-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 14px;
+          border-radius: 999px;
+          border: 1px solid rgba(148, 163, 184, 0.6);
           background: #ffffff;
-          z-index: 50;
-          transition: box-shadow 0.2s ease;
-        }
-
-        .iip-header.is-sticky {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
-        }
-
-        .inner-content {
-          max-width: 100%;
-          margin: 0 auto;
-          padding: 0 12px;
-        }
-
-        .iip-header__inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 24px;
-          min-height: 52px;
-        }
-
-        .iip-header__logo-img {
-          height: 34px;
-          width: auto;
-        }
-
-        .iip-header__nav {
-          flex: 1;
-          margin-left: 32px;
-        }
-
-        .iip-header__nav-list {
-          display: flex;
-          align-items: center;
-          gap: 32px;
-          margin: 0;
-          padding: 0;
-          list-style: none;
-        }
-
-        .iip-header__nav-link {
+          cursor: pointer;
           font-size: 14px;
-          font-weight: 400;
-          color: #111827;
-          text-decoration: none;
-          text-transform: none;
-          line-height: 1.4;
-          white-space: nowrap;
+          font-weight: 500;
+          color: #0f172a;
         }
 
-        .iip-header__nav-link:hover {
+        .iip-header__user-icon {
+          font-size: 18px;
           color: #2563eb;
         }
 
-        .iip-header__nav-link--phone {
-          color: #d9480f;
-          font-weight: 700;
-          font-size: 16px;
+        .iip-header__user-name {
+          max-width: 120px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
-        .iip-header__actions {
-          margin-left: auto;
-          display: flex;
-          align-items: center;
-          gap: 16px;
+        .iip-header__user-menu {
+          position: absolute;
+          right: 0;
+          top: calc(100% + 6px);
+          min-width: 160px;
+          background: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+          padding: 6px 0;
+          z-index: 100;
         }
 
-        .iip-header__language-group {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .iip-header__language-btn {
+        .iip-header__user-menu-item {
+          width: 100%;
+          padding: 8px 14px;
           border: none;
           background: transparent;
-          padding: 0;
-          cursor: pointer;
-        }
-
-        .iip-header__flag-img {
-          width: 40px;
-          height: 26px;
-          object-fit: cover;
-          display: block;
-        }
-
-        .iip-header__login {
-          padding: 8px 22px;
-          border-radius: 999px;
-          border: none;
-          background: #2f7fdc;
-          color: #ffffff;
+          text-align: left;
           font-size: 14px;
-          font-weight: 600;
-          cursor: pointer;
-          white-space: nowrap;
-          box-shadow: 0 4px 12px rgba(47, 127, 220, 0.4);
-        }
-
-        .iip-header__login:hover {
-          background: #246ac0;
-        }
-
-        .iip-header__nav-toggle {
-          display: none;
-          flex-direction: column;
-          justify-content: center;
-          gap: 4px;
-          width: 40px;
-          height: 32px;
-          border-radius: 4px;
-          border: none;
-          background: #2f7fdc;
-          cursor: pointer;
-        }
-
-        .iip-header__nav-toggle-line {
-          width: 20px;
-          height: 2px;
-          background: #ffffff;
-          border-radius: 999px;
-          margin: 0 auto;
-        }
-
-        .iip-header__mobile-drawer {
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          width: 78%;
-          max-width: 360px;
-          background: #ffffff;
-          transform: translateX(-100%);
-          transition: transform 0.25s ease;
-          box-shadow: 4px 0 18px rgba(15, 23, 42, 0.15);
-          z-index: 60;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .iip-header__mobile-drawer.is-open {
-          transform: translateX(0);
-        }
-
-        .iip-header__mobile-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 12px 16px;
-          border-bottom: 1px solid #f3f4f6;
-        }
-
-        .iip-header__nav-close {
-          width: 40px;
-          height: 40px;
-          border-radius: 6px;
-          border: none;
-          background: #2563eb;
-          color: #ffffff;
-          font-size: 26px;
-          line-height: 1;
-          cursor: pointer;
-        }
-
-        .iip-header__mobile-nav {
-          padding: 8px 0 16px;
-          overflow-y: auto;
-          flex: 1;
-          margin: 0;
-        }
-
-        .iip-header__mobile-item {
-          border-bottom: 1px solid #f3f4f6;
-          list-style: none;
-        }
-
-        .iip-header__mobile-link {
-          display: block;
-          padding: 12px 20px;
-          font-size: 15px;
           color: #111827;
+          cursor: pointer;
         }
 
-        .iip-header__mobile-link--phone {
-          color: #d9480f;
-          font-weight: 700;
-        }
-
-        .iip-header__backdrop {
-          position: fixed;
-          inset: 0;
-          background: rgba(15, 23, 42, 0.35);
-          z-index: 55;
-        }
-
-        @media (max-width: 991px) {
-          .iip-header__inner {
-            min-height: 56px;
-          }
-
-          .iip-header__nav {
-            display: none;
-          }
-
-          .iip-header__nav-toggle {
-            display: inline-flex;
-          }
+        .iip-header__user-menu-item:hover {
+          background: #eff6ff;
+          color: #1d4ed8;
         }
       `}</style>
     </>
