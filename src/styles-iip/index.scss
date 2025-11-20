@@ -1,0 +1,23 @@
+// IIP Project Styles
+// Import this file in your main layout to use IIP components
+
+@import './variables-iip.scss';
+@import './header-iip.scss';
+@import './footer-iip.scss';
+@import './news.scss';
+
+// Global IIP Styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-primary;
+  margin: 0;
+  padding: 0;
+}
+
+// Add padding-top to body when using fixed header
+body.has-fixed-header {
+  padding-top: 53px;
+}

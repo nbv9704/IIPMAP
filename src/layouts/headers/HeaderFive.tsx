@@ -34,7 +34,7 @@ const HeaderFive = ({ style }: any) => {
                      </div>
                      <nav className="navbar navbar-expand-lg p0 order-lg-2">
                         <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
-                           data-bs-target="#navbarNav" aria-controls="#navbarNav" aria-expanded="false"
+                           data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                            aria-label="Toggle navigation">
                            <span></span>
                         </button>

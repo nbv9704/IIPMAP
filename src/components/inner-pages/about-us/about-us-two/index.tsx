@@ -9,7 +9,7 @@ import FooterTwo from "@/layouts/footers/FooterTwo";
 const AboutUsTwo = () => {
    return (
       <>
-         {/* <HeaderTwo style_1={true} style_2={false} /> */}
+         <HeaderTwo style_1={true} style_2={false} />
          <BreadcrumbTwo title="About Agency" sub_title="About us" />
          <BLockFeatureOne />
          <BLockFeatureTwo />

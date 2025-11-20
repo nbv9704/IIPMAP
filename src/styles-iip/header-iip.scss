@@ -1,0 +1,335 @@
+@import './variables-iip.scss';
+
+// Header IIP - Theo Figma Design
+.header-iip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 53px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &.sticky {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.header-iip-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 19px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+}
+
+// Logo - theo Figma
+.logo-iip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  width: 52px;
+  height: 49px;
+  flex-shrink: 0;
+
+  img {
+    width: 30px;
+    height: 29px;
+    object-fit: contain;
+  }
+}
+
+// Navigation - sát với logo
+.nav-iip {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.navbar-nav-iip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+}
+
+.nav-item-iip {
+  list-style: none;
+}
+
+.nav-link-iip {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+
+  // Underline effect
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background: #0149BE;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: #0149BE;
+    
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &.active {
+    color: #0149BE;
+    font-weight: 600;
+    
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// Right Side
+.header-iip-right {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+// Language Switcher - theo Figma
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.lang-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #FFFFFF;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &.active {
+    box-shadow: 0px 2px 10px rgba(1, 73, 190, 0.3);
+    border: 2px solid #0149BE;
+  }
+
+  .flag-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// Login Button - theo Figma
+.btn-login-iip {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+  width: 102px;
+  height: 33px;
+  background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 15px rgba(1, 73, 190, 0.4);
+  }
+}
+
+// Mobile Menu Toggle
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: $iip-black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+}
+
+// Mobile Menu
+.mobile-menu-iip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+
+    .mobile-menu-content {
+      transform: translateX(0);
+    }
+  }
+}
+
+.mobile-menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background: $iip-white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: $iip-black;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+
+  li {
+    margin-bottom: 10px;
+
+    a {
+      display: block;
+      padding: 12px 15px;
+      font-family: $font-primary;
+      font-weight: $font-regular;
+      font-size: 16px;
+      color: $iip-black;
+      text-decoration: none;
+      border-radius: $radius-sm;
+      transition: all 0.3s ease;
+
+      &:hover,
+      &.active {
+        background: rgba(1, 73, 190, 0.1);
+        color: $iip-primary-dark;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-tablet) {
+  .nav-iip {
+    display: none;
+  }
+
+  .language-switcher {
+    gap: 5px;
+
+    .lang-btn {
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+    }
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .header-iip-container {
+    padding: 0 15px;
+  }
+
+  .language-switcher {
+    display: none; // Hide on very small screens
+  }
+
+  .btn-login-iip {
+    padding: 8px 12px;
+    font-size: 11px;
+    min-width: 80px;
+  }
+}

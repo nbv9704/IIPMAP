@@ -7,6 +7,7 @@ import HeaderOne from "@/layouts/headers/HeaderOne"
 const ServiceDetails = () => {
    return (
       <>
+         <HeaderOne style={true} />
          <BreadcrumbOne title="Service Details" link="#" link_title="Service" sub_title="Buy Home" style={true} />
          <ServiceDetailsArea />
          <FancyBanner />

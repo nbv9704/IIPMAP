@@ -1,0 +1,152 @@
+@import './variables-iip.scss';
+
+// Footer IIP - Theo Figma Design
+.footer-iip {
+   position: relative;
+   width: 100%;
+   min-height: 207px;
+   background: #0051CB;
+   padding: 59px 0 30px;
+   
+   .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 45px;
+   }
+   
+   .row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 60px;
+   }
+   
+   // Logo Column (bên trái)
+   .col-lg-4 {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 200px;
+   }
+   
+   // Content Columns (bên phải)
+   .col-lg-8 {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+   }
+   
+   // Logo styling - theo Figma
+   .footer-logo-text-iip {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 49px;
+      color: #FFFFFF;
+      margin: 0;
+      transition: opacity 0.3s ease;
+      
+      &:hover {
+         opacity: 0.8;
+      }
+   }
+   
+   // Footer sections
+   .footer-section {
+      flex: 1;
+      min-width: 150px;
+      
+      h5 {
+         font-family: 'Montserrat', sans-serif;
+         font-style: normal;
+         font-weight: 700;
+         font-size: 20px;
+         line-height: 24px;
+         color: #FFFFFF;
+         margin-bottom: 20px;
+         text-transform: uppercase;
+      }
+      
+      ul {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+         
+         li {
+            margin-bottom: 13px;
+            
+            a {
+               font-family: 'Montserrat', sans-serif;
+               font-style: normal;
+               font-weight: 400;
+               font-size: 15px;
+               line-height: 18px;
+               color: #FFFFFF;
+               text-decoration: none;
+               transition: opacity 0.3s ease;
+               
+               &:hover {
+                  opacity: 0.8;
+               }
+            }
+         }
+      }
+   }
+}
+
+// Responsive
+@media (max-width: 991px) {
+   .footer-iip {
+      .col-lg-8 {
+         flex-wrap: wrap;
+         gap: 40px;
+      }
+      
+      .footer-section {
+         min-width: 45%;
+      }
+   }
+}
+
+@media (max-width: 767px) {
+   .footer-iip {
+      padding: 40px 0 20px;
+      
+      .container {
+         padding: 0 20px;
+      }
+      
+      .row {
+         flex-direction: column;
+         gap: 30px;
+      }
+      
+      .col-lg-8 {
+         flex-direction: column;
+         gap: 25px;
+      }
+      
+      .footer-logo-text-iip {
+         font-size: 32px;
+         line-height: 40px;
+      }
+      
+      .footer-section {
+         min-width: 100%;
+         
+         h5 {
+            font-size: 18px;
+            margin-bottom: 15px;
+         }
+         
+         ul li {
+            margin-bottom: 10px;
+            
+            a {
+               font-size: 14px;
+            }
+         }
+      }
+   }
+}
