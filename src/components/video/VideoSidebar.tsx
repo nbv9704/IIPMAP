@@ -6,13 +6,13 @@ interface VideoSidebarProps {
 }
 
 const menuItems = [
-  { id: 1, label: "Khám phá", slug: "kham-pha" },
-  { id: 2, label: "Đang theo dõi", slug: "dang-theo-doi" },
-  { id: 3, label: "Xem cùng bản đồ", slug: "xem-cung-ban-do" },
-  { id: 4, label: "Video đã lưu", slug: "video-da-luu" },
-  { id: 5, label: "Tin nhắn", slug: "tin-nhan" },
-  { id: 6, label: "Thông báo", slug: "thong-bao" },
-  { id: 7, label: "Hồ sơ cá nhân", slug: "ho-so-ca-nhan" },
+  { id: 1, label: "Khám phá", slug: "explore" },
+  { id: 2, label: "Đang theo dõi", slug: "following" },
+  { id: 3, label: "Xem cùng bản đồ", slug: "map-view" },
+  { id: 4, label: "Video đã lưu", slug: "saved" },
+  { id: 5, label: "Tin nhắn", slug: "messages" },
+  { id: 6, label: "Thông báo", slug: "notifications" },
+  { id: 7, label: "Hồ sơ cá nhân", slug: "profile" },
 ]
 
 const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => (

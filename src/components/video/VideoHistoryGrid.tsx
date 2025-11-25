@@ -7,7 +7,7 @@ interface VideoHistoryGridProps {
    sectionSlug?: string
 }
 
-const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "kham-pha" }: VideoHistoryGridProps) => {
+const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "explore" }: VideoHistoryGridProps) => {
    const containerClass = ["video-history-grid", className].filter(Boolean).join(" ")
 
    return (

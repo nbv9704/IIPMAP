@@ -558,6 +558,25 @@
     padding-bottom: 20px;
     padding-top: 5px;
     counter-reset: zone-counter;
+    
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #0051CB;
+      border-radius: 10px;
+      
+      &:hover {
+        background: #003d99;
+      }
+    }
 
     .zoneCard {
       min-width: 450px;

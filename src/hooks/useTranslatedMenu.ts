@@ -25,17 +25,23 @@ export const useTranslatedMenu = () => {
             {
                 id: 2,
                 has_dropdown: false,
+                title: getTranslation(currentLang, 'menu.aboutUs'),
+                link: '/about-us',
+            },
+            {
+                id: 3,
+                has_dropdown: false,
                 title: getTranslation(currentLang, 'menu.listings'),
                 link: '/listings',
             },
             {
-                id: 3,
+                id: 4,
                 has_dropdown: false,
                 title: getTranslation(currentLang, 'menu.video'),
                 link: '/video',
             },
             {
-                id: 4,
+                id: 5,
                 has_dropdown: true,
                 title: getTranslation(currentLang, 'menu.qna'),
                 link: '/qna',
@@ -59,13 +65,13 @@ export const useTranslatedMenu = () => {
                 ],
             },
             {
-                id: 7,
+                id: 6,
                 has_dropdown: false,
                 title: getTranslation(currentLang, 'menu.booking'),
                 link: '/booking',
             },
             {
-                id: 5,
+                id: 7,
                 has_dropdown: false,
                 title: getTranslation(currentLang, 'menu.servicesContact'),
                 link: '/services',

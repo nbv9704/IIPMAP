@@ -3,6 +3,7 @@ export const translations = {
     // Page Titles
     pageTitle: {
       home: 'Trang Chủ',
+      aboutUs: 'Về Chúng Tôi',
       listings: 'Tin Mua Bán',
       video: 'Video',
       news: 'Tin Tức',
@@ -24,6 +25,7 @@ export const translations = {
     // Navigation Menu
     menu: {
       home: 'Trang chủ',
+      aboutUs: 'Về chúng tôi',
       listings: 'Tin mua bán',
       video: 'Video',
       news: 'Tin tức',
@@ -218,6 +220,7 @@ export const translations = {
     // Page Titles
     pageTitle: {
       home: 'Home',
+      aboutUs: 'About Us',
       listings: 'Listings',
       video: 'Video',
       news: 'News',
@@ -239,6 +242,7 @@ export const translations = {
     // Navigation Menu
     menu: {
       home: 'Home',
+      aboutUs: 'About Us',
       listings: 'Listings',
       video: 'Video',
       news: 'News',
@@ -433,6 +437,7 @@ export const translations = {
     // Page Titles
     pageTitle: {
       home: 'ホーム',
+      aboutUs: '私たちについて',
       listings: 'リスト',
       video: 'ビデオ',
       news: 'ニュース',
@@ -454,6 +459,7 @@ export const translations = {
     // Navigation Menu
     menu: {
       home: 'ホーム',
+      aboutUs: '私たちについて',
       listings: 'リスト',
       video: 'ビデオ',
       news: 'ニュース',
@@ -648,6 +654,7 @@ export const translations = {
     // Page Titles
     pageTitle: {
       home: '홈',
+      aboutUs: '소개',
       listings: '목록',
       video: '비디오',
       news: '뉴스',
@@ -669,6 +676,7 @@ export const translations = {
     // Navigation Menu
     menu: {
       home: '홈',
+      aboutUs: '소개',
       listings: '목록',
       video: '비디오',
       news: '뉴스',
@@ -863,6 +871,7 @@ export const translations = {
     // Page Titles
     pageTitle: {
       home: '首页',
+      aboutUs: '关于我们',
       listings: '列表',
       video: '视频',
       news: '新闻',
@@ -884,6 +893,7 @@ export const translations = {
     // Navigation Menu
     menu: {
       home: '首页',
+      aboutUs: '关于我们',
       listings: '列表',
       video: '视频',
       news: '新闻',

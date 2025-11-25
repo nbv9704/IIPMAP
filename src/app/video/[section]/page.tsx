@@ -7,5 +7,5 @@ interface VideoSectionPageProps {
 }
 
 export default function VideoSectionPage({ params }: VideoSectionPageProps) {
-  return <VideoPageContent section={params.section || "kham-pha"} />
+  return <VideoPageContent section={params.section || "explore"} />
 }

@@ -16,15 +16,15 @@ interface VideoPageContentProps {
   section?: string
 }
 
-const DEFAULT_SECTION = "kham-pha"
+const DEFAULT_SECTION = "explore"
 
 const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) => {
   const { currentLang } = useLanguage()
   const [heroSearch, setHeroSearch] = useState("")
   const viewMode =
-    section === "video-da-luu"
+    section === "saved"
       ? "saved"
-      : section === "ho-so-ca-nhan"
+      : section === "profile"
       ? "profile"
       : "default"
 
