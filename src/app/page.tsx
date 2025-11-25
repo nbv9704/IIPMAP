@@ -1,15 +1,6 @@
-import HomeOne from "@/components/homes/home-one";
-import Wrapper from "@/layouts/Wrapper";
+import "@/styles-iip/index.scss"
+import HomePageClient from "./HomePageClient"
 
-export const metadata = {
-  title: "Homy - Real Estate React Next js Template",
-};
-const index = () => {
-  return (
-    <Wrapper>
-      <HomeOne />
-    </Wrapper>
-  )
+export default function HomePage() {
+  return <HomePageClient />
 }
-
-export default index

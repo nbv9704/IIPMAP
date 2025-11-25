@@ -1,0 +1,1238 @@
+// Video page redesign for the IIPMap experience
+.video-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f8ff;
+  padding: 80px 0 160px;
+}
+
+.video-page-container {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 269px minmax(0, 1fr);
+  column-gap: 32px;
+  
+  align-items: flex-start;
+}
+
+.video-sidebar-wrapper {
+  position: relative;
+}
+
+.video-sidebar {
+ width: 269px;
+  padding: 0;                 /* nếu muốn vẫn cách trái thì dùng 24px 0 0 0 */
+  background: transparent;    /* trùng nền .video-page */
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.video-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.video-nav-item {
+border: none;
+  background: transparent;
+  border-radius: 0;
+
+  padding: 8px 32px;            /* cho chữ đỡ sát mép, giống Figma */
+  width: auto;                  /* theo độ dài chữ */
+  display: flex;
+  align-items: center;
+  justify-content: center;      /* chữ nằm giữa nút */
+  text-align: center;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000;
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.video-nav-item.active {
+ background: linear-gradient(95.81deg, #0149be 1.22%, #810cc4 100%);
+  color: #ffffff;
+  border-radius: 28px;
+}
+
+.video-nav-item:not(.active):hover {
+
+  color: #0149be;
+}
+
+.video-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Search bar trên trang video (giống hình bạn gửi) */
+.video-main-search {
+  margin: 32px 0 28px;         /* khoảng cách trên/dưới như trong mock */
+}
+
+.video-main-search-box {
+  width: 100%;
+  border-radius: 999px;
+  height: 54px;
+
+  /* trick để có viền gradient + nền trắng */
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(#ffffff, #ffffff),
+    linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  display: flex;
+  align-items: center;
+  padding: 0 18px 0 26px;
+}
+
+/* chữ trong ô */
+.video-main-search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: #111827;             /* màu chữ thực */
+}
+
+/* placeholder "Tìm kiếm" màu xám nhạt */
+.video-main-search-box input::placeholder {
+  color: #9ca3af;
+}
+
+/* nút icon kính lúp bên phải */
+.video-main-search-box button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.video-main-search-box svg {
+  display: block;
+}
+
+
+.video-section {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px 36px;
+  box-shadow: 0 20px 40px rgba(3, 27, 140, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.video-section--accent {
+  border: 1px solid rgba(1, 73, 190, 0.15);
+}
+
+.video-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+/* Nhóm tiêu đề + thanh gạch dưới "Video nổi bật" / "Video hàng ngày" */
+.video-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* đã có màu #0051CB từ trên, đoạn này có thể bỏ,
+   nhưng giữ cũng được vì selector cụ thể hơn */
+.video-section-heading h2 {
+  color: #0051CB;
+}
+
+/* thanh gạch xanh dưới tiêu đề (mỗi section 1 thanh riêng) */
+.video-section-heading-line {
+  width: 234px;           /* giống khung 234px trong Figma */
+  height: 4px;
+  border-radius: 999px;
+  background-color: #0051CB;
+}
+
+
+.video-section-label {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: #810cc4;
+  text-transform: uppercase;
+}
+
+.video-section h2 {
+   margin: 4px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0051CB; 
+}
+
+
+.video-section-badge {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0051cb;
+  background: #e6f0ff;
+  border-radius: 12px;
+  padding: 6px 16px;
+  &.video-section-badge--saved {
+    background: #ffe4ec;
+    color: #d60d79;
+  }
+}
+
+.video-history-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 26px 20px;
+}
+
+.video-history-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+
+
+.video-saved-layout {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(3, 27, 140, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.video-saved-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+
+
+.video-profile-layout {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(3, 27, 140, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.video-profile-hero {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.video-profile-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #0051cb 0%, #810cc4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 20px 40px rgba(1, 73, 190, 0.25);
+}
+
+.video-profile-details h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 2vw, 34px);
+  color: #0051cb;
+}
+
+.video-profile-details p {
+  margin: 6px 0 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: #4f5b8a;
+}
+
+.video-profile-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #00162f;
+}
+
+.video-profile-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.video-primary-btn,
+.video-secondary-btn,
+.video-outline-btn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.video-primary-btn {
+  background: linear-gradient(95.81deg, #0149be 1.22%, #810cc4 100%);
+  color: #ffffff;
+}
+
+.video-secondary-btn {
+  background: #ffffff;
+  border: 1px solid rgba(1, 73, 190, 0.4);
+  color: #00162f;
+  box-shadow: 0 12px 24px rgba(1, 73, 190, 0.15);
+}
+
+.video-outline-btn {
+  background: transparent;
+  border: 1px dashed rgba(1, 73, 190, 0.4);
+  color: #00162f;
+}
+
+.video-profile-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.video-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 0 120px;
+  background: #f5f8ff;
+}
+
+.video-detail-top {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto 24px;
+}
+
+.video-detail-actions-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.video-detail-main {
+  position: relative;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 30px 60px rgba(3, 27, 140, 0.12);
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.video-detail-player-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.video-detail-player {
+  width: 100%;
+  border-radius: 32px;
+  min-height: 430px;
+  background: #000;
+  object-fit: cover;
+}
+
+.video-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-detail-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.video-detail-badge {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: #ffe24f;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  width: fit-content;
+}
+
+.video-detail-info h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  color: #00162f;
+}
+
+.video-detail-location {
+  margin: 0;
+  color: #4f5b8a;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.video-detail-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Montserrat', sans-serif;
+  color: #00162f;
+}
+
+.video-detail-description {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #4f5b8a;
+}
+
+.video-detail-side-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.video-detail-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ebf0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0051cb;
+}
+
+.video-detail-side-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #00162f;
+  align-items: center;
+}
+
+.video-detail-side-stats div {
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px;
+  background: #f0f4ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-detail-side-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.video-detail-related {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 30px 60px rgba(3, 27, 140, 0.08);
+}
+
+.video-detail-related h2 {
+  margin: 0 0 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  color: #00162f;
+}
+
+.video-detail-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.video-single-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 72px 0 0;        /* ~ chiều cao header, đừng để 16px nữa */
+  background: #ffffff;
+}
+.video-single-layout {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  position: relative;
+}
+
+.video-single-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 72px;     /* ~ chiều cao header, giữ nguyên như đang xài */
+  padding-top: 0;
+  height: fit-content;
+}
+
+
+.video-player-actions {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: flex-start;
+  column-gap: 12px;
+  margin-top: 40px;      /* khoảng bù cho chiều cao hàng nút, 
+                            thử 32–48px để thấy vừa ý */
+}
+
+
+.video-detail-actions-header {
+  position: absolute;
+  top: 0;               /* chỉnh 0 / 8 / 12 tuỳ mắt cho giống figma */
+  right: 24px;
+  display: flex;
+  gap: 12px;
+  border-radius: 32px;
+  padding: 0;
+  margin: 0;
+}
+.video-single-search {
+  display: flex;
+  align-items: center;
+  border: 2px solid #eb5aac;
+  border-radius: 22px;
+  padding: 6px 12px;
+  gap: 8px;
+}
+
+.video-single-search input {
+  border: none;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.video-search-icon {
+  font-size: 18px;
+  color: #eb5aac;
+}
+
+.video-single-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-single-menu-item {
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.video-single-player-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;           /* video bám lên trên, không trôi xuống giữa */
+  align-self: stretch;
+}
+
+.video-single-player {
+  width: 320px;
+  aspect-ratio: 9 / 16;
+  max-height: calc(100vh - 190px);
+  border-radius: 14px;
+  background: #000;
+  object-fit: cover;
+}
+
+.video-single-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+  justify-content: flex-start;
+}
+
+.video-single-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #ebf0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0051cb;
+}
+
+.video-single-stat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.video-single-stat-group div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-radius: 12px;
+  background: #f0f4ff;
+  padding: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #00162f;
+}
+
+.video-single-vertical-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-single-vertical-controls button {
+  border: none;
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.video-single-btn {
+  width: 140px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.video-single-footer {
+  width: 100%;
+  margin-top: 60px;
+  background: #0051cb;
+  color: #ffffff;
+  padding: 32px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.video-single-footer .video-footer-logo {
+  font-size: 32px;
+  font-weight: 800;
+  margin-right: 60px;
+}
+
+.video-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  width: calc(1440px - 200px);
+}
+
+.video-footer-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.video-single-footer p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.video-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 53px;
+  background: #ffffff;
+}
+
+.video-detail-grid {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr 220px;
+  gap: 32px;
+  align-items: center;
+}
+
+.video-detail-sidebar {
+  padding-top: 24px;
+}
+
+.video-detail-player-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-detail-player {
+  width: 260px;
+  height: 464px;
+  border-radius: 18px;
+  background: #000;
+  object-fit: cover;
+}
+
+.video-detail-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 80px;
+}
+
+.video-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.video-actions-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;        /* dịch cả cột xuống một chút */
+}
+
+
+.video-user-avatar {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.avatar-circle {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fdf0f4 0%, #ffe0f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0051cb;
+}
+
+.action-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+}
+
+.action-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.action-count {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.view-post-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 20px;
+  background: linear-gradient(95.81deg, #0149be 1.22%, #810cc4 100%);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(1, 73, 190, 0.25);
+}
+
+.video-detail-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fdf0f4 0%, #ffe0f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0051cb;
+}
+
+.video-detail-counts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.video-detail-counts div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #00162f;
+}
+
+.video-detail-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-detail-navigation button {
+  border: none;
+  background: #f0f4ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.video-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 0 120px;
+  background: #f5f8ff;
+}
+
+.video-utility-pill {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #00162f;
+  box-shadow: 0 10px 20px rgba(3, 27, 140, 0.12);
+}
+
+.video-utility-pill.primary {
+  background: linear-gradient(95.81deg, #0149be 1.22%, #810cc4 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(1, 73, 190, 0.3);
+}
+
+.video-utility-pill.outlined {
+  border: 1px solid rgba(1, 73, 190, 0.3);
+}
+
+.video-detail-container {
+  width: min(1440px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.video-detail-player-wrapper {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 30px 60px rgba(3, 27, 140, 0.12);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+}
+
+.video-detail-player {
+  width: 100%;
+  border-radius: 28px;
+  background: #000;
+  height: 100%;
+  min-height: 420px;
+}
+
+.video-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.video-detail-badge {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: #ffe24f;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  width: fit-content;
+}
+
+.video-detail-info h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  color: #00162f;
+}
+
+.video-detail-location {
+  margin: 0;
+  color: #4f5b8a;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.video-detail-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Montserrat', sans-serif;
+  color: #00162f;
+}
+
+.video-detail-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.video-detail-description {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #4f5b8a;
+}
+
+.video-detail-related {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 30px 60px rgba(3, 27, 140, 0.08);
+}
+
+.video-detail-related h2 {
+  margin: 0 0 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  color: #00162f;
+}
+
+.video-detail-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.video-card {
+  width: 100%;
+}
+
+.video-card-media {
+  width: 100%;
+  aspect-ratio: 216 / 338;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.video-card-duration {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.video-card-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ffe24f;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.video-card-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.video-card-stats {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.video-card-info {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.video-card-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0149be;
+}
+
+.video-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.video-card-text p {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00162f;
+}
+
+.video-card-text span {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .video-page-container {
+    grid-template-columns: 1fr;
+  }
+
+  .video-sidebar {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .video-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .video-hero-search {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-page {
+    padding-top: 60px;
+  }
+
+  .video-page-container {
+    width: calc(100% - 32px);
+  }
+
+  .video-hero {
+    padding: 24px;
+  }
+
+  .video-section {
+    padding: 24px;
+  }
+}
+/* Vùng scroll riêng cho mỗi section "Video nổi bật" / "Video hàng ngày" */
+.video-section-scroll {
+  max-height: 680px;      /* chiều cao hiển thị – bạn chỉnh 640 / 720 tuỳ ý */
+  overflow-y: auto;
+  padding-right: 6px;     /* chừa chỗ cho scrollbar */
+}
+
+/* Custom scrollbar (Chrome, Edge, Safari) – cho đẹp giống Figma */
+.video-section-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.video-section-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.video-section-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+}
+
+.video-section-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* Nút trượt lên / xuống giống TikTok */
+.video-actions-nav {
+  position: fixed;               /* dính mép phải màn hình */
+  right: 40px;                   /* chỉnh xa mép phải: 32–48px tuỳ ý */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 30;
+}
+
+.video-nav-arrow {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.78);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease,
+              box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.video-nav-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.video-nav-arrow path {
+  stroke: #ffffff;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.video-nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+.video-nav-arrow:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* Nút trượt lên/xuống kiểu TikTok */
+.video-scroll-nav {
+  position: fixed;          /* bám mép màn hình */
+  right: 32px;              /* khoảng cách mép phải (tùy chỉnh) */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 50;              /* nằm trên video */
+}
+
+.video-scroll-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.82);  /* vòng tròn đen như TikTok */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.video-scroll-btn svg {
+  display: block;
+}
+
+.video-scroll-btn path {
+  stroke: #ffffff;          /* mũi tên trắng */
+}

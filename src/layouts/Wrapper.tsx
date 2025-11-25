@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { animationCreate } from "@/utils/utils";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import HeaderIIP from "@/layouts-iip/headers/HeaderIIP";
+import FooterIIP from "@/layouts-iip/footers/FooterIIP";
+import "@/styles-iip/index.scss";
 
 if (typeof window !== "undefined") {
     require("bootstrap/dist/js/bootstrap");
@@ -21,7 +24,9 @@ const Wrapper = ({ children }: any) => {
 
 
     return <>
+        <HeaderIIP />
         {children}
+        <FooterIIP />
         <ScrollToTop />
         <ToastContainer position="top-center" />
     </>;

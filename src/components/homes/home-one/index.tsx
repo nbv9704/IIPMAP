@@ -1,5 +1,3 @@
-import FooterOne from "@/layouts/footers/FooterOne"
-import HeaderOne from "@/layouts/headers/HeaderOne"
 import Banner from "./Banner"
 import Feedback from "./Feedback"
 import BLockFeatureOne from "./BLockFeatureOne"
@@ -16,7 +14,6 @@ import FancyBanner from "@/components/common/FancyBanner"
 const HomeOne = () => {
   return (
     <>
-      <HeaderOne style={false} />
       <Banner />
       <Feedback />
       <BLockFeatureOne />
@@ -29,7 +26,6 @@ const HomeOne = () => {
       <BLockFeatureFive style={false} />
       <FancyBanner style={false} />
       <FancyBannerThree />
-      <FooterOne style={false} />
     </>
   )
 }

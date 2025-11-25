@@ -1,0 +1,540 @@
+@import './variables-iip.scss';
+
+// News page - Theo Figma Design
+.news-area {
+   background: #FFFFFF;
+   padding-top: 53px; // Header height
+   
+   // Hero Banner with Carousel
+   .hero-banner {
+      position: relative;
+      width: 100%;
+      height: 473px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 60px 151px;
+      transition: background-image 0.5s ease-in-out;
+      
+      .hero-overlay {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+      }
+      
+      .hero-content {
+         position: relative;
+         z-index: 1;
+         max-width: 1084px;
+         
+         h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 40px;
+            line-height: 49px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+         }
+         
+         .btn-xem-them {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: #FFFFFF;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 18px;
+            color: #000000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            
+            &:hover {
+               transform: translateY(-2px);
+               box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            i {
+               font-size: 13px;
+               transform: none !important;
+            }
+         }
+      }
+   }
+   
+   .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+   }
+   
+   // Search Section (without filters)
+   .search-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 40px 0 30px;
+      
+      .search-box {
+         position: relative;
+         width: 450px;
+         
+         input {
+            width: 100%;
+            height: 52px;
+            padding: 0 60px 0 24px;
+            background: #FFFFFF;
+            border: 2px solid #e5e7eb;
+            border-radius: 26px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 20px;
+            color: #111827;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            
+            &::placeholder {
+               color: #9ca3af;
+               font-weight: 400;
+            }
+            
+            &:hover {
+               border-color: #d0d7e0;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+            
+            &:focus {
+               outline: none;
+               border-color: #0051CB;
+               box-shadow: 0 0 0 4px rgba(0, 81, 203, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+         }
+         
+         i {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            color: #6b7280;
+            pointer-events: none;
+            transition: color 0.3s ease;
+         }
+         
+         &:hover i {
+            color: #374151;
+         }
+      }
+   }
+   
+   // Section Title (inline with search) - Thu nhỏ hơn
+   .section-title {
+      margin: 0;
+      
+      h2 {
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 800;
+         font-size: 20px;
+         line-height: 26px;
+         color: #0051CB;
+         margin: 0;
+      }
+   }
+   
+   // News List Horizontal (Thu nhỏ hơn nữa)
+   .news-list-horizontal {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 50px;
+      
+      .news-item-horizontal {
+         display: flex;
+         gap: 30px;
+         text-decoration: none;
+         color: inherit;
+         transition: transform 0.3s ease;
+         padding-bottom: 24px;
+         border-bottom: 1px solid #e5e7eb;
+         
+         &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+         }
+         
+         &:hover {
+            transform: translateY(-4px);
+         }
+         
+         .news-image {
+            flex: 0 0 35%;
+            height: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            
+            img {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+            }
+         }
+         
+         .news-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            
+            .news-category {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 500;
+               font-size: 13px;
+               line-height: 18px;
+               color: #6b7280;
+               margin-bottom: 12px;
+            }
+            
+            h3 {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 700;
+               font-size: 20px;
+               line-height: 26px;
+               color: #0051CB;
+               margin: 0 0 12px 0;
+            }
+            
+            .news-excerpt {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 400;
+               font-size: 14px;
+               line-height: 20px;
+               color: #6b7280;
+               margin: 0 0 16px 0;
+               display: -webkit-box;
+               -webkit-line-clamp: 2;
+               line-clamp: 2;
+               -webkit-box-orient: vertical;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               flex-grow: 1;
+            }
+            
+            .news-footer {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               margin-top: 16px;
+               
+               .news-date {
+                  font-family: 'Montserrat', sans-serif;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 18px;
+                  color: #6b7280;
+               }
+               
+               .bookmark-btn {
+                  background: none;
+                  border: none;
+                  font-size: 24px;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  padding: 0;
+                  
+                  i {
+                     color: #000000;
+                  }
+                  
+                  &.active i {
+                     color: #0051CB;
+                  }
+                  
+                  &:hover {
+                     transform: scale(1.1);
+                  }
+               }
+            }
+         }
+      }
+   }
+   
+   // Pagination - Thu nhỏ
+   .pagination-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 60px;
+      
+      .page-btn {
+         width: 40px;
+         height: 40px;
+         background: #FFFFFF;
+         border: 1px solid #e5e7eb;
+         border-radius: 6px;
+         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 600;
+         font-size: 16px;
+         line-height: 20px;
+         color: #374151;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         
+         &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+            border-color: #0051CB;
+         }
+         
+         &.active {
+            background: #0051CB;
+            color: #FFFFFF;
+            border-color: #0051CB;
+         }
+         
+         &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            &:hover {
+               transform: none;
+               box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+               border-color: #e5e7eb;
+            }
+         }
+      }
+   }
+   
+   // News Grid Vertical
+   .news-grid-vertical {
+      display: grid;
+      grid-template-columns: repeat(3, 318px);
+      gap: 102px 113.5px;
+      justify-content: center;
+      margin-bottom: 100px;
+      
+      .news-item-vertical {
+         text-decoration: none;
+         color: inherit;
+         display: block;
+         transition: transform 0.3s ease;
+         
+         &:hover {
+            transform: translateY(-4px);
+         }
+         .news-image {
+            width: 100%;
+            height: 179px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            
+            img {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+            }
+         }
+         
+         .news-content {
+            .news-category {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 400;
+               font-size: 20px;
+               line-height: 24px;
+               color: #000000;
+               margin-bottom: 8px;
+               display: block;
+            }
+            
+            h4 {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 800;
+               font-size: 20px;
+               line-height: 24px;
+               color: #0051CB;
+               margin: 0 0 12px 0;
+            }
+            
+            .news-footer {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               
+               .news-date {
+                  font-family: 'Montserrat', sans-serif;
+                  font-weight: 400;
+                  font-size: 20px;
+                  line-height: 24px;
+                  color: #000000;
+               }
+               
+               .bookmark-btn {
+                  background: none;
+                  border: none;
+                  font-size: 20px;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  
+                  i {
+                     color: #000000;
+                  }
+                  
+                  &.active i {
+                     color: #0051CB;
+                  }
+                  
+                  &:hover {
+                     transform: scale(1.1);
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+// Responsive
+@media (max-width: 1200px) {
+   .news-area {
+      .container {
+         padding: 0 40px;
+      }
+      
+      .news-grid-vertical {
+         grid-template-columns: repeat(2, 1fr);
+         gap: 40px;
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   .news-area {
+      .hero-banner {
+         height: 300px;
+         padding: 40px 20px;
+         
+         .hero-content h1 {
+            font-size: 28px;
+            line-height: 34px;
+         }
+      }
+      
+      .filter-section {
+         flex-direction: column;
+         gap: 20px;
+         
+         .filter-buttons {
+            flex-wrap: wrap;
+         }
+         
+         .search-box {
+            width: 100%;
+         }
+      }
+      
+      .news-list-horizontal .news-item-horizontal {
+         flex-direction: column;
+         
+         .news-image {
+            flex: none;
+            width: 100%;
+         }
+      }
+      
+      .news-grid-vertical {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+
+
+// Override related-news-grid for news page (not news detail) - Giãn cards ra
+.news-area {
+   .related-news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px 50px; // Tăng gap giữa cards
+      justify-content: center;
+      margin-bottom: 60px;
+      max-width: 950px; // Tăng max-width để giãn ra
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px; // Tăng khoảng cách với title
+   }
+   
+   // Override card width for news page
+   .related-news-card {
+      width: 100%;
+      max-width: 280px; // Tăng từ 260px lên 280px
+      margin: 0 auto;
+   }
+}
+
+// Responsive for news page related grid
+@media (max-width: 1200px) {
+   .news-area .related-news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+   }
+}
+
+@media (max-width: 768px) {
+   .news-area .related-news-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+   }
+}
+
+
+// Search Section (without filters)
+.search-section {
+  display: flex;
+  justify-content: flex-end;
+  margin: 40px 0 30px;
+}
+
+
+// Carousel Indicators - Căn giữa và đẩy xuống dưới
+.news-area .hero-banner .carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  
+  .indicator {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    margin: 0;
+    
+    &.active {
+      background: #ffffff;
+      width: 60px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
