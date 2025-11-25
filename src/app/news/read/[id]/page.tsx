@@ -10,12 +10,6 @@ const NewsDetailPage = ({ params }: { params: { id: string } }) => {
   const { currentLang } = useLanguage();
   const newsItem = getNewsItem(parseInt(params.id), currentLang);
 
-  useEffect(() => {
-    if (newsItem) {
-      document.title = `${newsItem.title} - IIPVIETNAM.COM`;
-    }
-  }, [newsItem]);
-
   if (!newsItem) {
     return (
       <Wrapper>
@@ -23,6 +17,12 @@ const NewsDetailPage = ({ params }: { params: { id: string } }) => {
       </Wrapper>
     );
   }
+
+  useEffect(() => {
+    if (newsItem) {
+      document.title = `${newsItem.title} - IIPVIETNAM.COM`;
+    }
+  }, [newsItem]);
 
   return (
     <Wrapper>

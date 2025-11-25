@@ -161,6 +161,58 @@ export const translations = {
         request: 'Gửi yêu cầu',
       },
     },
+    // Zone Detail
+    zoneDetail: {
+      infoCards: {
+        location: 'Vị trí',
+        timeline: 'Thời hạn sử dụng đất',
+        price: 'Giá thuê đất',
+        density: 'Mật độ xây dựng',
+        years: 'năm',
+      },
+      actions: {
+        email: 'Email',
+        booking: 'Đặt lịch khảo sát',
+        chat: 'Chat',
+        call: 'Call',
+      },
+      detail: {
+        title: 'Thông tin chi tiết',
+        address: 'Địa chỉ',
+        operatingTime: 'Thời gian vận hành',
+        totalArea: 'Tổng diện tích',
+        landPrice: 'Giá thuê đất',
+        vatNote: '(chưa bao gồm VAT)',
+        strategicLocation: 'Vị trí chiến lược và kết nối vùng',
+        infrastructure: 'Cơ sở hạ tầng',
+        electricSystem: 'Hệ thống cấp điện',
+        electricDesc: 'Thiết lập hệ thống cấp điện ổn định, kết nối với lưới điện quốc gia.',
+        waterSystem: 'Hệ thống cấp và thoát nước',
+        waterDesc: 'Xây dựng hệ thống cấp nước sạch đầy đủ cho nhu cầu sản xuất và sinh hoạt.',
+      },
+      nearby: {
+        title: 'Các khu, cụm công nghiệp lân cận',
+        count: '(10)',
+      },
+      compare: {
+        title: 'So sánh khu, cụm công nghiệp',
+        select: 'Chọn khu công nghiệp',
+        criteria: {
+          stt: 'STT',
+          criterion: 'Tiêu chí',
+          location: 'Địa điểm',
+          scale: 'Quy mô diện tích',
+          price: 'Giá thuê hạ tầng',
+        },
+      },
+      download: {
+        title: 'Xem đầy đủ tài liệu giới thiệu khu công nghiệp',
+        link: 'Tài liệu giới thiệu khu công nghiệp',
+      },
+      map: {
+        placeholder: 'Map will be integrated here',
+      },
+    },
   },
   en: {
     // Page Titles
@@ -322,6 +374,58 @@ export const translations = {
         },
         support: 'Consulting support',
         request: 'Send request',
+      },
+    },
+    // Zone Detail
+    zoneDetail: {
+      infoCards: {
+        location: 'Location',
+        timeline: 'Land Use Term',
+        price: 'Land Rent',
+        density: 'Construction Density',
+        years: 'years',
+      },
+      actions: {
+        email: 'Email',
+        booking: 'Schedule Survey',
+        chat: 'Chat',
+        call: 'Call',
+      },
+      detail: {
+        title: 'Detailed Information',
+        address: 'Address',
+        operatingTime: 'Operating Time',
+        totalArea: 'Total Area',
+        landPrice: 'Land Rent',
+        vatNote: '(excluding VAT)',
+        strategicLocation: 'Strategic Location and Regional Connectivity',
+        infrastructure: 'Infrastructure',
+        electricSystem: 'Electrical System',
+        electricDesc: 'Establish a stable electrical system, connected to the national grid.',
+        waterSystem: 'Water Supply and Drainage System',
+        waterDesc: 'Build a complete clean water supply system for production and living needs.',
+      },
+      nearby: {
+        title: 'Nearby Industrial Parks and Clusters',
+        count: '(10)',
+      },
+      compare: {
+        title: 'Compare Industrial Parks and Clusters',
+        select: 'Select Industrial Park',
+        criteria: {
+          stt: 'No.',
+          criterion: 'Criterion',
+          location: 'Location',
+          scale: 'Area Scale',
+          price: 'Infrastructure Rent',
+        },
+      },
+      download: {
+        title: 'View Full Industrial Park Introduction Document',
+        link: 'Industrial Park Introduction Document',
+      },
+      map: {
+        placeholder: 'Map will be integrated here',
       },
     },
   },
@@ -487,6 +591,58 @@ export const translations = {
         request: 'リクエストを送信',
       },
     },
+    // Zone Detail
+    zoneDetail: {
+      infoCards: {
+        location: '場所',
+        timeline: '土地使用期間',
+        price: '土地賃料',
+        density: '建設密度',
+        years: '年',
+      },
+      actions: {
+        email: 'メール',
+        booking: '調査スケジュール',
+        chat: 'チャット',
+        call: '電話',
+      },
+      detail: {
+        title: '詳細情報',
+        address: '住所',
+        operatingTime: '運営時間',
+        totalArea: '総面積',
+        landPrice: '土地賃料',
+        vatNote: '(VAT別)',
+        strategicLocation: '戦略的立地と地域接続',
+        infrastructure: 'インフラ',
+        electricSystem: '電力システム',
+        electricDesc: '国家電力網に接続された安定した電力システムを確立。',
+        waterSystem: '給排水システム',
+        waterDesc: '生産と生活のニーズに対応する完全な清水供給システムを構築。',
+      },
+      nearby: {
+        title: '近隣の工業団地・クラスター',
+        count: '(10)',
+      },
+      compare: {
+        title: '工業団地・クラスターの比較',
+        select: '工業団地を選択',
+        criteria: {
+          stt: '番号',
+          criterion: '基準',
+          location: '場所',
+          scale: '面積規模',
+          price: 'インフラ賃料',
+        },
+      },
+      download: {
+        title: '工業団地紹介資料の全文を見る',
+        link: '工業団地紹介資料',
+      },
+      map: {
+        placeholder: 'マップはここに統合されます',
+      },
+    },
   },
   ko: {
     // Page Titles
@@ -650,6 +806,58 @@ export const translations = {
         request: '요청 보내기',
       },
     },
+    // Zone Detail
+    zoneDetail: {
+      infoCards: {
+        location: '위치',
+        timeline: '토지 사용 기간',
+        price: '토지 임대료',
+        density: '건설 밀도',
+        years: '년',
+      },
+      actions: {
+        email: '이메일',
+        booking: '조사 일정',
+        chat: '채팅',
+        call: '전화',
+      },
+      detail: {
+        title: '상세 정보',
+        address: '주소',
+        operatingTime: '운영 시간',
+        totalArea: '총 면적',
+        landPrice: '토지 임대료',
+        vatNote: '(VAT 제외)',
+        strategicLocation: '전략적 위치 및 지역 연결',
+        infrastructure: '인프라',
+        electricSystem: '전력 시스템',
+        electricDesc: '국가 전력망에 연결된 안정적인 전력 시스템 구축.',
+        waterSystem: '급배수 시스템',
+        waterDesc: '생산 및 생활 수요를 위한 완전한 청정 급수 시스템 구축.',
+      },
+      nearby: {
+        title: '인근 산업단지 및 클러스터',
+        count: '(10)',
+      },
+      compare: {
+        title: '산업단지 및 클러스터 비교',
+        select: '산업단지 선택',
+        criteria: {
+          stt: '번호',
+          criterion: '기준',
+          location: '위치',
+          scale: '면적 규모',
+          price: '인프라 임대료',
+        },
+      },
+      download: {
+        title: '산업단지 소개 자료 전체 보기',
+        link: '산업단지 소개 자료',
+      },
+      map: {
+        placeholder: '지도가 여기에 통합됩니다',
+      },
+    },
   },
   zh: {
     // Page Titles
@@ -811,6 +1019,58 @@ export const translations = {
         },
         support: '咨询支持',
         request: '发送请求',
+      },
+    },
+    // Zone Detail
+    zoneDetail: {
+      infoCards: {
+        location: '位置',
+        timeline: '土地使用期限',
+        price: '土地租金',
+        density: '建设密度',
+        years: '年',
+      },
+      actions: {
+        email: '电子邮件',
+        booking: '安排调查',
+        chat: '聊天',
+        call: '电话',
+      },
+      detail: {
+        title: '详细信息',
+        address: '地址',
+        operatingTime: '运营时间',
+        totalArea: '总面积',
+        landPrice: '土地租金',
+        vatNote: '(不含增值税)',
+        strategicLocation: '战略位置和区域连接',
+        infrastructure: '基础设施',
+        electricSystem: '电力系统',
+        electricDesc: '建立稳定的电力系统，连接国家电网。',
+        waterSystem: '供排水系统',
+        waterDesc: '建设完整的清洁供水系统，满足生产和生活需求。',
+      },
+      nearby: {
+        title: '附近的工业园区和集群',
+        count: '(10)',
+      },
+      compare: {
+        title: '比较工业园区和集群',
+        select: '选择工业园区',
+        criteria: {
+          stt: '序号',
+          criterion: '标准',
+          location: '地点',
+          scale: '面积规模',
+          price: '基础设施租金',
+        },
+      },
+      download: {
+        title: '查看完整的工业园区介绍文件',
+        link: '工业园区介绍文件',
+      },
+      map: {
+        placeholder: '地图将在此处集成',
       },
     },
   },

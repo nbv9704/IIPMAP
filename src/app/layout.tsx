@@ -1,5 +1,7 @@
 'use client'
 import "../styles/index.scss";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -11,6 +13,7 @@ export default function RootLayout({
 }) {
 
   const isDev = process.env.NODE_ENV === 'development'
+  const pathname = usePathname()
 
   return (
     <html lang="vi" suppressHydrationWarning={isDev}>
