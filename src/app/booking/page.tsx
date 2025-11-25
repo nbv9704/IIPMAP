@@ -1,31 +1,22 @@
+"use client"
+import { useEffect } from "react";
 import Wrapper from "@/layouts/Wrapper";
+import BookingArea from "@/components/booking/BookingArea";
+import { useLanguage } from "@/hooks/useLanguage";
+import { getTranslation } from "@/utils/translations";
 
-export const metadata = {
-   title: "Đặt lịch - IIPMap.AI",
+const BookingPage = () => {
+  const { currentLang } = useLanguage();
+  
+  useEffect(() => {
+    document.title = `${getTranslation(currentLang, 'pageTitle.booking')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
+  }, [currentLang]);
+  
+  return (
+    <Wrapper>
+      <BookingArea />
+    </Wrapper>
+  );
 };
 
-const DatLichPage = () => {
-   return (
-      <Wrapper>
-         <div style={{ 
-            minHeight: 'calc(100vh - 260px)', 
-            paddingTop: '100px',
-            padding: '100px 20px 40px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-         }}>
-            <h1 style={{ 
-               fontFamily: 'Montserrat, sans-serif',
-               fontSize: '40px',
-               fontWeight: 800,
-               color: '#0051CB'
-            }}>
-               Đặt lịch - Coming Soon
-            </h1>
-         </div>
-      </Wrapper>
-   )
-}
-
-export default DatLichPage
+export default BookingPage;

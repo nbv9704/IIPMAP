@@ -1,10 +1,16 @@
+"use client"
+import { useEffect } from "react";
 import Wrapper from "@/layouts/Wrapper";
-
-export const metadata = {
-   title: "Dịch vụ - IIPMap.AI",
-};
+import { useLanguage } from "@/hooks/useLanguage";
+import { getTranslation } from "@/utils/translations";
 
 const DichVuPage = () => {
+   const { currentLang } = useLanguage();
+   
+   useEffect(() => {
+      document.title = `${getTranslation(currentLang, 'pageTitle.services')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
+   }, [currentLang]);
+   
    return (
       <Wrapper>
          <div style={{ 
@@ -21,7 +27,7 @@ const DichVuPage = () => {
                fontWeight: 800,
                color: '#0051CB'
             }}>
-               Dịch vụ - Coming Soon
+               {getTranslation(currentLang, 'pageTitle.services')} - Coming Soon
             </h1>
          </div>
       </Wrapper>

@@ -1,10 +1,16 @@
+"use client"
+import { useEffect } from "react";
 import Wrapper from "@/layouts/Wrapper";
-
-export const metadata = {
-   title: "Liên hệ - IIPMap.AI",
-};
+import { useLanguage } from "@/hooks/useLanguage";
+import { getTranslation } from "@/utils/translations";
 
 const LienHePage = () => {
+   const { currentLang } = useLanguage();
+   
+   useEffect(() => {
+      document.title = `${getTranslation(currentLang, 'pageTitle.contact')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
+   }, [currentLang]);
+   
    return (
       <Wrapper>
          <div style={{ 
@@ -21,7 +27,7 @@ const LienHePage = () => {
                fontWeight: 800,
                color: '#0051CB'
             }}>
-               Liên hệ - Coming Soon
+               {getTranslation(currentLang, 'pageTitle.contact')} - Coming Soon
             </h1>
          </div>
       </Wrapper>

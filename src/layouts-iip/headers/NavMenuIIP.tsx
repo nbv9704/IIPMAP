@@ -7,6 +7,7 @@ import { useState } from "react";
 const NavMenuIIP = () => {
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState<number | null>(null);
     const { menuData } = useTranslatedMenu();
 
     return (
@@ -14,13 +15,34 @@ const NavMenuIIP = () => {
             {/* Desktop Menu */}
             <ul className="navbar-nav-iip align-items-center d-none d-lg-flex">
                 {menuData.map((menu) => (
-                    <li key={menu.id} className="nav-item-iip">
+                    <li 
+                        key={menu.id} 
+                        className={`nav-item-iip ${menu.has_dropdown ? 'has-dropdown' : ''}`}
+                        onMouseEnter={() => menu.has_dropdown && setOpenDropdown(menu.id)}
+                        onMouseLeave={() => menu.has_dropdown && setOpenDropdown(null)}
+                    >
                         <Link 
                             href={menu.link} 
                             className={`nav-link-iip ${pathname === menu.link ? 'active' : ''}`}
                         >
                             {menu.title}
+                            {menu.has_dropdown && <span className="dropdown-arrow">▼</span>}
                         </Link>
+                        
+                        {menu.has_dropdown && menu.sub_menus && openDropdown === menu.id && (
+                            <ul className="dropdown-menu-iip">
+                                {menu.sub_menus.map((subMenu, index) => (
+                                    <li key={index}>
+                                        <Link 
+                                            href={subMenu.link}
+                                            className="dropdown-item-iip"
+                                        >
+                                            {subMenu.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </li>
                 ))}
             </ul>
@@ -62,6 +84,20 @@ const NavMenuIIP = () => {
                                 >
                                     {menu.title}
                                 </Link>
+                                {menu.has_dropdown && menu.sub_menus && (
+                                    <ul className="mobile-submenu">
+                                        {menu.sub_menus.map((subMenu, index) => (
+                                            <li key={index}>
+                                                <Link 
+                                                    href={subMenu.link}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {subMenu.title}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </li>
                         ))}
                     </ul>
