@@ -1,4 +1,4 @@
-import "@/styles-iip/index.scss"
+import "@/styles/index.scss"
 import HomePageClient from "./HomePageClient"
 
 export default function HomePage() {

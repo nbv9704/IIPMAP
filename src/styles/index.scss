@@ -9,8 +9,11 @@
 @import "../../public/assets/scss/style.scss";
 
 // IIP Custom Styles
-@import "../styles-iip/header-iip.scss";
-@import "../styles-iip/footer-iip.scss";
-@import "../styles-iip/news.scss";
-@import "../styles-iip/news-detail.scss";
-@import "../styles-iip/booking.scss";
+@import "./variables-iip.scss";
+@import "./header-iip.scss";
+@import "./footer-iip.scss";
+@import "./news.scss";
+@import "./news-detail.scss";
+@import "./homepage.scss";
+@import "./video.scss";
+@import "./booking.scss";

@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { getAllNews } from "@/data-iip/NewsDataMultilang"
+import { getAllNews } from "@/data/NewsDataMultilang"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
-import "@/styles-iip/news.scss"
-import "@/styles-iip/news-detail.scss"
+import "@/styles/news.scss"
+import "@/styles/news-detail.scss"
 
 interface NewsAreaProps {
    category?: "qna" | "market" | "planning" | "activity"

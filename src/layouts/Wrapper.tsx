@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { animationCreate } from "@/utils/utils";
 import ScrollToTop from "@/components/common/ScrollToTop";
-import HeaderIIP from "@/layouts-iip/headers/HeaderIIP";
-import FooterIIP from "@/layouts-iip/footers/FooterIIP";
-import "@/styles-iip/index.scss";
+import HeaderIIP from "@/layouts/headers/HeaderIIP";
+import FooterIIP from "@/layouts/footers/FooterIIP";
+import "@/styles/index.scss";
 
 if (typeof window !== "undefined") {
     require("bootstrap/dist/js/bootstrap");

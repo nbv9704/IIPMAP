@@ -4,7 +4,7 @@ import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
 import VideoActions from "@/components/video/VideoActions"
 import { addSavedVideo, removeSavedVideo } from "@/utils/videoStorage"
-import "@/styles-iip/video.scss"
+import "@/styles/video.scss"
 
 interface VideoDetailPageProps {
   params: {

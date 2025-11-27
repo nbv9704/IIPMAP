@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllNews } from "@/data-iip/NewsDataMultilang";
+import { getAllNews } from "@/data/NewsDataMultilang";
 import { useLanguage } from "@/hooks/useLanguage";
 import { getTranslation } from "@/utils/translations";
 

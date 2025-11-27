@@ -12,7 +12,7 @@ import { HiLocationMarker } from "react-icons/hi"
 import { BiMoney, BiTimeFive, BiReply } from "react-icons/bi"
 import { TbRulerMeasure, TbMountain } from "react-icons/tb"
 import { AiOutlinePaperClip, AiOutlineInfoCircle, AiOutlineSmile } from "react-icons/ai"
-import "@/styles-iip/video.scss"
+import "@/styles/video.scss"
 
 const formatDuration = (seconds: number) => `00:${seconds.toString().padStart(2, "0")}`
 
@@ -718,7 +718,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                             <>
                               {" "}
                               <span className="video-notification-video">
-                                "{notification.video}"
+                                &ldquo;{notification.video}&rdquo;
                               </span>
                             </>
                           )}
