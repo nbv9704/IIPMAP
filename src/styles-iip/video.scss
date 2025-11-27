@@ -32,144 +32,126 @@
   gap: 20px;
 }
 
-// ===== SIDEBAR SEARCH =====
-.sidebar-search {
+// =============================================
+// VIDEO SIDEBAR SEARCH (vsb-search)
+// Connected style: search bar + dropdown nối liền, dropdown overlay
+// =============================================
+.vsb-search {
+  position: relative;
   width: calc(100% - 24px);
   margin: 0 auto;
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-              linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%) border-box;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  z-index: 50;
+  // Chiều cao cố định = chiều cao input để dropdown không đẩy content
+  height: 44px;
+}
 
-  &.has-results {
-    border-radius: 22px;
-  }
-
-  &:focus-within {
-    box-shadow: 0 4px 12px rgba(75, 93, 255, 0.2);
+// Container bao quanh cả input và dropdown - ABSOLUTE để overlay
+.vsb-search__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  
+  // Gradient border 1px
+  border: 1px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  // Animation transition
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+  
+  // Khi dropdown mở - đổi border-radius và z-index cao hơn
+  &.open {
+    border-radius: 22px 22px 18px 18px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    z-index: 100;
   }
 }
 
-.sidebar-search-input {
-  height: 44px;
+.vsb-search__input-wrapper {
   display: flex;
   align-items: center;
-  padding: 0 14px 0 20px;
+  height: 44px;
+  padding: 0 14px 0 18px;
+}
 
-  input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #111827;
+.vsb-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #111827;
 
-    &::placeholder {
-      color: #9ca3af;
-    }
-  }
-
-  button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin-left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  &::placeholder {
     color: #9ca3af;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: #4b5dff;
-    }
-
-    svg {
-      display: block;
-    }
   }
 }
 
-.sidebar-search-results {
-  padding: 8px 12px 12px;
-  border-top: 1px solid #e5e7eb;
-}
-
-// ===== EXPLORE SEARCH =====
-.explore-search {
-  margin: 0 0 16px;
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-              linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%) border-box;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-
-  &.has-results {
-    border-radius: 28px;
-  }
+.vsb-search__btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(75, 93, 255, 0.15);
-  }
-
-  &:focus-within {
-    box-shadow: 0 6px 20px rgba(75, 93, 255, 0.2);
+    color: #4b5dff;
   }
 }
 
-.explore-search-input {
-  height: 54px;
-  display: flex;
-  align-items: center;
-  padding: 0 18px 0 26px;
+// Divider giữa input và dropdown
+.vsb-search__divider-line {
+  height: 1px;
+  margin: 0 12px;
+  background: linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  animation: vsb-divider-fade-in 0.3s ease;
+}
 
-  input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    color: #111827;
+.vsb-search__dropdown {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px 0;
+  animation: vsb-dropdown-slide-in 0.35s ease;
+}
 
-    &::placeholder {
-      color: #9ca3af;
-    }
+// Animations cho sidebar search
+@keyframes vsb-divider-fade-in {
+  from {
+    opacity: 0;
   }
-
-  button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin-left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    svg {
-      display: block;
-    }
+  to {
+    opacity: 1;
   }
 }
 
-.explore-search-results {
-  padding: 12px 18px;
-  border-top: 1px solid #e5e7eb;
+@keyframes vsb-dropdown-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-// ===== SHARED SEARCH STYLES =====
-.search-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.vsb-search__section {
+  padding: 4px 0;
 }
 
-.search-label {
-  padding: 8px 12px 4px;
+.vsb-search__label {
+  padding: 8px 16px 4px;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 600;
@@ -178,15 +160,15 @@
   letter-spacing: 0.05em;
 }
 
-.search-divider {
+.vsb-search__divider {
   height: 1px;
   background: #e5e7eb;
-  margin: 8px 0;
+  margin: 8px 12px;
 }
 
-.search-item {
+.vsb-search__item {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px 16px;
   border: none;
   background: transparent;
   text-align: left;
@@ -195,45 +177,220 @@
   font-weight: 500;
   color: #00162f;
   cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.2s ease;
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: #f3f4f6;
+  }
 
   svg {
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
     color: #9ca3af;
   }
 
   span {
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     strong {
       font-weight: 700;
-      color: #00162f;
+      color: #0051cb;
     }
   }
+}
+
+.vsb-search__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0051cb 0%, #810cc4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+// =============================================
+// VIDEO EXPLORE SEARCH (vex-search)
+// Connected style: search bar + dropdown nối liền, dropdown overlay
+// =============================================
+.vex-search {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 50;
+  // Chiều cao cố định = chiều cao input để dropdown không đẩy content
+  height: 56px;
+}
+
+// Container bao quanh cả input và dropdown - ABSOLUTE để overlay
+.vex-search__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  
+  // Gradient border 1px
+  border: 1px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  // Animation transition
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+  
+  // Khi dropdown mở - đổi border-radius và z-index cao hơn
+  &.open {
+    border-radius: 28px 28px 22px 22px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    z-index: 100;
+  }
+}
+
+.vex-search__input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 20px 0 24px;
+}
+
+.vex-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #111827;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+}
+
+.vex-search__btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4b5dff;
+  }
+}
+
+// Divider giữa input và dropdown
+.vex-search__divider-line {
+  height: 1px;
+  margin: 0 16px;
+  background: linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  animation: vex-divider-fade-in 0.3s ease;
+}
+
+.vex-search__dropdown {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 12px 0;
+  animation: vex-dropdown-slide-in 0.35s ease;
+}
+
+// Animations cho explore search
+@keyframes vex-divider-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vex-dropdown-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vex-search__section {
+  padding: 4px 0;
+}
+
+.vex-search__label {
+  padding: 10px 20px 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vex-search__divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 10px 16px;
+}
+
+.vex-search__item {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #00162f;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.15s ease;
 
   &:hover {
     background: #f3f4f6;
   }
-}
-
-.explore-search .search-item {
-  padding: 12px 14px;
 
   svg {
-    width: 18px;
-    height: 18px;
+    flex-shrink: 0;
+    color: #9ca3af;
   }
 
-  font-size: 14px;
+  span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    strong {
+      font-weight: 700;
+      color: #0051cb;
+    }
+  }
 }
 
-.search-avatar {
+.vex-search__avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -2349,6 +2506,42 @@
   letter-spacing: 0.02em;
   z-index: 2;
   transition: transform 0.3s ease;
+
+  // Hot - đỏ cam nóng
+  &--hot {
+    background: linear-gradient(135deg, #ff4d4d 0%, #ff6b35 100%);
+    color: #fff;
+  }
+
+  // Xu hướng - tím gradient
+  &--xu-hướng {
+    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    color: #fff;
+  }
+
+  // Mới - xanh dương
+  &--mới {
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    color: #fff;
+  }
+
+  // Hàng ngày - xanh lá
+  &--hàng-ngày {
+    background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+    color: #fff;
+  }
+
+  // Đã lưu - hồng
+  &--đã-lưu {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    color: #fff;
+  }
+
+  // Nổi bật - vàng gold
+  &--nổi-bật {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    color: #000;
+  }
 }
 
 .video-card-play {
@@ -2450,10 +2643,53 @@
   color: #00162f;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   line-height: 1.4;
+}
+
+// Author info với avatar mini
+.video-card-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.video-card-author-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0051cb 0%, #810cc4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
+.video-card-author-name {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #00162f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
 }
 
 @media (max-width: 1200px) {
@@ -2999,95 +3235,4 @@
   }
 }
 
-.video-search-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  padding: 12px 0;
-  z-index: 50;
-  animation: dropdownFadeIn 0.2s ease-out;
-  max-height: 400px;
-  overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.18);
-    border-radius: 999px;
-  }
-}
-
-.video-search-section {
-  padding: 8px 0;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #f3f4f6;
-  }
-}
-
-.video-search-section-label {
-  padding: 8px 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #9ca3af;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.video-search-item {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  border: none;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  color: #00162f;
-
-  &:hover {
-    background: #f9fafb;
-  }
-
-  svg {
-    flex-shrink: 0;
-  }
-
-  span {
-    flex: 1;
-  }
-}
-
-.video-search-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0051cb 0%, #810cc4 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  flex-shrink: 0;
-}
-
-.video-main-search {
-  margin: 0 0 16px;
-  position: relative;
-}

@@ -10,6 +10,8 @@ export interface VideoCardItemProps {
    badge: string
    views: string
    duration: string
+   author?: string
+   authorAvatar?: string
    className?: string
    sectionSlug?: string
 }
@@ -22,6 +24,8 @@ const VideoCardItem = ({
    badge,
    views,
    duration,
+   author = "Khu công nghiệp Tiên Sơn - Bắc Ninh",
+   authorAvatar,
    className = "",
    sectionSlug = "explore",
 }: VideoCardItemProps) => {
@@ -70,7 +74,7 @@ const VideoCardItem = ({
          onMouseLeave={handleMouseLeave}
       >
          <div className="video-card-media">
-            <div className="video-card-badge">{badge}</div>
+            <div className={`video-card-badge video-card-badge--${badge.toLowerCase().replace(/\s+/g, '-')}`}>{badge}</div>
             <div className="video-card-duration">{duration}</div>
             <video 
                ref={videoRef}
@@ -108,8 +112,15 @@ const VideoCardItem = ({
          </div>
       </div>
       <div className="video-card-info">
-         <div className="video-card-text">
-            <p>{title}</p>
+         <div className="video-card-author">
+            <div className="video-card-author-avatar">
+               {authorAvatar ? (
+                  <img src={authorAvatar} alt={author} />
+               ) : (
+                  <span>{author.charAt(0).toUpperCase()}</span>
+               )}
+            </div>
+            <p className="video-card-author-name">{author}</p>
          </div>
       </div>
       </Link>

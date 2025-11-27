@@ -1,7 +1,5 @@
-import { redirect } from "next/navigation"
-
-const DEFAULT_SECTION = "explore"
+import VideoPageContent from "@/components/video/VideoPageContent"
 
 export default function VideoPageRoot() {
-  redirect(`/video/${DEFAULT_SECTION}`)
+  return <VideoPageContent section="explore" />
 }

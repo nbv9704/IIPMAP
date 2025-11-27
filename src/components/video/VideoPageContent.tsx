@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState, useEffect } from "react"
+import { useMemo, useState, useEffect, useRef } from "react"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
@@ -28,6 +28,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
   // Explore search state
   const [exploreQuery, setExploreQuery] = useState("")
   const [exploreOpen, setExploreOpen] = useState(false)
+  const exploreSearchRef = useRef<HTMLDivElement>(null)
   
   const [notificationFilter, setNotificationFilter] = useState("all")
   const [notificationPage, setNotificationPage] = useState(1)
@@ -58,6 +59,17 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
       "pageTitle.siteName",
     )}`
   }, [currentLang])
+
+  // Close explore search dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (exploreSearchRef.current && !exploreSearchRef.current.contains(e.target as Node)) {
+        setExploreOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   // fake data
   const featuredVideos: VideoCardItemProps[] = useMemo(
@@ -420,79 +432,84 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
           <div className="video-main-column">
             {/* Explore Search Bar */}
             {section === "explore" && (
-              <div className={`explore-search ${exploreHasResults ? 'has-results' : ''}`}>
-                <div className="explore-search-input">
-                  <input
-                    type="text"
-                    placeholder="Tìm kiếm"
-                    value={exploreQuery}
-                    onChange={(e) => {
-                      setExploreQuery(e.target.value)
-                      setExploreOpen(true)
-                    }}
-                    onFocus={() => setExploreOpen(true)}
-                    onBlur={() => setTimeout(() => setExploreOpen(false), 200)}
-                  />
-                  <button type="button" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <circle cx="8" cy="8" r="5.5" stroke="#9CA3AF" strokeWidth="1.5" />
-                      <line x1="12" y1="12" x2="16" y2="16" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </button>
-                </div>
-
-                {exploreHasResults && (
-                  <div className="explore-search-results">
-                    {exploreRecent.length > 0 && (
-                      <div className="search-section">
-                        <div className="search-label">Recent Searches</div>
-                        {exploreRecent.map((q, i) => (
-                          <button
-                            key={i}
-                            className="search-item"
-                            onClick={() => {
-                              setExploreQuery(q)
-                              setExploreOpen(false)
-                            }}
-                          >
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                              <circle cx="9" cy="9" r="7" stroke="#9CA3AF" strokeWidth="1.5" />
-                              <path d="M9 5V9L12 11" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
-                            <span>{highlightText(q, exploreQuery)}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-
-                    {exploreSuggestions.length > 0 && (
-                      <div className="search-section">
-                        {exploreRecent.length > 0 && <div className="search-divider" />}
-                        <div className="search-label">Gợi ý</div>
-                        {exploreSuggestions.map((item, i) => (
-                          <button
-                            key={i}
-                            className="search-item"
-                            onClick={() => {
-                              setExploreQuery(item.q)
-                              setExploreOpen(false)
-                            }}
-                          >
-                            {item.q.startsWith('@') ? (
-                              <div className="search-avatar">{item.q.charAt(1).toUpperCase()}</div>
-                            ) : (
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <circle cx="8" cy="8" r="5.5" stroke="#9CA3AF" strokeWidth="1.5" />
-                                <line x1="12" y1="12" x2="16" y2="16" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
-                              </svg>
-                            )}
-                            <span>{highlightText(item.q, exploreQuery)}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
+              <div className="vex-search" ref={exploreSearchRef}>
+                <div className={`vex-search__container ${exploreHasResults ? "open" : ""}`}>
+                  <div className="vex-search__input-wrapper">
+                    <input
+                      type="text"
+                      className="vex-search__input"
+                      placeholder="Tìm kiếm"
+                      value={exploreQuery}
+                      onChange={(e) => {
+                        setExploreQuery(e.target.value)
+                        setExploreOpen(true)
+                      }}
+                      onFocus={() => setExploreOpen(true)}
+                    />
+                    <button type="button" className="vex-search__btn" aria-label="Search">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
+                        <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </button>
                   </div>
-                )}
+
+                  {exploreHasResults && (
+                    <>
+                      <div className="vex-search__divider-line" />
+                      <div className="vex-search__dropdown">
+                        {exploreRecent.length > 0 && (
+                          <div className="vex-search__section">
+                            <div className="vex-search__label">Recent Searches</div>
+                            {exploreRecent.map((q, i) => (
+                              <button
+                                key={i}
+                                className="vex-search__item"
+                                onClick={() => {
+                                  setExploreQuery(q)
+                                  setExploreOpen(false)
+                                }}
+                              >
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                  <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
+                                  <path d="M9 5V9L12 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                </svg>
+                                <span>{highlightText(q, exploreQuery)}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+
+                        {exploreSuggestions.length > 0 && (
+                          <div className="vex-search__section">
+                            {exploreRecent.length > 0 && <div className="vex-search__divider" />}
+                            <div className="vex-search__label">Gợi ý</div>
+                            {exploreSuggestions.map((item, i) => (
+                              <button
+                                key={i}
+                                className="vex-search__item"
+                                onClick={() => {
+                                  setExploreQuery(item.q)
+                                  setExploreOpen(false)
+                                }}
+                              >
+                                {item.q.startsWith("@") ? (
+                                  <div className="vex-search__avatar">{item.q.charAt(1).toUpperCase()}</div>
+                                ) : (
+                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
+                                    <line x1="13" y1="13" x2="17" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                  </svg>
+                                )}
+                                <span>{highlightText(item.q, exploreQuery)}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             )}
 
