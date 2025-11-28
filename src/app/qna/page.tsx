@@ -8,11 +8,11 @@ import { getTranslation } from "@/utils/translations"
 
 export default function QnAPage() {
   const { currentLang } = useLanguage()
-  
+
   useEffect(() => {
     document.title = `${getTranslation(currentLang, 'pageTitle.qna')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
   }, [currentLang]);
-  
+
   return (
     <>
       <HeaderIIP />
