@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect, useRef } from "react"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
-import { VideoCardItemProps } from "@/components/video/VideoCardItem"
+import VideoCardItem, { VideoCardItemProps } from "@/components/video/VideoCardItem"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import { readSavedVideos } from "@/utils/videoStorage"
@@ -41,6 +41,9 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
   const [dropupMessages, setDropupMessages] = useState<Set<number>>(new Set())
   const [showEmojiPicker, setShowEmojiPicker] = useState<number | null>(null)
   const [replyingTo, setReplyingTo] = useState<any>(null)
+  const [showFilesPopup, setShowFilesPopup] = useState(false)
+  const [filesPopupTab, setFilesPopupTab] = useState<"files" | "media" | "links">("files")
+  const [showPinnedPopup, setShowPinnedPopup] = useState(false)
   const notificationsPerPage = 10
   const viewMode =
     section === "saved"
@@ -51,6 +54,8 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
       ? "notifications"
       : section === "messages"
       ? "messages"
+      : section === "following"
+      ? "following"
       : "default"
 
   useEffect(() => {
@@ -111,6 +116,58 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
         views: `${22 + idx}k`,
         duration: formatDuration(12 + idx),
       })),
+    [],
+  )
+
+  // Following users data
+  const followingUsers = useMemo(
+    () => [
+      {
+        id: 1,
+        username: "@kcn_tien_son",
+        displayName: "KCN Tiên Sơn",
+        avatar: "T",
+        videos: Array.from({ length: 5 }, (_, idx) => ({
+          id: 301 + idx,
+          title: "Video từ KCN Tiên Sơn",
+          location: "Bắc Ninh",
+          thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
+          badge: idx === 0 ? "Mới" : "Hot",
+          views: `${15 + idx}k`,
+          duration: formatDuration(20 + idx),
+        })),
+      },
+      {
+        id: 2,
+        username: "@kcn_vsip",
+        displayName: "KCN VSIP",
+        avatar: "V",
+        videos: Array.from({ length: 5 }, (_, idx) => ({
+          id: 401 + idx,
+          title: "Video từ KCN VSIP",
+          location: "Hải Phòng",
+          thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
+          badge: idx === 0 ? "Xu hướng" : "Mới",
+          views: `${25 + idx}k`,
+          duration: formatDuration(15 + idx),
+        })),
+      },
+      {
+        id: 3,
+        username: "@kcn_my_phuoc",
+        displayName: "KCN Mỹ Phước",
+        avatar: "M",
+        videos: Array.from({ length: 5 }, (_, idx) => ({
+          id: 501 + idx,
+          title: "Video từ KCN Mỹ Phước",
+          location: "Bình Dương",
+          thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
+          badge: idx === 0 ? "Hot" : "Hàng ngày",
+          views: `${18 + idx}k`,
+          duration: formatDuration(25 + idx),
+        })),
+      },
+    ],
     [],
   )
 
@@ -795,6 +852,33 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                   </div>
                 )}
               </div>
+            ) : viewMode === "following" ? (
+              /* VIEW: Following - Video từ người dùng đang theo dõi */
+              <>
+                {followingUsers.map((user) => (
+                  <div key={user.id} className="video-section video-section--following">
+                    <div className="video-section-header">
+                      <div className="video-section-heading video-section-heading--following">
+                        <div className="video-following-user-header">
+                          <div className="video-following-avatar">{user.avatar}</div>
+                          <div className="video-following-info">
+                            <h2>{user.displayName}</h2>
+                            <span className="video-following-username">{user.username}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <button className="video-section-badge">Xem tất cả →</button>
+                    </div>
+                    <div className="video-following-cards">
+                      <VideoHistoryGrid
+                        videos={user.videos}
+                        sectionSlug={section}
+                        className="video-history-grid--following"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </>
             ) : viewMode === "messages" ? (
               /* VIEW: Tin nhắn */
               <div className="video-messages-layout">
@@ -888,19 +972,11 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                                 >
                                   Xem trang cá nhân
                                 </button>
-                                <button
-                                  onClick={() => {
-                                    console.log("Change nickname")
-                                    setShowChatMenu(false)
-                                  }}
-                                >
-                                  Đổi biệt danh
-                                </button>
                                 <div className="video-chat-menu-divider" />
                                 {pinnedMessage && (
                                   <button
                                     onClick={() => {
-                                      console.log("View pinned messages")
+                                      setShowPinnedPopup(true)
                                       setShowChatMenu(false)
                                     }}
                                   >
@@ -909,19 +985,11 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                                 )}
                                 <button
                                   onClick={() => {
-                                    console.log("View media")
+                                    setShowFilesPopup(true)
                                     setShowChatMenu(false)
                                   }}
                                 >
-                                  Xem file phương tiện
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    console.log("View links")
-                                    setShowChatMenu(false)
-                                  }}
-                                >
-                                  Xem liên kết đã gửi
+                                  File, phương tiện và liên kết
                                 </button>
                                 <div className="video-chat-menu-divider" />
                                 <button
@@ -938,6 +1006,176 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                           )}
                         </div>
                       </div>
+
+                      {/* Files, Media & Links Popup */}
+                      {showFilesPopup && (
+                        <>
+                          <div
+                            className="video-files-popup-backdrop"
+                            onClick={() => setShowFilesPopup(false)}
+                          />
+                          <div className="video-files-popup">
+                            <div className="video-files-popup-header">
+                              <h3>File, phương tiện và liên kết</h3>
+                              <button
+                                className="video-files-popup-close"
+                                onClick={() => setShowFilesPopup(false)}
+                              >
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                  <path
+                                    d="M15 5L5 15M5 5L15 15"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                            <div className="video-files-popup-tabs">
+                              <button
+                                className={filesPopupTab === "files" ? "active" : ""}
+                                onClick={() => setFilesPopupTab("files")}
+                              >
+                                File
+                              </button>
+                              <button
+                                className={filesPopupTab === "media" ? "active" : ""}
+                                onClick={() => setFilesPopupTab("media")}
+                              >
+                                Phương tiện
+                              </button>
+                              <button
+                                className={filesPopupTab === "links" ? "active" : ""}
+                                onClick={() => setFilesPopupTab("links")}
+                              >
+                                Liên kết
+                              </button>
+                            </div>
+                            <div className="video-files-popup-content">
+                              {filesPopupTab === "files" && (
+                                <div className="video-files-list">
+                                  <div className="video-files-empty">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                      <path d="M12 8H28L36 16V40H12V8Z" stroke="currentColor" strokeWidth="2" />
+                                      <path d="M28 8V16H36" stroke="currentColor" strokeWidth="2" />
+                                    </svg>
+                                    <p>Chưa có file nào được chia sẻ</p>
+                                  </div>
+                                </div>
+                              )}
+                              {filesPopupTab === "media" && (
+                                <div className="video-media-grid">
+                                  <div className="video-files-empty">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                      <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" strokeWidth="2" />
+                                      <circle cx="18" cy="22" r="3" stroke="currentColor" strokeWidth="2" />
+                                      <path d="M8 32L16 24L24 32L32 22L40 32" stroke="currentColor" strokeWidth="2" />
+                                    </svg>
+                                    <p>Chưa có ảnh hoặc video nào</p>
+                                  </div>
+                                </div>
+                              )}
+                              {filesPopupTab === "links" && (
+                                <div className="video-links-list">
+                                  <div className="video-files-empty">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                      <path d="M20 28L28 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                      <path d="M24 32L20 36C17.79 38.21 14.21 38.21 12 36C9.79 33.79 9.79 30.21 12 28L16 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                      <path d="M24 16L28 12C30.21 9.79 33.79 9.79 36 12C38.21 14.21 38.21 17.79 36 20L32 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <p>Chưa có liên kết nào được chia sẻ</p>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {/* Pinned Messages Popup */}
+                      {showPinnedPopup && (
+                        <>
+                          <div
+                            className="video-files-popup-backdrop"
+                            onClick={() => setShowPinnedPopup(false)}
+                          />
+                          <div className="video-files-popup video-pinned-popup">
+                            <div className="video-files-popup-header">
+                              <h3>Tin nhắn đã ghim</h3>
+                              <button
+                                className="video-files-popup-close"
+                                onClick={() => setShowPinnedPopup(false)}
+                              >
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                  <path
+                                    d="M15 5L5 15M5 5L15 15"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                            <div className="video-pinned-popup-content">
+                              {chatMessages.filter(msg => msg.pinned).length > 0 ? (
+                                <div className="video-pinned-list">
+                                  {chatMessages.filter(msg => msg.pinned).map((msg) => (
+                                    <div
+                                      key={msg.id}
+                                      className="video-pinned-item"
+                                      onClick={() => {
+                                        setShowPinnedPopup(false)
+                                        const element = document.getElementById(`message-${msg.id}`)
+                                        element?.scrollIntoView({ behavior: "smooth", block: "center" })
+                                      }}
+                                    >
+                                      <div className="video-pinned-item-avatar">
+                                        {msg.sender === "me" ? "B" : currentChat?.avatar}
+                                      </div>
+                                      <div className="video-pinned-item-content">
+                                        <div className="video-pinned-item-header">
+                                          <span className="video-pinned-item-name">
+                                            {msg.sender === "me" ? "Bạn" : currentChat?.user}
+                                          </span>
+                                          <span className="video-pinned-item-time">
+                                            {msg.timestamp.toLocaleTimeString("vi-VN", {
+                                              hour: "2-digit",
+                                              minute: "2-digit",
+                                            })}
+                                          </span>
+                                        </div>
+                                        <p className="video-pinned-item-text">{msg.text}</p>
+                                      </div>
+                                      <div className="video-pinned-item-icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                          <path
+                                            d="M8 2L9.5 5.5L13 6.5L9.5 7.5L8 11L6.5 7.5L3 6.5L6.5 5.5L8 2Z"
+                                            fill="currentColor"
+                                          />
+                                        </svg>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              ) : (
+                                <div className="video-files-empty">
+                                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <path
+                                      d="M24 8L27 17L36 19L27 21L24 30L21 21L12 19L21 17L24 8Z"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinejoin="round"
+                                    />
+                                    <path d="M14 32L16 36L20 37L16 38L14 42L12 38L8 37L12 36L14 32Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                    <path d="M34 28L35.5 31L38.5 32L35.5 33L34 36L32.5 33L29.5 32L32.5 31L34 28Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                  </svg>
+                                  <p>Chưa có tin nhắn nào được ghim</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
 
                       <div className="video-chat-messages">
                         {messagesWithTimestamps.map((item, index) =>
@@ -1297,6 +1535,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                       </p>
                       <h2 className="video-section-title">Video nổi bật</h2>
                     </div>
+                    <button className="video-section-badge">Xem tất cả →</button>
                   </div>
 
                   <div className="video-section-scroll">
@@ -1313,6 +1552,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) 
                       </p>
                       <h2 className="video-section-title">Video hàng ngày</h2>
                     </div>
+                    <button className="video-section-badge">Xem tất cả →</button>
                   </div>
 
                   <div className="video-section-scroll">

@@ -9,6 +9,7 @@ import CustomSelect from "@/components/common/CustomSelect"
 import Image from "next/image"
 import Link from "next/link"
 import { HiEye, HiChevronLeft, HiChevronRight, HiArrowsRightLeft } from "react-icons/hi2"
+import VideoCardItem from "@/components/video/VideoCardItem"
 import { HiLocationMarker } from "react-icons/hi"
 import { BiTimeFive, BiMoney } from "react-icons/bi"
 import { MdConstruction } from "react-icons/md"
@@ -110,22 +111,30 @@ export default function ZoneDetailPage({ params }: { params: ZonePageParams }) {
 
           {/* Video Cards */}
           <div className={styles.videoCards}>
-            <div className={styles.videoCard} style={{ backgroundImage: `url(${zone.image})`, backgroundSize: "cover", backgroundPosition: "center" }}>
-              <div className={styles.videoLabel}>{getTranslation(currentLang, 'home.video.labels.trend')}</div>
-              <div className={styles.playIcon}>▶</div>
-              <div className={styles.videoMeta}>
-                <span>@iip</span>
-                <span>29k {getTranslation(currentLang, 'home.video.views')}</span>
-              </div>
-            </div>
-            <div className={styles.videoCard} style={{ backgroundImage: `url(${zone.image})`, backgroundSize: "cover", backgroundPosition: "center" }}>
-              <div className={styles.videoLabel}>{getTranslation(currentLang, 'home.video.labels.hot')}</div>
-              <div className={styles.playIcon}>▶</div>
-              <div className={styles.videoMeta}>
-                <span>@iip</span>
-                <span>25k {getTranslation(currentLang, 'home.video.views')}</span>
-              </div>
-            </div>
+            <VideoCardItem
+              id={1}
+              title={zone.name}
+              location={getLocationName(zone.address)}
+              thumbnail={zone.image}
+              badge={getTranslation(currentLang, 'home.video.labels.trend')}
+              views="29k"
+              duration="00:45"
+              author="@iip"
+              className={styles.videoCardItem}
+              sectionSlug="explore"
+            />
+            <VideoCardItem
+              id={2}
+              title={zone.name}
+              location={getLocationName(zone.address)}
+              thumbnail={zone.image}
+              badge={getTranslation(currentLang, 'home.video.labels.hot')}
+              views="25k"
+              duration="01:20"
+              author="@iip"
+              className={styles.videoCardItem}
+              sectionSlug="explore"
+            />
           </div>
         </section>
 

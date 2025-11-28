@@ -1331,10 +1331,64 @@
   }
 }
 
+// Video Carousel Wrapper
+.video-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.video-carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
 .video-cards-home {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.slide-out-right {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  &.slide-out-left {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
@@ -1353,5 +1407,40 @@
     grid-template-columns: 1fr;
     max-width: 280px;
     margin: 0 auto;
+  }
+
+  // Override author name color to white for homepage video section
+  .video-card-author-name {
+    color: #ffffff;
+  }
+}
+
+// Carousel Dots
+.video-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.video-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+  }
+
+  &.active {
+    background: #ffffff;
+    width: 28px;
+    border-radius: 10px;
   }
 }

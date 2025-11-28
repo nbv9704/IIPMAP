@@ -1,0 +1,15 @@
+export const pageTitle = {
+  home: 'Home',
+  aboutUs: 'About Us',
+  listings: 'Listings',
+  video: 'Video',
+  news: 'News',
+  qna: 'Q&A',
+  market: 'Market News',
+  planning: 'Planning News',
+  activity: 'IIP Activities',
+  booking: 'Booking',
+  services: 'Services',
+  contact: 'Contact',
+  siteName: 'IIPVIETNAM.COM',
+}

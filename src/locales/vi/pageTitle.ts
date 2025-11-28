@@ -1,0 +1,15 @@
+export const pageTitle = {
+  home: 'Trang Chủ',
+  aboutUs: 'Về Chúng Tôi',
+  listings: 'Tin Mua Bán',
+  video: 'Video',
+  news: 'Tin Tức',
+  qna: 'Hỏi Đáp',
+  market: 'Tin Thị Trường',
+  planning: 'Tin Quy Hoạch',
+  activity: 'Hoạt Động IIP',
+  booking: 'Đặt Lịch',
+  services: 'Dịch Vụ',
+  contact: 'Liên Hệ',
+  siteName: 'IIPVIETNAM.COM',
+}

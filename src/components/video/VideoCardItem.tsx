@@ -91,9 +91,8 @@ const VideoCardItem = ({
             type="button"
             style={{ opacity: isPlaying ? 0 : 1 }}
          >
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-               <circle cx="24" cy="24" r="24" fill="rgba(255, 255, 255, 0.5)" />
-               <path d="M19 15L33 24L19 33V15Z" fill="#000" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+               <path d="M8 5L19 12L8 19V5Z" fill="#000" />
             </svg>
          </button>
          <div className="video-card-stats">
