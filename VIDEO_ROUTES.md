@@ -9,7 +9,18 @@
 - Hiển thị danh sách tất cả video
 - Có sidebar để filter theo sections
 
-### 2. Profile người dùng
+### 2. Các sections cố định
+```
+/video/explore        → Khám phá
+/video/saved          → Video đã lưu
+/video/following      → Đang theo dõi
+/video/notifications  → Thông báo
+/video/messages       → Tin nhắn
+```
+- Các routes này có **ưu tiên cao hơn** dynamic route `[userId]`
+- Next.js sẽ match các routes tĩnh trước khi match dynamic routes
+
+### 3. Profile người dùng
 ```
 /video/[userId]
 ```
