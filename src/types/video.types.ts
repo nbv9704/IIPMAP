@@ -21,3 +21,30 @@ export interface VideoCardItemProps {
   className?: string
   sectionSlug?: string
 }
+
+export interface VideoPost {
+  postId: string
+  userId: string
+  title: string
+  description?: string
+  videoUrl: string
+  thumbnail: string
+  duration: string
+  views: number
+  likes: number
+  comments: number
+  shares: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface UserProfile {
+  userId: string // @kcn_tien (tối đa 10 ký tự sau @)
+  displayName: string // KCN Tiên Sơn
+  avatar?: string
+  bio?: string
+  followers: number
+  following: number
+  totalVideos: number
+  totalLikes: number
+}

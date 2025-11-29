@@ -66,9 +66,17 @@ const VideoCardItem = ({
       }
    }
 
+   // TODO: Thay id bằng postId thực tế từ backend
+   // Tạm thời dùng id để generate postId giả
+   const mockPostId = id.toString().padStart(20, '0')
+   // Format userId: tối đa 10 ký tự sau @
+   const mockUserId = author 
+     ? `@${author.toLowerCase().replace(/\s+/g, '_').slice(0, 10)}` 
+     : '@user'
+   
    return (
       <Link 
-         href={`/video/${sectionSlug}/${id}`} 
+         href={`/video/${mockUserId}/view/${mockPostId}`} 
          className={`video-card ${className}`}
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}

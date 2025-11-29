@@ -38,7 +38,7 @@ export const generateSavedVideos = (): VideoCardItemProps[] =>
 export const generateFollowingUsers = () => [
   {
     id: 1,
-    username: "@kcn_tien_son",
+    username: "@kcn_tien", // Tối đa 10 ký tự
     displayName: "KCN Tiên Sơn",
     avatar: "T",
     videos: Array.from({ length: 5 }, (_, idx) => ({
@@ -53,7 +53,7 @@ export const generateFollowingUsers = () => [
   },
   {
     id: 2,
-    username: "@kcn_vsip",
+    username: "@kcn_vsip", // Tối đa 10 ký tự
     displayName: "KCN VSIP",
     avatar: "V",
     videos: Array.from({ length: 5 }, (_, idx) => ({
@@ -68,7 +68,7 @@ export const generateFollowingUsers = () => [
   },
   {
     id: 3,
-    username: "@kcn_my_phuoc",
+    username: "@kcn_my_ph", // Tối đa 10 ký tự
     displayName: "KCN Mỹ Phước",
     avatar: "M",
     videos: Array.from({ length: 5 }, (_, idx) => ({
