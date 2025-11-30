@@ -18,11 +18,12 @@ const formatDuration = (seconds: number) => `00:${seconds.toString().padStart(2,
 
 interface VideoPageContentProps {
   section?: string
+  userId?: string
 }
 
 const DEFAULT_SECTION = "explore"
 
-const VideoPageContent = ({ section = DEFAULT_SECTION }: VideoPageContentProps) => {
+const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageContentProps) => {
   const { currentLang } = useLanguage()
   
   // Explore search state

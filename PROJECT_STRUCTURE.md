@@ -1,4 +1,4 @@
-# 📁 Cấu trúc dự án IIP Map UI
+ # 📁 Cấu trúc dự án IIP Map UI
 
 ## 🗂️ Tổng quan cấu trúc
 
@@ -14,7 +14,14 @@ src/
 │   ├── news/             # Components cho trang tin tức
 │   ├── booking/          # Components cho trang đặt lịch
 │   ├── video/            # Components cho trang video
-│   │   └── sections/     # Các sections của trang video
+│   │   ├── sections/     # Các sections của trang video
+│   │   ├── VideoActions.tsx      # Actions bên phải (like, comment, save, share)
+│   │   ├── VideoLeftActions.tsx  # Actions bên trái (avatar, title, tags, contact buttons)
+│   │   ├── VideoPlayer.tsx       # Video player component
+│   │   ├── VideoSidebar.tsx      # Sidebar navigation
+│   │   ├── VideoCardItem.tsx     # Card hiển thị video thumbnail
+│   │   ├── VideoHistoryGrid.tsx  # Grid hiển thị danh sách video
+│   │   └── VideoPageContent.tsx  # Main content cho các trang video
 │   └── common/           # Components dùng chung
 │
 ├── constants/            # Hằng số & Dữ liệu tĩnh
@@ -84,12 +91,14 @@ src/
     ├── components/       # Styles cho components
     │   ├── _header.scss
     │   └── _footer.scss
-    └── pages/            # Styles cho từng trang
-        ├── _home.scss
-        ├── _about.scss
-        ├── _news.scss
-        ├── _video.scss
-        └── _booking.scss
+    ├── pages/            # Styles cho từng trang
+    │   ├── _home.scss
+    │   ├── _about.scss
+    │   ├── _news.scss
+    │   ├── _video.scss
+    │   └── _booking.scss
+    └── video.scss        # Styles chính cho video detail page
+                          # (bao gồm: sidebar, player, actions, hover cards, messages, notifications)
 ```
 
 ## 📝 Quy tắc đặt tên

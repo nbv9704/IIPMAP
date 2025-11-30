@@ -43,26 +43,20 @@ const VideoActions = ({
 
   return (
     <div className="video-actions">
-      {/* Cột avatar + icon like/comment/share/bookmark + nút Xem bài viết */}
+      {/* Cột icon like/comment/share/bookmark + nút Xem bài viết */}
       <div className="video-actions-main">
+        {/* Like button - full trắng, khi active full đỏ */}
         <button
-          className="video-user-avatar"
-          type="button"
-          onClick={onViewProfile}
-        >
-          <div className="avatar-circle">V</div>
-        </button>
-
-        <button
-          className={`action-btn ${liked ? "active" : ""}`}
+          className={`action-btn action-btn-like ${liked ? "active" : ""}`}
           onClick={handleLike}
           type="button"
+          title={liked ? "Bỏ thích" : "Thích"}
         >
-          <svg width="26" height="23" viewBox="0 0 26 23" fill="none">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
             <path
-              d="M22.6 2.6C20.7 0.8 17.9 0.8 16 2.6L13 5.6L10 2.6C8.1 0.8 5.3 0.8 3.4 2.6C1.1 4.9 1.1 8.7 3.4 11L13 20.6L22.6 11C24.9 8.7 24.9 4.9 22.6 2.6Z"
-              fill={liked ? "#FF0000" : "none"}
-              stroke={liked ? "#FF0000" : "#000"}
+              d="M22.6 4.6C20.7 2.8 17.9 2.8 16 4.6L13 7.6L10 4.6C8.1 2.8 5.3 2.8 3.4 4.6C1.1 6.9 1.1 10.7 3.4 13L13 22.6L22.6 13C24.9 10.7 24.9 6.9 22.6 4.6Z"
+              fill={liked ? "#FF0000" : "#fff"}
+              stroke={liked ? "#FF0000" : "#fff"}
               strokeWidth="1.3"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -71,119 +65,76 @@ const VideoActions = ({
           <span className="action-count">{formatCount(likesCount)}</span>
         </button>
 
+        {/* Comment button - khung trắng, gạch đen */}
         <button
-          className="action-btn"
+          className="action-btn action-btn-comment"
           type="button"
           onClick={() => onOpenComments?.()}
+          title="Bình luận"
         >
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
             <rect
-              x="1"
-              y="1"
-              width="24"
-              height="18"
+              x="2"
+              y="4"
+              width="22"
+              height="16"
               rx="2"
-              stroke="#000"
+              stroke="#fff"
+              fill="#fff"
               strokeWidth="1.3"
             />
-            <path d="M8 19L13 24L18 19" stroke="#000" strokeWidth="1.3" />
+            <path
+              d="M8 20L13 23L18 20"
+              stroke="#fff"
+              fill="#fff"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path d="M7 10H19" stroke="#141414" strokeWidth="1.3" strokeLinecap="round" />
+            <path d="M7 14H15" stroke="#141414" strokeWidth="1.3" strokeLinecap="round" />
           </svg>
           <span className="action-count">
             {formatCount(video.comments)}
           </span>
         </button>
 
+        {/* Bookmark button - full trắng, khi active full vàng */}
         <button
-          className="action-btn"
-          type="button"
-          onClick={() => onOpenChat?.()}
-        >
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <rect
-              x="1"
-              y="1"
-              width="24"
-              height="18"
-              rx="2"
-              stroke="#000"
-              strokeWidth="1.3"
-            />
-            <path d="M8 19L13 24L18 19" stroke="#000" strokeWidth="1.3" />
-          </svg>
-        </button>
-
-        <button className="action-btn" type="button">
-          <svg width="26" height="14" viewBox="0 0 26 14" fill="none">
-            <path
-              d="M1 7H20M20 7L14 1M20 7L14 13"
-              stroke="#000"
-              strokeWidth="1.33"
-            />
-          </svg>
-        </button>
-
-        <button
-          className={`action-btn ${bookmarked ? "active" : ""}`}
+          className={`action-btn action-btn-bookmark ${bookmarked ? "active" : ""}`}
           onClick={() => {
             const next = !bookmarked
             setBookmarked(next)
             onBookmarkChange?.(next)
           }}
           type="button"
+          title={bookmarked ? "Bỏ lưu" : "Lưu"}
         >
-          <svg width="23" height="23" viewBox="0 0 23 23" fill="none">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
             <path
-              d="M2 1.5C2 1.22386 2.22386 1 2.5 1H20.5C20.7761 1 21 1.22386 21 1.5V22L11.5 16.5L2 22V1.5Z"
-              fill={bookmarked ? "#000" : "none"}
-              stroke="#000"
+              d="M4 2.5C4 2.22386 4.22386 2 4.5 2H21.5C21.7761 2 22 2.22386 22 2.5V24L13 18.5L4 24V2.5Z"
+              fill={bookmarked ? "#FFD700" : "#fff"}
+              stroke={bookmarked ? "#FFD700" : "#fff"}
               strokeWidth="1.3"
             />
           </svg>
         </button>
 
-        <button className="view-post-btn" type="button">
-          Xem bài viết
-        </button>
-      </div>
-
-      {/* Nút trượt video kiểu TikTok – cố định mép phải màn hình */}
-      <div className="video-scroll-nav">
-        {/* Nút LÊN */}
-        <button
-          className="video-scroll-btn up"
-          onClick={onPrev}
-          type="button"
-          aria-label="Video trước"
-        >
-          <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+        {/* Share button - mũi tên cong (forward arrow) */}
+        <button className="action-btn action-btn-share" type="button" title="Chia sẻ">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
             <path
-              d="M4 8L9 3L14 8"
-              stroke="#FFFFFF"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
-        {/* Nút XUỐNG */}
-        <button
-          className="video-scroll-btn down"
-          onClick={onNext}
-          type="button"
-          aria-label="Video tiếp theo"
-        >
-          <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-            <path
-              d="M4 4L9 9L14 4"
-              stroke="#FFFFFF"
-              strokeWidth="1.8"
+              d="M15 4L22 11L15 18V14C10 14 6 15.5 3 20C4 15 7 10 15 9V4Z"
+              fill="#fff"
+              stroke="#fff"
+              strokeWidth="1.3"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </button>
       </div>
+
     </div>
   )
 }
