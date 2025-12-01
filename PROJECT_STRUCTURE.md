@@ -127,10 +127,17 @@ src/
     │   ├── _booking-form.scss      # Form name section
     │   ├── _booking-schedule.scss  # Schedule table
     │   └── _booking-share-modal.scss # Share modal
+    ├── news/             # News detail page styles
+    │   ├── _news-detail-base.scss  # Base styles, back button
+    │   ├── _news-detail-header.scss # Header, excerpt, actions, images, content
+    │   ├── _news-detail-comments.scss # Comments section
+    │   └── _news-detail-related.scss # Related news section, responsive
     ├── video.scss        # Main entry - imports all video partials
     ├── homepage.scss     # Main entry - imports all homepage partials
     ├── about-us.scss     # Main entry - imports all about-us partials
-    └── booking.scss      # Main entry - imports all booking partials
+    ├── booking.scss      # Main entry - imports all booking partials
+    ├── news-detail.scss  # Main entry - imports all news-detail partials
+    └── news.scss         # News page styles (528 lines - kept as single file)
 ```
 
 ## 📝 Quy tắc đặt tên
