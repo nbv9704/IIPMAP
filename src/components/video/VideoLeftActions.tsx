@@ -1,7 +1,13 @@
 "use client"
 
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoLeftActionsProps {
   onEmail?: () => void
   onChat?: () => void
@@ -15,6 +21,9 @@ interface VideoLeftActionsProps {
   postTags?: string[]
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 function VideoLeftActions({
   onEmail,
   onChat,
@@ -27,12 +36,20 @@ function VideoLeftActions({
   postTitle = "Khu công nghiệp Tiên Sơn - Bắc Ninh với diện tích 402.82 ha",
   postTags = ["#kcn", "#bacninh", "#investment", "#realestate"],
 }: VideoLeftActionsProps) {
+  // ============================================
+  // STATE
+  // ============================================
   const [showHoverCard, setShowHoverCard] = useState(false)
   const [showFullTitle, setShowFullTitle] = useState(false)
 
+  // ============================================
+  // RENDER
+  // ============================================
   return (
     <div className="video-left-actions">
-      {/* Avatar + Post info ở góc trái trên */}
+      {/* ============================================ */}
+      {/* AVATAR & POST INFO (top left) */}
+      {/* ============================================ */}
       <div className="video-post-header">
         <div
           className="video-user-avatar-wrapper"

@@ -1,5 +1,8 @@
 "use client"
 
+// ============================================
+// IMPORTS
+// ============================================
 import { useMemo, useState, useEffect, useRef } from "react"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
@@ -14,8 +17,14 @@ import { TbRulerMeasure, TbMountain } from "react-icons/tb"
 import { AiOutlinePaperClip, AiOutlineInfoCircle, AiOutlineSmile } from "react-icons/ai"
 import "@/styles/video.scss"
 
+// ============================================
+// UTILS
+// ============================================
 const formatDuration = (seconds: number) => `00:${seconds.toString().padStart(2, "0")}`
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoPageContentProps {
   section?: string
   userId?: string
@@ -23,16 +32,25 @@ interface VideoPageContentProps {
 
 const DEFAULT_SECTION = "explore"
 
+// ============================================
+// COMPONENT
+// ============================================
 const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageContentProps) => {
+  // ============================================
+  // HOOKS & STATE
+  // ============================================
   const { currentLang } = useLanguage()
   
-  // Explore search state
+  // ========== Explore Search State ==========
   const [exploreQuery, setExploreQuery] = useState("")
   const [exploreOpen, setExploreOpen] = useState(false)
   const exploreSearchRef = useRef<HTMLDivElement>(null)
   
+  // ========== Notifications State ==========
   const [notificationFilter, setNotificationFilter] = useState("all")
   const [notificationPage, setNotificationPage] = useState(1)
+  
+  // ========== Messages/Chat State ==========
   const [selectedConversation, setSelectedConversation] = useState<number | null>(null)
   const [messageInput, setMessageInput] = useState("")
   const [showMessagesMenu, setShowMessagesMenu] = useState(false)
@@ -45,6 +63,8 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
   const [showFilesPopup, setShowFilesPopup] = useState(false)
   const [filesPopupTab, setFilesPopupTab] = useState<"files" | "media" | "links">("files")
   const [showPinnedPopup, setShowPinnedPopup] = useState(false)
+  
+  // ========== Constants ==========
   const notificationsPerPage = 10
   const viewMode =
     section === "saved"
@@ -66,7 +86,11 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     )}`
   }, [currentLang])
 
-  // Close explore search dropdown on outside click
+  // ============================================
+  // EFFECTS
+  // ============================================
+  
+  // ========== Close explore search on outside click ==========
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (exploreSearchRef.current && !exploreSearchRef.current.contains(e.target as Node)) {
@@ -77,7 +101,11 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  // fake data
+  // ============================================
+  // DATA - Mock Videos
+  // ============================================
+  
+  // ========== Featured Videos ==========
   const featuredVideos: VideoCardItemProps[] = useMemo(
     () =>
       Array.from({ length: 8 }, (_, idx) => ({
@@ -92,6 +120,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     [],
   )
 
+  // ========== Daily Videos ==========
   const dailyVideos: VideoCardItemProps[] = useMemo(
     () =>
       Array.from({ length: 12 }, (_, idx) => ({
@@ -106,6 +135,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     [],
   )
 
+  // ========== Saved Videos Default ==========
   const savedVideosDefault: VideoCardItemProps[] = useMemo(
     () =>
       Array.from({ length: 18 }, (_, idx) => ({
@@ -120,7 +150,11 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     [],
   )
 
-  // Following users data
+  // ============================================
+  // DATA - Users & Social
+  // ============================================
+  
+  // ========== Following Users ==========
   const followingUsers = useMemo(
     () => [
       {
@@ -172,6 +206,7 @@ const VideoPageContent = ({ section = DEFAULT_SECTION, userId }: VideoPageConten
     [],
   )
 
+  // ========== Notifications ==========
   const notifications = useMemo(
     () =>
       Array.from({ length: 35 }, (_, idx) => ({

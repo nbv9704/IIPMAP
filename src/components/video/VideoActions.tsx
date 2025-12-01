@@ -1,6 +1,13 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoActionsProps {
   video: {
     likes: number
@@ -16,6 +23,9 @@ interface VideoActionsProps {
   onBookmarkChange?: (bookmarked: boolean) => void
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 const VideoActions = ({
   video,
   onPrev,
@@ -25,10 +35,16 @@ const VideoActions = ({
   onOpenChat,
   onBookmarkChange,
 }: VideoActionsProps) => {
+  // ============================================
+  // STATE
+  // ============================================
   const [liked, setLiked] = useState(false)
   const [bookmarked, setBookmarked] = useState(video.bookmarked)
   const [likesCount, setLikesCount] = useState(video.likes)
 
+  // ============================================
+  // HANDLERS
+  // ============================================
   const handleLike = () => {
     setLiked((prev) => !prev)
     setLikesCount((prev) => (liked ? prev - 1 : prev + 1))

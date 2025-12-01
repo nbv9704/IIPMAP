@@ -1,11 +1,23 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoSidebarProps {
   activeSlug: string
 }
 
+// ============================================
+// CONSTANTS
+// ============================================
+
+// ========== Menu Items ==========
 const menuItems = [
   { id: 1, label: "Khám phá", slug: "explore" },
   { id: 2, label: "Đang theo dõi", slug: "following" },
@@ -16,7 +28,7 @@ const menuItems = [
   { id: 7, label: "Hồ sơ cá nhân", slug: "profile" },
 ]
 
-// Mock data for search
+// ========== Search Mock Data ==========
 const RECENT_SEARCHES = ["siuuu", "ronaldo", "messi", "@abc"]
 const SUGGESTIONS_DATA = [
   { q: "việt nam", views: 50000 },
@@ -28,20 +40,29 @@ const SUGGESTIONS_DATA = [
   { q: "@abce", views: 3000 },
 ]
 
+// ============================================
+// COMPONENT
+// ============================================
 const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
+  // ============================================
+  // STATE & REFS
+  // ============================================
   const hasUnreadNotifications = true
   
-  // Search state
   const [query, setQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Filter recent searches
+  // ============================================
+  // COMPUTED VALUES
+  // ============================================
+  
+  // ========== Filter Recent Searches ==========
   const recentResults = query
     ? RECENT_SEARCHES.filter(s => s.toLowerCase().includes(query.toLowerCase()))
     : RECENT_SEARCHES
 
-  // Filter suggestions (exclude items already in recent)
+  // ========== Filter Suggestions (exclude items in recent) ==========
   const suggestions = query
     ? SUGGESTIONS_DATA
         .filter(item => {
@@ -55,7 +76,11 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
 
   const showDropdown = isOpen && (recentResults.length > 0 || suggestions.length > 0)
 
-  // Close dropdown on outside click
+  // ============================================
+  // EFFECTS
+  // ============================================
+  
+  // ========== Close dropdown on outside click ==========
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -66,7 +91,11 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  // Highlight matching text
+  // ============================================
+  // HANDLERS & UTILS
+  // ============================================
+  
+  // ========== Highlight matching text ==========
   const highlightMatch = (text: string, search: string) => {
     if (!search) return text
     const index = text.toLowerCase().indexOf(search.toLowerCase())
@@ -80,14 +109,20 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
     )
   }
 
+  // ========== Handle search selection ==========
   const handleSelect = (value: string) => {
     setQuery(value)
     setIsOpen(false)
   }
 
+  // ============================================
+  // RENDER
+  // ============================================
   return (
     <aside className="video-sidebar">
-      {/* Sidebar Search - only show when NOT on explore page */}
+      {/* ============================================ */}
+      {/* SEARCH BAR (hidden on explore page) */}
+      {/* ============================================ */}
       {activeSlug !== "explore" && (
         <div className="vsb-search" ref={containerRef}>
           <div className={`vsb-search__container ${showDropdown ? "open" : ""}`}>
@@ -156,6 +191,9 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
         </div>
       )}
 
+      {/* ============================================ */}
+      {/* NAVIGATION MENU */}
+      {/* ============================================ */}
       <nav className="video-nav-menu">
         {menuItems.map((item) => (
           <Link
