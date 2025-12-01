@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rmdir /s /q .next 2>nul || echo Clean completed",
+    "clean:cache": "rmdir /s /q .next 2>nul && rmdir /s /q node_modules\\.cache 2>nul || echo Cache cleaned",
+    "dev:clean": "npm run clean && next dev",
+    "build:clean": "npm run clean && next build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",

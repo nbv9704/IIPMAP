@@ -6,6 +6,9 @@ import VideoSidebar from '@/components/video/VideoSidebar';
 import '@/styles/video.scss';
 
 export default function VideoDetailV2Client() {
+  // ============================================
+  // GET PARAMS
+  // ============================================
   const params = useParams();
   const userId = params.userId as string;
   const postId = params.postId as string;
@@ -13,31 +16,39 @@ export default function VideoDetailV2Client() {
   return (
     <Wrapper>
       <div className="video-page">
-      {/* Sidebar bên trái - giữ nguyên */}
-      <VideoSidebar activeSlug="video" />
+        {/* ============================================ */}
+        {/* SIDEBAR - Navigation menu bên trái */}
+        {/* ============================================ */}
+        <VideoSidebar activeSlug="video" />
 
-      {/* Main content - giao diện mới */}
-      <div className="video-main-v2">
-        <div className="video-detail-v2">
-          {/* Video Player Section */}
-          <div className="video-player-section-v2">
-            <div className="video-player-wrapper-v2">
-              <video
-                className="video-player-v2"
-                controls
-                poster="/assets/images/video-thumbnail.jpg"
-              >
-                <source src="/assets/videos/sample.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+        {/* ============================================ */}
+        {/* MAIN CONTENT - Video Detail V2 */}
+        {/* ============================================ */}
+        <div className="video-main-v2">
+          <div className="video-detail-v2">
+            {/* ============================================ */}
+            {/* VIDEO PLAYER SECTION */}
+            {/* ============================================ */}
+            <div className="video-player-section-v2">
+              <div className="video-player-wrapper-v2">
+                <video
+                  className="video-player-v2"
+                  controls
+                  poster="/assets/images/video-thumbnail.jpg"
+                >
+                  <source src="/assets/videos/sample.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
-          </div>
 
-          {/* Video Info Section */}
-          <div className="video-info-section-v2">
-            <div className="video-info-container-v2">
-              {/* Title and Stats */}
-              <div className="video-header-v2">
+            {/* ============================================ */}
+            {/* VIDEO INFO SECTION */}
+            {/* ============================================ */}
+            <div className="video-info-section-v2">
+              <div className="video-info-container-v2">
+                {/* ========== Title and Stats ========== */}
+                <div className="video-header-v2">
                 <h1 className="video-title-v2">
                   Tiêu đề video mẫu - Giao diện 2.0
                 </h1>
@@ -51,8 +62,8 @@ export default function VideoDetailV2Client() {
                 </div>
               </div>
 
-              {/* Author Info */}
-              <div className="video-author-v2">
+                {/* ========== Author Info ========== */}
+                <div className="video-author-v2">
                 <div className="author-avatar-v2">
                   <img src="/assets/images/avatar-placeholder.png" alt="Author" />
                 </div>
@@ -65,8 +76,8 @@ export default function VideoDetailV2Client() {
                 </button>
               </div>
 
-              {/* Action Buttons */}
-              <div className="video-actions-v2">
+                {/* ========== Action Buttons ========== */}
+                <div className="video-actions-v2">
                 <button className="action-btn-v2 like-btn-v2">
                   <i className="fas fa-thumbs-up"></i>
                   <span>245</span>
@@ -88,8 +99,8 @@ export default function VideoDetailV2Client() {
                 </button>
               </div>
 
-              {/* Description */}
-              <div className="video-description-v2">
+                {/* ========== Description ========== */}
+                <div className="video-description-v2">
                 <h3 className="description-title-v2">Description</h3>
                 <p className="description-text-v2">
                   Đây là mô tả video mẫu cho giao diện 2.0. 
@@ -97,8 +108,8 @@ export default function VideoDetailV2Client() {
                 </p>
               </div>
 
-              {/* Tags */}
-              <div className="video-tags-v2">
+                {/* ========== Tags ========== */}
+                <div className="video-tags-v2">
                 <span className="tag-v2">#technology</span>
                 <span className="tag-v2">#innovation</span>
                 <span className="tag-v2">#business</span>
@@ -106,15 +117,15 @@ export default function VideoDetailV2Client() {
             </div>
           </div>
 
-          {/* Comments Section */}
-          <div className="comments-section-v2">
-            <div className="comments-container-v2">
-              <h3 className="comments-title-v2">
-                48 Comments
-              </h3>
+            {/* ============================================ */}
+            {/* COMMENTS SECTION */}
+            {/* ============================================ */}
+            <div className="comments-section-v2">
+              <div className="comments-container-v2">
+                <h3 className="comments-title-v2">48 Comments</h3>
 
-              {/* Comment Input */}
-              <div className="comment-input-wrapper-v2">
+                {/* ========== Comment Input ========== */}
+                <div className="comment-input-wrapper-v2">
                 <div className="comment-avatar-v2">
                   <img src="/assets/images/avatar-placeholder.png" alt="You" />
                 </div>
@@ -128,10 +139,10 @@ export default function VideoDetailV2Client() {
                 </button>
               </div>
 
-              {/* Comments List */}
-              <div className="comments-list-v2">
-                {/* Sample Comment */}
-                <div className="comment-item-v2">
+                {/* ========== Comments List ========== */}
+                <div className="comments-list-v2">
+                  {/* Sample Comment */}
+                  <div className="comment-item-v2">
                   <div className="comment-avatar-v2">
                     <img src="/assets/images/avatar-placeholder.png" alt="User" />
                   </div>
@@ -157,12 +168,15 @@ export default function VideoDetailV2Client() {
             </div>
           </div>
 
-          {/* Related Videos */}
-          <div className="related-videos-section-v2">
-            <h3 className="related-title-v2">Related Videos</h3>
-            <div className="related-videos-grid-v2">
-              {[1, 2, 3, 4].map((item) => (
-                <div key={item} className="related-video-card-v2">
+            {/* ============================================ */}
+            {/* RELATED VIDEOS SECTION */}
+            {/* ============================================ */}
+            <div className="related-videos-section-v2">
+              <h3 className="related-title-v2">Related Videos</h3>
+              <div className="related-videos-grid-v2">
+                {/* Loop through related videos */}
+                {[1, 2, 3, 4].map((item) => (
+                  <div key={item} className="related-video-card-v2">
                   <div className="related-video-thumbnail-v2">
                     <img src="/assets/images/video-thumbnail.jpg" alt="Video" />
                     <span className="video-duration-v2">10:24</span>

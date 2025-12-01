@@ -5,14 +5,15 @@
 .video-main-v2 {
   flex: 1;
   margin-left: 280px;
-  padding: 20px 40px;
+  margin-top: 80px; // Space for fixed header
+  padding: 0;
   background: #f8f9fa;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
 }
 
 .video-detail-v2 {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 // =============================================
@@ -20,10 +21,10 @@
 // =============================================
 .video-player-section-v2 {
   background: #000;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+  box-shadow: none;
 }
 
 .video-player-wrapper-v2 {
@@ -47,10 +48,11 @@
 // =============================================
 .video-info-section-v2 {
   background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  padding: 24px 40px;
+  margin-bottom: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .video-info-container-v2 {
@@ -238,10 +240,11 @@
 // =============================================
 .comments-section-v2 {
   background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  padding: 24px 40px;
+  margin-bottom: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .comments-container-v2 {
@@ -408,9 +411,9 @@
 // =============================================
 .related-videos-section-v2 {
   background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  padding: 24px 40px 40px;
+  box-shadow: none;
 
   .related-title-v2 {
     font-family: 'Montserrat', sans-serif;
@@ -507,7 +510,8 @@
 @media (max-width: 1200px) {
   .video-main-v2 {
     margin-left: 80px;
-    padding: 20px;
+    margin-top: 80px;
+    padding: 0;
   }
 
   .related-videos-grid-v2 {
@@ -518,11 +522,20 @@
 @media (max-width: 768px) {
   .video-main-v2 {
     margin-left: 0;
-    padding: 16px;
+    margin-top: 60px; // Smaller header on mobile
+    padding: 0;
   }
 
   .video-info-section-v2 {
-    padding: 16px;
+    padding: 16px 20px;
+  }
+
+  .comments-section-v2 {
+    padding: 16px 20px;
+  }
+
+  .related-videos-section-v2 {
+    padding: 16px 20px 24px;
   }
 
   .video-header-v2 {
