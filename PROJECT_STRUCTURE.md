@@ -105,7 +105,32 @@ src/
     │   ├── _video-detail.scss      # Video detail page (player, nav)
     │   ├── _video-actions.scss     # Right actions (like, comment, save, share)
     │   └── _video-left-actions.scss # Left actions (avatar, title, tags, hover card)
-    └── video.scss        # Main entry - imports all video partials
+    ├── homepage/         # Homepage styles
+    │   ├── _homepage-base.scss     # Base styles
+    │   ├── _homepage-hero.scss     # Hero section
+    │   ├── _homepage-ai-search.scss # AI Search section
+    │   ├── _homepage-video.scss    # Video section
+    │   ├── _homepage-zones.scss    # Zones section
+    │   └── _homepage-video-home.scss # Video section home
+    ├── about-us/         # About Us page styles
+    │   ├── _about-us-base.scss     # Base styles
+    │   ├── _about-us-hero.scss     # Hero section
+    │   ├── _about-us-intro.scss    # Introduction section
+    │   ├── _about-us-mission.scss  # Mission section
+    │   ├── _about-us-customers.scss # Customers section
+    │   ├── _about-us-partners.scss # Partners section
+    │   ├── _about-us-why.scss      # Why choose IIP section
+    │   ├── _about-us-contact.scss  # Contact section
+    │   └── _about-us-responsive.scss # Responsive styles
+    ├── booking/          # Booking page styles
+    │   ├── _booking-base.scss      # Base styles, hero, container
+    │   ├── _booking-form.scss      # Form name section
+    │   ├── _booking-schedule.scss  # Schedule table
+    │   └── _booking-share-modal.scss # Share modal
+    ├── video.scss        # Main entry - imports all video partials
+    ├── homepage.scss     # Main entry - imports all homepage partials
+    ├── about-us.scss     # Main entry - imports all about-us partials
+    └── booking.scss      # Main entry - imports all booking partials
 ```
 
 ## 📝 Quy tắc đặt tên

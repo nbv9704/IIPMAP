@@ -1,0 +1,22 @@
+﻿.homepage {
+  background-color: #f4f7fb;
+  min-height: 100vh;
+  color: #0b1a2b;
+  font-family: 'Montserrat', 'Inter', sans-serif;
+
+  main {
+    padding: 0 0 60px;
+    background: linear-gradient(180deg, #ffffff 0%, #ecf4ff 100%);
+  }
+}
+
+.home-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+

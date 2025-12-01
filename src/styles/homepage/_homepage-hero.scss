@@ -1,0 +1,172 @@
+﻿.hero-section {
+  position: relative;
+  width: 100%;
+  border-radius: 0;
+  margin-top: 53px;
+  padding: 60px 0 70px;
+  background: linear-gradient(130deg, #002a9b 0%, #0f9bff 60%, #1a55c0 100%);
+  color: #fff;
+  overflow: hidden;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    filter: blur(5px);
+  }
+
+  &::after {
+    top: -80px;
+    right: -50px;
+  }
+
+  &::before {
+    bottom: -60px;
+    left: -120px;
+  }
+}
+
+.hero-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 70px;
+  position: relative;
+  z-index: 2;
+}
+
+.digital-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.hero-title {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 24px 0 32px;
+  max-width: 780px;
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 200px));
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  justify-content: start;
+}
+
+.stat-card-wrapper {
+  position: relative;
+  min-height: 90px;
+  transform: scale(0.9);
+}
+
+.stat-card-circles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .circle-1 {
+    width: 70px;
+    height: 70px;
+    bottom: -22px;
+    left: -22px;
+  }
+
+  .circle-2 {
+    width: 50px;
+    height: 50px;
+    top: -12px;
+    right: -12px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.stat-card-blur {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  z-index: 2;
+}
+
+.stat-card-content {
+  position: relative;
+  z-index: 3;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 90px;
+
+  span {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.95;
+    margin-bottom: 6px;
+    color: #ffffff;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+}
+
+// Custom width cho tá»«ng card (chá»‰nh sá»‘ px Ä‘á»ƒ thay Ä‘á»•i khoáº£ng trá»‘ng 2 bÃªn)
+.stat-card-1 {
+  max-width: 180px; // Card 1: Khu cÃ´ng nghiá»‡p
+}
+
+.stat-card-2 {
+  max-width: 180px; // Card 2: Cá»¥m cÃ´ng nghiá»‡p
+}
+
+.stat-card-3 {
+  max-width: 400px; // Card 3: Diá»‡n tÃ­ch Ä‘áº¥t
+}
+
+.stat-card-4 {
+  max-width: 200px; // Card 4: Angel AI
+}
+
