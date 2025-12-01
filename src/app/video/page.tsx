@@ -1,8 +1,14 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
+// ============================================
+// MOCK DATA
+// ============================================
 // Mock data - danh sách video IDs có sẵn
 const MOCK_VIDEOS = [
   { userId: "@kcn_tien_son", postId: "00000000000000000001" },
@@ -12,9 +18,14 @@ const MOCK_VIDEOS = [
   { userId: "@kcn_tan_binh", postId: "00000000000000000005" },
 ]
 
+// ============================================
+// PAGE: VideoPageRoot
+// ============================================
 export default function VideoPageRoot() {
+  // ========== Hooks ==========
   const router = useRouter()
 
+  // ========== Effects ==========
   useEffect(() => {
     // Chọn random một video
     const randomIndex = Math.floor(Math.random() * MOCK_VIDEOS.length)
@@ -24,6 +35,7 @@ export default function VideoPageRoot() {
     router.replace(`/video/${randomVideo.userId}/view/${randomVideo.postId}`)
   }, [router])
 
+  // ========== Render ==========
   // Loading state trong khi redirect
   return (
     <div style={{ 

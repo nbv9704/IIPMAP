@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import "@/styles/about-us.scss"
 import HeroSection from "@/components/about-us/HeroSection"
@@ -8,8 +11,11 @@ import PartnersSection from "@/components/about-us/PartnersSection"
 import WhyChooseSection from "@/components/about-us/WhyChooseSection"
 import ContactSection from "@/components/about-us/ContactSection"
 
+// ============================================
+// COMPONENT: AboutUsClient
+// ============================================
 const AboutUsClient = () => {
-
+  // ========== Render ==========
   return (
     <div className="about-us-page">
       <HeroSection />

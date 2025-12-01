@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useEffect } from "react"
 import { useLanguage } from "@/hooks/useLanguage"
@@ -10,13 +13,19 @@ import VideoSectionHome from "@/components/home/VideoSectionHome"
 import ZonesSection from "@/components/home/ZonesSection"
 import "@/styles/video.scss"
 
+// ============================================
+// COMPONENT: HomePageClient
+// ============================================
 export default function HomePageClient() {
+  // ========== Hooks ==========
   const { currentLang } = useLanguage()
 
+  // ========== Effects ==========
   useEffect(() => {
     document.title = `${getTranslation(currentLang, 'pageTitle.home')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`
   }, [currentLang])
 
+  // ========== Render ==========
   return (
     <div className="homepage">
       <HeaderIIP />
