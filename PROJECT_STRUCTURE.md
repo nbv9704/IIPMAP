@@ -97,8 +97,15 @@ src/
     │   ├── _news.scss
     │   ├── _video.scss
     │   └── _booking.scss
-    └── video.scss        # Styles chính cho video detail page
-                          # (bao gồm: sidebar, player, actions, hover cards, messages, notifications)
+    ├── video/            # Video styles (tách nhỏ để dễ quản lý)
+    │   ├── _video-base.scss        # Base layout (page, container)
+    │   ├── _video-sidebar.scss     # Sidebar search & navigation
+    │   ├── _video-explore.scss     # Explore search
+    │   ├── _video-sections.scss    # Sections, profile, notifications, messages
+    │   ├── _video-detail.scss      # Video detail page (player, nav)
+    │   ├── _video-actions.scss     # Right actions (like, comment, save, share)
+    │   └── _video-left-actions.scss # Left actions (avatar, title, tags, hover card)
+    └── video.scss        # Main entry - imports all video partials
 ```
 
 ## 📝 Quy tắc đặt tên
