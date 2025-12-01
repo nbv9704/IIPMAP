@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import Wrapper from '@/layouts/Wrapper';
 import VideoSidebar from '@/components/video/VideoSidebar';
 import '@/styles/video.scss';
 
@@ -10,7 +11,8 @@ export default function VideoDetailV2Client() {
   const postId = params.postId as string;
 
   return (
-    <div className="video-page">
+    <Wrapper>
+      <div className="video-page">
       {/* Sidebar bên trái - giữ nguyên */}
       <VideoSidebar activeSlug="video" />
 
@@ -181,5 +183,6 @@ export default function VideoDetailV2Client() {
         </div>
       </div>
     </div>
+    </Wrapper>
   );
 }
