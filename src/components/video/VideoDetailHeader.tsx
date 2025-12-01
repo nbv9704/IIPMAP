@@ -1,10 +1,17 @@
+// ============================================
+// IMPORTS & TYPES
+// ============================================
 "use client"
 
 interface VideoDetailHeaderProps {
   userId: string
 }
 
+// ============================================
+// COMPONENT: VideoDetailHeader
+// ============================================
 function VideoDetailHeader({ userId }: VideoDetailHeaderProps) {
+  // ========== Render ==========
   return (
     <div className="video-detail-actions-header">
       <button type="button" className="video-utility-pill primary">

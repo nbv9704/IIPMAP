@@ -1,8 +1,18 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// COMPONENT
+// ============================================
 function HeroSection() {
+  // ============================================
+  // HOOKS & DATA
+  // ============================================
   const { currentLang } = useLanguage()
 
   const heroStats = [

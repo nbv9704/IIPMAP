@@ -1,14 +1,27 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// TYPES
+// ============================================
 interface ShareModalProps {
   shareLink: string
   onClose: () => void
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 function ShareModal({ shareLink, onClose }: ShareModalProps) {
+  // ============================================
+  // STATE & HOOKS
+  // ============================================
   const { currentLang } = useLanguage()
   const [searchUser, setSearchUser] = useState("")
 

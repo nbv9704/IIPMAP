@@ -1,10 +1,18 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import UseSticky from "@/hooks/UseSticky";
 import { useState, useEffect } from "react";
 
+// ============================================
+// COMPONENT: ScrollToTop
+// ============================================
 const ScrollToTop = () => {
+   // ========== Hooks ==========
    const { sticky }: { sticky: boolean } = UseSticky();
 
+   // ========== State Management ==========
    const [showScroll, setShowScroll] = useState(false);
 
    const checkScrollTop = () => {
@@ -15,10 +23,12 @@ const ScrollToTop = () => {
       }
    };
 
+   // ========== Handlers ==========
    const scrollTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
    };
 
+   // ========== Effects ==========
    // useEffect(() => {
    //    window.addEventListener("scroll", checkScrollTop);
    //    return () => window.removeEventListener("scroll", checkScrollTop);
@@ -36,6 +46,7 @@ const ScrollToTop = () => {
       return () => window.removeEventListener("scroll", checkScrollTop);
    }, [checkScrollTop]);
 
+   // ========== Render ==========
    return (
       <>
          <div onClick={scrollTop} className={`scroll-top ${sticky ? "active" : ""}`}>

@@ -1,9 +1,18 @@
 "use client"
-import { useState } from "react"
 
+// ============================================
+// IMPORTS
+// ============================================
+import { useState } from "react"
 import { SERVICE_OPTIONS } from "@/constants"
 
+// ============================================
+// COMPONENT
+// ============================================
 function ContactSection() {
+  // ============================================
+  // STATE
+  // ============================================
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +22,9 @@ function ContactSection() {
   })
   const [showServiceDropdown, setShowServiceDropdown] = useState(false)
 
+  // ============================================
+  // HANDLERS
+  // ============================================
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))

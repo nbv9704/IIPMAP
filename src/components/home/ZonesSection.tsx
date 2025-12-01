@@ -1,4 +1,8 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,10 +13,15 @@ import { getAllZones } from "@/data/ZonesDataMultilang"
 import { HiOutlineMapPin, HiOutlineCurrencyDollar, HiOutlineClock, HiOutlineVideoCamera, HiOutlineShare } from "react-icons/hi2"
 import { TbRulerMeasure } from "react-icons/tb"
 import { MdOutlineLandscape } from "react-icons/md"
-
 import { PROVINCES, AREA_OPTIONS, PRICE_OPTIONS } from "@/constants"
 
+// ============================================
+// COMPONENT
+// ============================================
 function ZonesSection() {
+  // ============================================
+  // STATE & HOOKS
+  // ============================================
   const { currentLang } = useLanguage()
   const [activeZoneTab, setActiveZoneTab] = useState<"all" | "industrial" | "cluster">("all")
   const zones = getAllZones(currentLang)

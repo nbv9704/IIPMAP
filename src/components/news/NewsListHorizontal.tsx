@@ -1,8 +1,14 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 
+// ============================================
+// TYPES
+// ============================================
 interface NewsItem {
   id: number
   title: string
@@ -15,9 +21,14 @@ interface NewsListHorizontalProps {
   news: NewsItem[]
 }
 
+// ============================================
+// COMPONENT: NewsListHorizontal
+// ============================================
 function NewsListHorizontal({ news }: NewsListHorizontalProps) {
+  // ========== State Management ==========
   const [bookmarkedItems, setBookmarkedItems] = useState<number[]>([])
 
+  // ========== Handlers ==========
   const toggleBookmark = (id: number) => {
     setBookmarkedItems(prev => 
       prev.includes(id) 
@@ -26,6 +37,7 @@ function NewsListHorizontal({ news }: NewsListHorizontalProps) {
     )
   }
 
+  // ========== Render ==========
   return (
     <div className="news-list-horizontal">
       {news.map(item => (

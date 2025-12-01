@@ -1,7 +1,13 @@
 "use client"
 
+// ============================================
+// IMPORTS
+// ============================================
 import { CUSTOMER_DATA } from "@/constants"
 
+// ============================================
+// COMPONENT
+// ============================================
 function CustomersSection() {
   return (
     <section className="about-customers-section">

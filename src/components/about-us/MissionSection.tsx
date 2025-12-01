@@ -1,6 +1,10 @@
+// ============================================
+// COMPONENT: MissionSection
+// ============================================
 "use client"
 
 function MissionSection() {
+  // ========== Render ==========
   return (
     <section className="about-mission-section">
       <div className="mission-content">

@@ -1,8 +1,15 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 
 import { PARTNERS_DATA } from "@/constants"
 
+// ============================================
+// COMPONENT: PartnersSection
+// ============================================
 function PartnersSection() {
+  // ========== Render ==========
   return (
     <section className="about-partners-section">
       <div className="container">

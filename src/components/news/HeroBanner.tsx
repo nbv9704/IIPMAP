@@ -1,9 +1,15 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// TYPES
+// ============================================
 interface HeroBannerProps {
   news: Array<{
     id: number
@@ -12,10 +18,17 @@ interface HeroBannerProps {
   }>
 }
 
+// ============================================
+// COMPONENT: HeroBanner
+// ============================================
 function HeroBanner({ news }: HeroBannerProps) {
+  // ========== Hooks ==========
   const { currentLang } = useLanguage()
+  
+  // ========== State Management ==========
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
 
+  // ========== Effects ==========
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBannerIndex((prev) => (prev + 1) % news.length)
@@ -24,6 +37,7 @@ function HeroBanner({ news }: HeroBannerProps) {
     return () => clearInterval(interval)
   }, [news.length])
 
+  // ========== Render ==========
   return (
     <div className="hero-banner" style={{ backgroundImage: `url(${news[currentBannerIndex]?.image || '/assets/images/listing/img_large_01.jpg'})` }}>
       <div className="hero-overlay"></div>

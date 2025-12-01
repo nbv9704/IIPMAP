@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS & TYPES
+// ============================================
 "use client"
 
 interface VideoPlayerProps {
@@ -6,7 +9,11 @@ interface VideoPlayerProps {
   title?: string
 }
 
+// ============================================
+// COMPONENT: VideoPlayer
+// ============================================
 function VideoPlayer({ videoUrl, poster, title }: VideoPlayerProps) {
+  // ========== Render ==========
   return (
     <div className="video-single-player-area">
       <video

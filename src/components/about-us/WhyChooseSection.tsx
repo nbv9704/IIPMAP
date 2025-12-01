@@ -1,8 +1,15 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 
 import { WHY_CHOOSE_DATA } from "@/constants"
 
+// ============================================
+// COMPONENT: WhyChooseSection
+// ============================================
 function WhyChooseSection() {
+  // ========== Render ==========
   return (
     <section className="about-why-section">
       <div className="container">

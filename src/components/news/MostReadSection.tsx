@@ -1,10 +1,17 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// TYPES
+// ============================================
 interface NewsItem {
   id: number
   title: string
@@ -17,6 +24,9 @@ interface MostReadSectionProps {
   news: NewsItem[]
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 function MostReadSection({ news }: MostReadSectionProps) {
   const { currentLang } = useLanguage()
   const [bookmarkedItems, setBookmarkedItems] = useState<number[]>([])

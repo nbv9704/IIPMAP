@@ -1,10 +1,20 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import { HiOutlinePaperClip, HiSparkles, HiMicrophone } from "react-icons/hi2"
 
+// ============================================
+// COMPONENT
+// ============================================
 function AISearchSection() {
+  // ============================================
+  // STATE & HOOKS
+  // ============================================
   const { currentLang } = useLanguage()
   const [searchValue, setSearchValue] = useState("")
 

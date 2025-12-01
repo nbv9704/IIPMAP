@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import React, { useState } from "react"
 import { useLanguage } from "@/hooks/useLanguage"
@@ -5,6 +8,9 @@ import { getTranslation } from "@/utils/translations"
 import ScheduleTable from "./ScheduleTable"
 import ShareModal from "./ShareModal"
 
+// ============================================
+// TYPES
+// ============================================
 interface ScheduleItem {
   id: number;
   content: string;
@@ -17,8 +23,14 @@ interface ScheduleItem {
   note: string;
 }
 
+// ============================================
+// COMPONENT: BookingArea
+// ============================================
 const BookingArea = () => {
+  // ========== Hooks ==========
   const { currentLang } = useLanguage();
+  
+  // ========== State Management ==========
   const [formName, setFormName] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 5

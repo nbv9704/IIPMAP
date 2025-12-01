@@ -1,7 +1,14 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import React, { useRef, useState } from "react"
 import Link from "next/link"
 
+// ============================================
+// TYPES
+// ============================================
 export interface VideoCardItemProps {
    id: number
    title: string
@@ -16,6 +23,9 @@ export interface VideoCardItemProps {
    sectionSlug?: string
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 const VideoCardItem = ({
    id,
    title,

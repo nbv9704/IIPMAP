@@ -1,7 +1,14 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// TYPES
+// ============================================
 interface ScheduleItem {
   id: number
   content: string

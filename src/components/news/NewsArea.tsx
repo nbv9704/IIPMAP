@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useState, useEffect } from "react"
 import { getAllNews } from "@/data/NewsDataMultilang"
@@ -9,14 +12,22 @@ import MostReadSection from "./MostReadSection"
 import "@/styles/news.scss"
 import "@/styles/news-detail.scss"
 
+// ============================================
+// TYPES
+// ============================================
 interface NewsAreaProps {
    category?: "qna" | "market" | "planning" | "activity"
 }
 
+// ============================================
+// COMPONENT: NewsArea
+// ============================================
 const NewsArea = ({ category }: NewsAreaProps = {}) => {
+   // ========== Hooks ==========
    const { currentLang } = useLanguage()
    const news_data = getAllNews(currentLang)
    
+   // ========== Constants ==========
    // Map category to filter ID
    const categoryToFilter: Record<string, string> = {
       qna: "hoi-dap",
@@ -25,6 +36,7 @@ const NewsArea = ({ category }: NewsAreaProps = {}) => {
       activity: "hoat-dong-iip"
    }
    
+   // ========== State Management ==========
    const [currentPage, setCurrentPage] = useState(1)
    const [searchQuery, setSearchQuery] = useState("")
    

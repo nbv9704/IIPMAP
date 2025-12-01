@@ -1,4 +1,8 @@
 "use client";
+
+// ============================================
+// IMPORTS
+// ============================================
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,6 +10,9 @@ import { getAllNews } from "@/data/NewsDataMultilang";
 import { useLanguage } from "@/hooks/useLanguage";
 import { getTranslation } from "@/utils/translations";
 
+// ============================================
+// TYPES
+// ============================================
 interface NewsItem {
   id: number;
   category: string;

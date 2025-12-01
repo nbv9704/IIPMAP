@@ -1,6 +1,10 @@
+// ============================================
+// COMPONENT: IntroSection
+// ============================================
 "use client"
 
 function IntroSection() {
+  // ========== Render ==========
   return (
     <section className="about-intro-section">
       <div className="about-intro-content">

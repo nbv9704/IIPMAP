@@ -1,6 +1,12 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useEffect, useState } from "react"
 
+// ============================================
+// MOCK DATA
+// ============================================
 const comments = Array(5).fill(null).map((_, idx) => ({
   id: idx + 1,
   user: `User${idx + 1}`,
@@ -16,19 +22,28 @@ const chats = [
   { id: 5, mine: false, text: "Cho tôi hỏi thông tin về khu đất này" }
 ]
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoCommentChatProps {
   mode: "comment" | "chat";
   onClose: () => void;
 }
 
+// ============================================
+// COMPONENT: VideoCommentChat
+// ============================================
 const VideoCommentChat = ({ mode, onClose }: VideoCommentChatProps) => {
+  // ========== State Management ==========
   const [activeTab, setActiveTab] = useState<"comment" | "chat">(mode)
   const [message, setMessage] = useState("")
 
+  // ========== Effects ==========
   useEffect(() => {
     setActiveTab(mode)
   }, [mode])
 
+  // ========== Render ==========
   return (
     <div className="video-comment-panel">
       <div className="panel-tabs">

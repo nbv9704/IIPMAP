@@ -1,8 +1,15 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 
 import { STATS_DATA } from "@/constants"
 
+// ============================================
+// COMPONENT: HeroSection
+// ============================================
 function HeroSection() {
+  // ========== Render ==========
   return (
     <section className="about-hero-section">
       <div className="about-hero-overlay"></div>

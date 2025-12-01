@@ -1,14 +1,23 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState } from "react"
 import Link from "next/link"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import VideoCardItem from "@/components/video/VideoCardItem"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2"
-
 import { VIDEO_DATA, VIDEOS_PER_PAGE } from "@/constants"
 
+// ============================================
+// COMPONENT
+// ============================================
 function VideoSectionHome() {
+  // ============================================
+  // STATE & HOOKS
+  // ============================================
   const { currentLang } = useLanguage()
   const [videoPage, setVideoPage] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
