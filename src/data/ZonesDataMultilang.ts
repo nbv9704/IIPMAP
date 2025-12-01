@@ -1,5 +1,11 @@
+// ============================================
+// IMPORTS
+// ============================================
 import { LanguageCode } from "@/hooks/useLanguage";
 
+// ============================================
+// TYPES
+// ============================================
 interface ZoneTranslation {
   name: string;
   address: string;
@@ -20,6 +26,9 @@ interface ZoneMultilang {
   };
 }
 
+// ============================================
+// ZONES DATA - Multilingual
+// ============================================
 const zones_data_multilang: ZoneMultilang[] = [
   {
     slug: "kcn-tien-son",

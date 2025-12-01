@@ -1,12 +1,22 @@
+// ============================================
+// IMPORTS
+// ============================================
 import { useState, useRef } from "react"
 
+// ============================================
+// HOOK: useVideoPageState
+// ============================================
 export const useVideoPageState = () => {
+  // ========== State - Explore ==========
   const [exploreQuery, setExploreQuery] = useState("")
   const [exploreOpen, setExploreOpen] = useState(false)
   const exploreSearchRef = useRef<HTMLDivElement>(null)
   
+  // ========== State - Notifications ==========
   const [notificationFilter, setNotificationFilter] = useState("all")
   const [notificationPage, setNotificationPage] = useState(1)
+  
+  // ========== State - Messages ==========
   const [selectedConversation, setSelectedConversation] = useState<number | null>(null)
   const [messageInput, setMessageInput] = useState("")
   const [showMessagesMenu, setShowMessagesMenu] = useState(false)

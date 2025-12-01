@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import NavMenuIIP from "./NavMenuIIP"
 import Link from "next/link"
@@ -7,6 +10,9 @@ import UseSticky from "@/hooks/UseSticky"
 import { useLanguage, type LanguageCode } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// LOGO CONFIGURATION
+// ============================================
 // HƯỚNG DẪN THAY LOGO:
 // 1. Đặt file logo của bạn vào thư mục: public/assets/images/logo/
 //    Ví dụ: public/assets/images/logo/iip-logo.png hoặc iip-logo.svg
@@ -14,15 +20,21 @@ import { getTranslation } from "@/utils/translations"
 import logo from "@/assets/images/fav-icon/icon.png";
 // Ví dụ: import logo from "@/assets/images/logo/iip-logo.svg";
 
+// ============================================
+// COMPONENT: HeaderIIP
+// ============================================
 const HeaderIIP = () => {
+   // ========== Hooks ==========
    const { sticky } = UseSticky();
    const { currentLang, setCurrentLang } = useLanguage();
    const [isClient, setIsClient] = useState(false);
 
+   // ========== Effects ==========
    useEffect(() => {
       setIsClient(true);
    }, []);
 
+   // ========== Language Options ==========
    const languages = [
       { code: "vi" as LanguageCode, name: "Tiếng Việt", flagCode: "vn" },
       { code: "en" as LanguageCode, name: "English", flagCode: "us" },
@@ -31,6 +43,7 @@ const HeaderIIP = () => {
       { code: "zh" as LanguageCode, name: "中文", flagCode: "cn" },
    ];
 
+   // ========== Render ==========
    return (
       <header className={`header-iip ${sticky ? "sticky" : ""}`}>
          <div className="header-iip-container">

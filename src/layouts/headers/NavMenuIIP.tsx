@@ -1,15 +1,25 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client";
 import { useTranslatedMenu } from "@/hooks/useTranslatedMenu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+// ============================================
+// COMPONENT: NavMenuIIP
+// ============================================
 const NavMenuIIP = () => {
+    // ========== Hooks ==========
     const pathname = usePathname();
+    const { menuData } = useTranslatedMenu();
+    
+    // ========== State ==========
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-    const { menuData } = useTranslatedMenu();
 
+    // ========== Render ==========
     return (
         <>
             {/* Desktop Menu */}

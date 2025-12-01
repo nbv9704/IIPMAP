@@ -1,19 +1,27 @@
-// Tailwind
+// =============================================
+// MAIN STYLES - Central Import
+// =============================================
+
+// ========== Tailwind CSS ==========
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+// ========== Third-party Libraries ==========
 @import "~bootstrap/scss/bootstrap";
 @import "react-toastify/dist/ReactToastify.css";
 @import "node_modules/react-modal-video/scss/modal-video.scss";
 @import "slick-carousel/slick/slick.css";
 
+// ========== Fonts ==========
 @import "../../public/assets/fonts/gordita/stylesheet.css";
 @import "../../public/assets/fonts/bootstrap-icons-1.11.1/font/bootstrap-icons.css";
 @import "../../public/assets/fonts/font-awesome-6.4.2/css/all.css";
+
+// ========== Base Template Styles ==========
 @import "../../public/assets/scss/style.scss";
 
-// IIP Custom Styles
+// ========== IIP Custom Styles ==========
 @import "./variables-iip.scss";
 @import "./header-iip.scss";
 @import "./footer-iip.scss";

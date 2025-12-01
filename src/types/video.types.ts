@@ -1,3 +1,8 @@
+// ============================================
+// VIDEO TYPES
+// ============================================
+
+// ========== Video Item ==========
 export interface VideoItem {
   id: number
   badge: string
@@ -8,6 +13,7 @@ export interface VideoItem {
   duration: string
 }
 
+// ========== Video Card Props ==========
 export interface VideoCardItemProps {
   id: number
   title: string
@@ -22,6 +28,7 @@ export interface VideoCardItemProps {
   sectionSlug?: string
 }
 
+// ========== Video Post ==========
 export interface VideoPost {
   postId: string
   userId: string

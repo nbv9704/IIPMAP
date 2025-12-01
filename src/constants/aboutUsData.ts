@@ -1,3 +1,8 @@
+// ============================================
+// ABOUT US DATA
+// ============================================
+
+// ========== Stats Data ==========
 export const STATS_DATA = [
   { number: "1.000", label: "Khu công nghiệp" },
   { number: "800", label: "Cụm công nghiệp" },

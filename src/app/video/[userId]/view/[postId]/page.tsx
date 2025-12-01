@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 
 import Wrapper from "@/layouts/Wrapper"
@@ -9,6 +12,9 @@ import VideoDetailHeader from "@/components/video/VideoDetailHeader"
 import { addSavedVideo, removeSavedVideo } from "@/utils/videoStorage"
 import "@/styles/video.scss"
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoDetailPageProps {
   params: {
     userId: string
@@ -16,6 +22,9 @@ interface VideoDetailPageProps {
   }
 }
 
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 const createVideoData = (postId: string) => ({
   postId,
   likes: 18000,
@@ -24,10 +33,15 @@ const createVideoData = (postId: string) => ({
   bookmarked: false,
 })
 
+// ============================================
+// PAGE: VideoDetailPage
+// ============================================
 export default function VideoDetailPage({ params }: VideoDetailPageProps) {
+  // ========== Params & Data ==========
   const { userId, postId } = params
   const videoData = createVideoData(postId)
 
+  // ========== Handlers ==========
   const handleBookmarkChange = (next: boolean) => {
     if (next) {
       addSavedVideo({
@@ -47,6 +61,8 @@ export default function VideoDetailPage({ params }: VideoDetailPageProps) {
   const handlePrev = () => {
     console.log("Previous video")
   }
+
+  // ========== Render ==========
 
   const handleNext = () => {
     console.log("Next video")

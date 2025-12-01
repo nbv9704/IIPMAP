@@ -1,13 +1,25 @@
+// ============================================
+// IMPORTS
+// ============================================
 import Link from "next/link"
 import { useTranslatedFooter } from "@/hooks/useTranslatedFooter"
 
+// ============================================
+// LOGO CONFIGURATION
+// ============================================
 // HƯỚNG DẪN THAY LOGO:
 // Nếu muốn dùng image logo thay vì text, uncomment dòng import và sửa trong JSX
 // import Image from "next/image"
 // import iipLogo from "@/assets/images/logo/iip-logo-white.svg"
 
+// ============================================
+// COMPONENT: FooterIIP
+// ============================================
 const FooterIIP = () => {
+   // ========== Hooks ==========
    const { footerData } = useTranslatedFooter();
+   
+   // ========== Render ==========
    return (
       <footer className="footer-iip">
          <div className="container">

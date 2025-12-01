@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 'use client'
 import "../styles/index.scss";
 import { useEffect } from "react";
@@ -6,15 +9,19 @@ import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
+// ============================================
+// LAYOUT: RootLayout
+// ============================================
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
+  // ========== Environment & Routing ==========
   const isDev = process.env.NODE_ENV === 'development'
   const pathname = usePathname()
 
+  // ========== Render ==========
   return (
     <html lang="vi" suppressHydrationWarning={isDev}>
       <head>

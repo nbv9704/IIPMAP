@@ -1,7 +1,13 @@
+// ============================================
+// IMPORTS
+// ============================================
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { getTranslation } from '@/utils/translations';
 
+// ============================================
+// TYPES
+// ============================================
 interface SubMenuItem {
     title: string;
     link: string;
@@ -15,10 +21,17 @@ interface TranslatedMenuItem {
     sub_menus?: SubMenuItem[];
 }
 
+// ============================================
+// HOOK: useTranslatedMenu
+// ============================================
 export const useTranslatedMenu = () => {
+    // ========== Hooks ==========
     const { currentLang } = useLanguage();
+    
+    // ========== State ==========
     const [menuData, setMenuData] = useState<TranslatedMenuItem[]>([]);
 
+    // ========== Effects ==========
     // Update menuData whenever currentLang changes
     useEffect(() => {
         const newMenuData: TranslatedMenuItem[] = [

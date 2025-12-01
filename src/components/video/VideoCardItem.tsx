@@ -5,6 +5,7 @@
 // ============================================
 import React, { useRef, useState } from "react"
 import Link from "next/link"
+import { VIDEO_PREVIEW, USER_ID } from "@/constants/video/config"
 
 // ============================================
 // TYPES
@@ -20,7 +21,6 @@ export interface VideoCardItemProps {
    author?: string
    authorAvatar?: string
    className?: string
-   sectionSlug?: string
 }
 
 // ============================================
@@ -28,7 +28,6 @@ export interface VideoCardItemProps {
 // ============================================
 const VideoCardItem = ({
    id,
-   title,
    location,
    thumbnail,
    badge,
@@ -37,7 +36,6 @@ const VideoCardItem = ({
    author = "Khu công nghiệp Tiên Sơn - Bắc Ninh",
    authorAvatar,
    className = "",
-   sectionSlug = "explore",
 }: VideoCardItemProps) => {
    const videoRef = useRef<HTMLVideoElement>(null)
    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -45,30 +43,26 @@ const VideoCardItem = ({
 
    const handleMouseEnter = () => {
       if (videoRef.current) {
-         // Play video after a short delay
          timeoutRef.current = setTimeout(() => {
             videoRef.current?.play()
             setIsPlaying(true)
             
-            // Stop after 3 seconds
             setTimeout(() => {
                if (videoRef.current) {
                   videoRef.current.pause()
                   videoRef.current.currentTime = 0
                   setIsPlaying(false)
                }
-            }, 3000)
-         }, 300)
+            }, VIDEO_PREVIEW.DURATION_MS)
+         }, VIDEO_PREVIEW.DELAY_MS)
       }
    }
 
    const handleMouseLeave = () => {
-      // Clear timeout if mouse leaves before video starts
       if (timeoutRef.current) {
          clearTimeout(timeoutRef.current)
       }
       
-      // Stop and reset video
       if (videoRef.current) {
          videoRef.current.pause()
          videoRef.current.currentTime = 0
@@ -77,11 +71,9 @@ const VideoCardItem = ({
    }
 
    // TODO: Thay id bằng postId thực tế từ backend
-   // Tạm thời dùng id để generate postId giả
    const mockPostId = id.toString().padStart(20, '0')
-   // Format userId: tối đa 10 ký tự sau @
    const mockUserId = author 
-     ? `@${author.toLowerCase().replace(/\s+/g, '_').slice(0, 10)}` 
+     ? `@${author.toLowerCase().replace(/\s+/g, '_').slice(0, USER_ID.MAX_USERNAME_LENGTH)}` 
      : '@user'
    
    return (

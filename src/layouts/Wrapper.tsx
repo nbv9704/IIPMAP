@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client";
 
 import { useEffect } from "react";
@@ -8,11 +11,25 @@ import HeaderIIP from "@/layouts/headers/HeaderIIP";
 import FooterIIP from "@/layouts/footers/FooterIIP";
 import "@/styles/index.scss";
 
+// ============================================
+// BOOTSTRAP INITIALIZATION
+// ============================================
 if (typeof window !== "undefined") {
     require("bootstrap/dist/js/bootstrap");
 }
 
-const Wrapper = ({ children }: any) => {
+// ============================================
+// TYPES
+// ============================================
+interface WrapperProps {
+    children: React.ReactNode;
+}
+
+// ============================================
+// LAYOUT: Wrapper
+// ============================================
+const Wrapper = ({ children }: WrapperProps) => {
+    // ========== Effects ==========
     useEffect(() => {
         // animation
         const timer = setTimeout(() => {
@@ -22,7 +39,7 @@ const Wrapper = ({ children }: any) => {
         return () => clearTimeout(timer);
     }, []);
 
-
+    // ========== Render ==========
     return <>
         <HeaderIIP />
         {children}

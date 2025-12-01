@@ -1,4 +1,8 @@
+// ============================================
+// TRANSLATIONS - Multilingual Content
+// ============================================
 export const translations = {
+  // ========== Vietnamese ==========
   vi: {
     // Page Titles
     pageTitle: {

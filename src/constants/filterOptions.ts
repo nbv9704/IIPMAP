@@ -1,3 +1,8 @@
+// ============================================
+// FILTER OPTIONS
+// ============================================
+
+// ========== Area Options ==========
 export const AREA_OPTIONS = [
   "< 500 m²",
   "500 - 1.000 m²",
@@ -7,6 +12,7 @@ export const AREA_OPTIONS = [
   "> 10.000 m²",
 ]
 
+// ========== Price Options ==========
 export const PRICE_OPTIONS = [
   "Thỏa thuận",
   "< 10 USD/m²",

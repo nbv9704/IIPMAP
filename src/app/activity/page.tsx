@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useEffect } from "react"
 import NewsArea from "@/components/news/NewsArea"
@@ -6,13 +9,19 @@ import FooterIIP from "@/layouts/footers/FooterIIP"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 
+// ============================================
+// PAGE: ActivityPage
+// ============================================
 export default function ActivityPage() {
+  // ========== Hooks ==========
   const { currentLang } = useLanguage()
   
+  // ========== Effects ==========
   useEffect(() => {
     document.title = `${getTranslation(currentLang, 'pageTitle.activity')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
   }, [currentLang]);
   
+  // ========== Render ==========
   return (
     <>
       <HeaderIIP />

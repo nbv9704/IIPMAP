@@ -15,24 +15,12 @@ const ScrollToTop = () => {
    // ========== State Management ==========
    const [showScroll, setShowScroll] = useState(false);
 
-   const checkScrollTop = () => {
-      if (!showScroll && window.pageYOffset > 400) {
-         setShowScroll(true);
-      } else if (showScroll && window.pageYOffset <= 400) {
-         setShowScroll(false);
-      }
-   };
-
    // ========== Handlers ==========
    const scrollTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
    };
 
    // ========== Effects ==========
-   // useEffect(() => {
-   //    window.addEventListener("scroll", checkScrollTop);
-   //    return () => window.removeEventListener("scroll", checkScrollTop);
-   // }, []);
    useEffect(() => {
       const checkScrollTop = () => {
          if (!showScroll && window.pageYOffset > 400) {
@@ -44,7 +32,7 @@ const ScrollToTop = () => {
 
       window.addEventListener("scroll", checkScrollTop);
       return () => window.removeEventListener("scroll", checkScrollTop);
-   }, [checkScrollTop]);
+   }, [showScroll]);
 
    // ========== Render ==========
    return (

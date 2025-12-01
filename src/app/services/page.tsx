@@ -1,16 +1,25 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import { useEffect } from "react";
 import Wrapper from "@/layouts/Wrapper";
 import { useLanguage } from "@/hooks/useLanguage";
 import { getTranslation } from "@/utils/translations";
 
+// ============================================
+// PAGE: DichVuPage (Services)
+// ============================================
 const DichVuPage = () => {
+   // ========== Hooks ==========
    const { currentLang } = useLanguage();
    
+   // ========== Effects ==========
    useEffect(() => {
       document.title = `${getTranslation(currentLang, 'pageTitle.services')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
    }, [currentLang]);
    
+   // ========== Render ==========
    return (
       <Wrapper>
          <div style={{ 

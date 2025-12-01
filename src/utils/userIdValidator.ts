@@ -1,3 +1,11 @@
+// ============================================
+// IMPORTS
+// ============================================
+import { USER_ID } from "@/constants/video/config"
+
+// ============================================
+// USER ID VALIDATOR
+// ============================================
 /**
  * Validate userId format
  * - Phải bắt đầu bằng @
@@ -5,6 +13,7 @@
  * - Chỉ chứa chữ cái, số, dấu gạch dưới
  */
 
+// ========== Validation Function ==========
 /**
  * Kiểm tra userId có hợp lệ không
  * @param {string} userId - UserId cần kiểm tra (ví dụ: @kcn_tien_son)
@@ -15,20 +24,19 @@
  * isValidUserId('kcn_tien') // false (thiếu @)
  */
 export const isValidUserId = (userId: string): boolean => {
-  // Phải bắt đầu bằng @
   if (!userId.startsWith('@')) return false
   
-  // Lấy phần sau @
   const username = userId.slice(1)
   
-  // Kiểm tra độ dài (tối đa 10 ký tự)
-  if (username.length === 0 || username.length > 10) return false
+  if (username.length < USER_ID.MIN_USERNAME_LENGTH || 
+      username.length > USER_ID.MAX_USERNAME_LENGTH) {
+    return false
+  }
   
-  // Chỉ chứa chữ cái, số, dấu gạch dưới
-  const validPattern = /^[a-zA-Z0-9_]+$/
-  return validPattern.test(username)
+  return USER_ID.VALID_PATTERN.test(username)
 }
 
+// ========== Format Function ==========
 /**
  * Format tên thành userId hợp lệ
  * @param {string} name - Tên cần format
@@ -38,22 +46,12 @@ export const isValidUserId = (userId: string): boolean => {
  * formatToUserId('VSIP Hải Phòng') // '@vsip_hai_p'
  */
 export const formatToUserId = (name: string): string => {
-  // Chuyển thành lowercase
   let formatted = name.toLowerCase()
-  
-  // Thay khoảng trắng bằng _
   formatted = formatted.replace(/\s+/g, '_')
-  
-  // Xóa dấu tiếng Việt
   formatted = formatted.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-  
-  // Chỉ giữ chữ cái, số, dấu gạch dưới
   formatted = formatted.replace(/[^a-z0-9_]/g, '')
+  formatted = formatted.slice(0, USER_ID.MAX_USERNAME_LENGTH)
   
-  // Cắt về tối đa 10 ký tự
-  formatted = formatted.slice(0, 10)
-  
-  // Thêm @ vào đầu
   return `@${formatted}`
 }
 
@@ -90,10 +88,8 @@ export const validateAndFormatUserId = (userId: string): {
   userId: string
   error?: string
 } => {
-  // Thêm @ nếu chưa có
   const formattedUserId = addAtSymbol(userId)
   
-  // Validate
   if (!isValidUserId(formattedUserId)) {
     const username = getUsernameFromUserId(formattedUserId)
     
@@ -105,15 +101,15 @@ export const validateAndFormatUserId = (userId: string): {
       }
     }
     
-    if (username.length > 10) {
+    if (username.length > USER_ID.MAX_USERNAME_LENGTH) {
       return {
         valid: false,
         userId: formattedUserId,
-        error: 'Username không được quá 10 ký tự'
+        error: `Username không được quá ${USER_ID.MAX_USERNAME_LENGTH} ký tự`
       }
     }
     
-    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+    if (!USER_ID.VALID_PATTERN.test(username)) {
       return {
         valid: false,
         userId: formattedUserId,

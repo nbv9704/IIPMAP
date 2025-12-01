@@ -1,4 +1,5 @@
 import { VideoCardItemProps } from "@/types"
+import { USER_ID } from "./config"
 
 const formatDuration = (seconds: number) => `00:${seconds.toString().padStart(2, "0")}`
 
@@ -38,7 +39,7 @@ export const generateSavedVideos = (): VideoCardItemProps[] =>
 export const generateFollowingUsers = () => [
   {
     id: 1,
-    username: "@kcn_tien", // Tối đa 10 ký tự
+    username: "@kcn_tien".slice(0, USER_ID.MAX_USERNAME_LENGTH + 1),
     displayName: "KCN Tiên Sơn",
     avatar: "T",
     videos: Array.from({ length: 5 }, (_, idx) => ({
@@ -53,7 +54,7 @@ export const generateFollowingUsers = () => [
   },
   {
     id: 2,
-    username: "@kcn_vsip", // Tối đa 10 ký tự
+    username: "@kcn_vsip".slice(0, USER_ID.MAX_USERNAME_LENGTH + 1),
     displayName: "KCN VSIP",
     avatar: "V",
     videos: Array.from({ length: 5 }, (_, idx) => ({
@@ -68,7 +69,7 @@ export const generateFollowingUsers = () => [
   },
   {
     id: 3,
-    username: "@kcn_my_ph", // Tối đa 10 ký tự
+    username: "@kcn_my_ph".slice(0, USER_ID.MAX_USERNAME_LENGTH + 1),
     displayName: "KCN Mỹ Phước",
     avatar: "M",
     videos: Array.from({ length: 5 }, (_, idx) => ({

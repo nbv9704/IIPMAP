@@ -1,3 +1,8 @@
+// ============================================
+// VIDEO DATA
+// ============================================
+
+// ========== Video List ==========
 export const VIDEO_DATA = [
   { id: 1, badge: "Xu hướng", views: "29k", location: "Bắc Ninh", thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=60", title: "KCN Tiên Sơn", duration: "00:45" },
   { id: 2, badge: "Hot", views: "25k", location: "Hải Phòng", thumbnail: "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=400&q=60", title: "KCN VSIP", duration: "01:20" },
@@ -16,4 +21,5 @@ export const VIDEO_DATA = [
   { id: 15, badge: "Xu hướng", views: "21k", location: "Nam Định", thumbnail: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=400&q=60", title: "KCN Bảo Minh", duration: "00:50" },
 ]
 
+// ========== Pagination ==========
 export const VIDEOS_PER_PAGE = 5
