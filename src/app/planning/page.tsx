@@ -1,32 +1,11 @@
 // ============================================
 // IMPORTS
 // ============================================
-"use client"
-import { useEffect } from "react"
-import NewsArea from "@/components/news/NewsArea"
-import HeaderIIP from "@/layouts/headers/HeaderIIP"
-import FooterIIP from "@/layouts/footers/FooterIIP"
-import { useLanguage } from "@/hooks/useLanguage"
-import { getTranslation } from "@/utils/translations"
+import NewsCategoryPageClient from "../news/NewsCategoryPageClient"
 
 // ============================================
-// PAGE: PlanningNewsPage
+// PAGE: PlanningNewsPage (server)
 // ============================================
 export default function PlanningNewsPage() {
-  // ========== Hooks ==========
-  const { currentLang } = useLanguage()
-  
-  // ========== Effects ==========
-  useEffect(() => {
-    document.title = `${getTranslation(currentLang, 'pageTitle.planning')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
-  }, [currentLang]);
-  
-  // ========== Render ==========
-  return (
-    <>
-      <HeaderIIP />
-      <NewsArea category="planning" />
-      <FooterIIP />
-    </>
-  )
+  return <NewsCategoryPageClient category="planning" titleKey="pageTitle.planning" />
 }

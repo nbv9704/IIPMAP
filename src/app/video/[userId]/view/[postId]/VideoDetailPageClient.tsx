@@ -3,7 +3,6 @@
 // ============================================
 "use client"
 
-import { useParams } from "next/navigation"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
 import VideoActions from "@/components/video/VideoActions"
@@ -13,38 +12,40 @@ import { addSavedVideo, removeSavedVideo } from "@/utils/videoStorage"
 import "@/styles/video.scss"
 
 // ============================================
-// COMPONENT: VideoDetailV2Client
+// TYPES
 // ============================================
-export default function VideoDetailV2Client() {
-  // ============================================
-  // GET PARAMS
-  // ============================================
-  const params = useParams()
-  const userId = params.userId as string
-  const postId = params.postId as string
+interface VideoDetailPageClientProps {
+  userId: string
+  postId: string
+}
 
-  // ============================================
-  // DATA
-  // ============================================
-  const videoData = {
-    postId,
-    likes: 18000,
-    comments: 18000,
-    shares: 120,
-    bookmarked: false,
-  }
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+const createVideoData = (postId: string) => ({
+  postId,
+  likes: 18000,
+  comments: 18000,
+  shares: 120,
+  bookmarked: false,
+})
 
-  // ============================================
-  // HANDLERS
-  // ============================================
+// ============================================
+// COMPONENT: VideoDetailPageClient
+// ============================================
+export default function VideoDetailPageClient({ userId, postId }: VideoDetailPageClientProps) {
+  // ========== Params & Data ==========
+  const videoData = createVideoData(postId)
+
+  // ========== Handlers ==========
   const handleBookmarkChange = (next: boolean) => {
     if (next) {
       addSavedVideo({
         id: parseInt(postId.slice(0, 10)),
-        title: "Khu công nghiệp Tiên Sơn - Bắc Ninh",
-        location: "Phường Đồng Nguyên, Bắc Ninh",
+        title: "Khu c�ng nghi?p Ti�n Son - B?c Ninh",
+        location: "Phu?ng D?ng Nguy�n, B?c Ninh",
         thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-        badge: "Đã lưu",
+        badge: "Da luu",
         views: "18k",
         duration: "00:47",
       })
@@ -81,30 +82,28 @@ export default function VideoDetailV2Client() {
     console.log("View profile clicked")
   }
 
-  // ============================================
-  // RENDER
-  // ============================================
+  // ========== Render ==========
   return (
     <Wrapper>
       <section className="video-page">
         <div className="video-page-container">
-          {/* Sidebar bên trái - giống explore */}
+          {/* Sidebar b�n tr�i - gi?ng explore */}
           <div className="video-sidebar-wrapper">
             <VideoSidebar activeSlug="video-detail" />
           </div>
 
-          {/* Cột chính bên phải */}
+          {/* C?t ch�nh b�n ph?i */}
           <div className="video-main-column">
-            {/* Khung overall chứa video section và info section */}
+            {/* Khung overall ch?a video section v� info section */}
             <div className="video-section video-detail-section">
-              {/* Khung đen chứa video + actions + nav buttons */}
+              {/* Khung den ch?a video + actions + nav buttons */}
               <div className="video-player-area">
-                {/* Nút chuyển video bên trái */}
+                {/* N�t chuy?n video b�n tr�i */}
                 <button
                   className="video-nav-btn video-nav-prev"
                   onClick={handlePrev}
                   type="button"
-                  aria-label="Video trước"
+                  aria-label="Video tru?c"
                 >
                   <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
                     <path
@@ -118,13 +117,13 @@ export default function VideoDetailV2Client() {
                 </button>
 
                 {/* Video Player */}
-                <VideoPlayer 
+                <VideoPlayer
                   videoUrl="/assets/video/khucongnghiepthainguyen.mp4"
                   poster="/assets/video/khucongnghiepthainguyen.mp4"
-                  title="Khu công nghiệp Tiên Sơn - Bắc Ninh"
+                  title="Khu c�ng nghi?p Ti�n Son - B?c Ninh"
                 />
 
-                {/* Actions bên phải video (like, comment, bookmark, share) */}
+                {/* Actions b�n ph?i video (like, comment, bookmark, share) */}
                 <VideoActions
                   video={{ ...videoData }}
                   onPrev={handlePrev}
@@ -132,24 +131,24 @@ export default function VideoDetailV2Client() {
                   onBookmarkChange={handleBookmarkChange}
                 />
 
-                {/* Actions bên trái video (avatar + email, chat, call, schedule) */}
+                {/* Actions b�n tr�i video (avatar + email, chat, call, schedule) */}
                 <VideoLeftActions
                   onEmail={handleEmail}
                   onChat={handleChat}
                   onCall={handleCall}
                   onSchedule={handleSchedule}
                   onViewProfile={handleViewProfile}
-                  username="KCN Tiên Sơn - Bắc Ninh"
+                  username="KCN Ti�n Son - B?c Ninh"
                   userId={`@${userId}`}
-                  location="Phường Đồng Nguyên, xã Đại Đồng, phường Tam Sơn, tỉnh Bắc Ninh"
+                  location="Phu?ng D?ng Nguy�n, xa D?i D?ng, phu?ng Tam Son, t?nh B?c Ninh"
                 />
 
-                {/* Nút chuyển video bên phải */}
+                {/* N�t chuy?n video b�n ph?i */}
                 <button
                   className="video-nav-btn video-nav-next"
                   onClick={handleNext}
                   type="button"
-                  aria-label="Video tiếp theo"
+                  aria-label="Video ti?p theo"
                 >
                   <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
                     <path
@@ -169,4 +168,3 @@ export default function VideoDetailV2Client() {
     </Wrapper>
   )
 }
-

@@ -1,11 +1,16 @@
-﻿.hero-section {
+.hero-section {
+  /* Scoped custom properties giữ màu hiện tại, dễ đổi sau này */
+  --hero-bg: linear-gradient(130deg, #002a9b 0%, #0f9bff 60%, #1a55c0 100%);
+  --hero-text: #fff;
+  --hero-glow: rgba(255, 255, 255, 0.08);
+
   position: relative;
   width: 100%;
   border-radius: 0;
   margin-top: 53px;
   padding: 60px 0 70px;
-  background: linear-gradient(130deg, #002a9b 0%, #0f9bff 60%, #1a55c0 100%);
-  color: #fff;
+  background: var(--hero-bg);
+  color: var(--hero-text);
   overflow: hidden;
 
   &::after,
@@ -15,7 +20,7 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--hero-glow);
     filter: blur(5px);
   }
 
@@ -153,20 +158,19 @@
   }
 }
 
-// Custom width cho tá»«ng card (chá»‰nh sá»‘ px Ä‘á»ƒ thay Ä‘á»•i khoáº£ng trá»‘ng 2 bÃªn)
+// Custom width cho từng card (chỉnh px để thay đổi khoảng trống)
 .stat-card-1 {
-  max-width: 180px; // Card 1: Khu cÃ´ng nghiá»‡p
+  max-width: 180px; // Card 1: Khu công nghiệp
 }
 
 .stat-card-2 {
-  max-width: 180px; // Card 2: Cá»¥m cÃ´ng nghiá»‡p
+  max-width: 180px; // Card 2: Cụm công nghiệp
 }
 
 .stat-card-3 {
-  max-width: 400px; // Card 3: Diá»‡n tÃ­ch Ä‘áº¥t
+  max-width: 400px; // Card 3: Diện tích đất
 }
 
 .stat-card-4 {
   max-width: 200px; // Card 4: Angel AI
 }
-

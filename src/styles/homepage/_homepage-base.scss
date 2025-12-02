@@ -1,12 +1,17 @@
-﻿.homepage {
-  background-color: #f4f7fb;
+.homepage {
+  /* Scoped custom properties giữ nguyên màu hiện tại, thuận tiện cấu hình sau này */
+  --home-bg: #f4f7fb;
+  --home-text: #0b1a2b;
+  --home-main-bg: linear-gradient(180deg, #ffffff 0%, #ecf4ff 100%);
+
+  background-color: var(--home-bg);
   min-height: 100vh;
-  color: #0b1a2b;
+  color: var(--home-text);
   font-family: 'Montserrat', 'Inter', sans-serif;
 
   main {
     padding: 0 0 60px;
-    background: linear-gradient(180deg, #ffffff 0%, #ecf4ff 100%);
+    background: var(--home-main-bg);
   }
 }
 
@@ -19,4 +24,3 @@
   flex-direction: column;
   gap: 60px;
 }
-

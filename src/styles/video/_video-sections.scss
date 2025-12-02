@@ -1,4 +1,4 @@
-﻿.video-main-column {
+∩╗┐.video-main-column {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -10,7 +10,7 @@
 .video-section {
   background: #ffffff;
   border-radius: 32px;
-  padding: 12px 36px 88px;    /* KÃ©o dÃ i bottom: tÄƒng tá»« 48px lÃªn 88px (+40px) */
+  padding: 12px 36px 88px;    /* K├â┬⌐o d├â┬ái bottom: t├ä╞Æng t├í┬╗┬½ 48px l├â┬¬n 88px (+40px) */
   box-shadow: 0 20px 40px rgba(3, 27, 140, 0.12);
   display: flex;
   flex-direction: column;
@@ -27,22 +27,22 @@
   align-items: flex-end;
   gap: 20px;
 }
-/* NhÃ³m tiÃªu Ä‘á» + thanh gáº¡ch dÆ°á»›i "Video ná»•i báº­t" / "Video hÃ ng ngÃ y" */
+/* Nh├â┬│m ti├â┬¬u ├äΓÇÿ├í┬╗┬ü + thanh g├í┬║┬ích d├å┬░├í┬╗ΓÇ║i "Video n├í┬╗ΓÇói b├í┬║┬¡t" / "Video h├â┬áng ng├â┬áy" */
 .video-section-heading {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-/* Ä‘Ã£ cÃ³ mÃ u #0051CB tá»« trÃªn, Ä‘oáº¡n nÃ y cÃ³ thá»ƒ bá»,
-   nhÆ°ng giá»¯ cÅ©ng Ä‘Æ°á»£c vÃ¬ selector cá»¥ thá»ƒ hÆ¡n */
+/* ├äΓÇÿ├â┬ú c├â┬│ m├â┬áu #0051CB t├í┬╗┬½ tr├â┬¬n, ├äΓÇÿo├í┬║┬ín n├â┬áy c├â┬│ th├í┬╗╞Æ b├í┬╗┬Å,
+   nh├å┬░ng gi├í┬╗┬» c├à┬⌐ng ├äΓÇÿ├å┬░├í┬╗┬úc v├â┬¼ selector c├í┬╗┬Ñ th├í┬╗╞Æ h├å┬ín */
 .video-section-heading h2 {
   color: #0051CB;
 }
 
-/* thanh gáº¡ch xanh dÆ°á»›i tiÃªu Ä‘á» (má»—i section 1 thanh riÃªng) */
+/* thanh g├í┬║┬ích xanh d├å┬░├í┬╗ΓÇ║i ti├â┬¬u ├äΓÇÿ├í┬╗┬ü (m├í┬╗ΓÇöi section 1 thanh ri├â┬¬ng) */
 .video-section-heading-line {
-  width: 234px;           /* giá»‘ng khung 234px trong Figma */
+  width: 234px;           /* gi├í┬╗ΓÇÿng khung 234px trong Figma */
   height: 4px;
   border-radius: 999px;
   background-color: #0051CB;
@@ -115,7 +115,7 @@
   background: #ffffff;
   border-radius: 32px;
   padding: 32px;
-  padding-top: 40px;      /* thÃªm padding trÃªn Ä‘á»ƒ card khÃ´ng bá»‹ cáº¯t */
+  padding-top: 40px;      /* th├â┬¬m padding tr├â┬¬n ├äΓÇÿ├í┬╗╞Æ card kh├â┬┤ng b├í┬╗ΓÇ╣ c├í┬║┬»t */
   box-shadow: 0 20px 40px rgba(3, 27, 140, 0.08);
   display: flex;
   flex-direction: column;
@@ -680,7 +680,7 @@
   }
 }
 
-// Animations cho dropdowns (dÃ¹ng chung)
+// Animations cho dropdowns (d├â┬╣ng chung)
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
@@ -1293,12 +1293,12 @@
   }
 }
 
-// ÄÃ£ loáº¡i bá» - duplicate vá»›i pháº§n video-detail-page á»Ÿ dÆ°á»›i
+// ├ä┬É├â┬ú lo├í┬║┬íi b├í┬╗┬Å - duplicate v├í┬╗ΓÇ║i ph├í┬║┬ºn video-detail-page ├í┬╗┼╕ d├å┬░├í┬╗ΓÇ║i
 
 .video-single-page {
   width: 100%;
   min-height: 100vh;
-  padding: 72px 0 0;        /* ~ chiá»u cao header, Ä‘á»«ng Ä‘á»ƒ 16px ná»¯a */
+  padding: 72px 0 0;        /* ~ chi├í┬╗┬üu cao header, ├äΓÇÿ├í┬╗┬½ng ├äΓÇÿ├í┬╗╞Æ 16px n├í┬╗┬»a */
   background: #ffffff;
 }
 .video-single-layout {
@@ -1316,7 +1316,7 @@
   flex-direction: column;
   gap: 20px;
   position: sticky;
-  top: 72px;     /* ~ chiá»u cao header, giá»¯ nguyÃªn nhÆ° Ä‘ang xÃ i */
+  top: 72px;     /* ~ chi├í┬╗┬üu cao header, gi├í┬╗┬» nguy├â┬¬n nh├å┬░ ├äΓÇÿang x├â┬ái */
   padding-top: 0;
   height: fit-content;
 }
@@ -1327,7 +1327,7 @@
 
 .video-detail-actions-header {
   position: absolute;
-  top: 0;               /* chá»‰nh 0 / 8 / 12 tuá»³ máº¯t cho giá»‘ng figma */
+  top: 0;               /* ch├í┬╗ΓÇ░nh 0 / 8 / 12 tu├í┬╗┬│ m├í┬║┬»t cho gi├í┬╗ΓÇÿng figma */
   right: 24px;
   display: flex;
   gap: 12px;
@@ -1374,7 +1374,7 @@
 .video-single-player-area {
   display: flex;
   justify-content: center;
-  align-items: flex-start;           /* video bÃ¡m lÃªn trÃªn, khÃ´ng trÃ´i xuá»‘ng giá»¯a */
+  align-items: flex-start;           /* video b├â┬ím l├â┬¬n tr├â┬¬n, kh├â┬┤ng tr├â┬┤i xu├í┬╗ΓÇÿng gi├í┬╗┬»a */
   align-self: stretch;
 }
 
@@ -1476,7 +1476,7 @@
   font-size: 14px;
 }
 
-// ÄÃ£ loáº¡i bá» - duplicate, sá»­ dá»¥ng pháº§n video-detail-page á»Ÿ dÆ°á»›i
+// ├ä┬É├â┬ú lo├í┬║┬íi b├í┬╗┬Å - duplicate, s├í┬╗┬¡ d├í┬╗┬Ñng ph├í┬║┬ºn video-detail-page ├í┬╗┼╕ d├å┬░├í┬╗ΓÇ║i
 
 .video-card {
   width: 100%;
@@ -1601,38 +1601,38 @@
   z-index: 2;
   transition: transform 0.3s ease;
 
-  // Hot - Ä‘á» cam nÃ³ng
+  // Hot - ├äΓÇÿ├í┬╗┬Å cam n├â┬│ng
   &--hot {
     background: linear-gradient(135deg, #ff4d4d 0%, #ff6b35 100%);
     color: #fff;
   }
 
-  // Xu hÆ°á»›ng - tÃ­m gradient
-  &--xu-hÆ°á»›ng {
+  // Xu h├å┬░├í┬╗ΓÇ║ng - t├â┬¡m gradient
+  &--xu-h├å┬░├í┬╗ΓÇ║ng {
     background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
     color: #fff;
   }
 
-  // Má»›i - xanh dÆ°Æ¡ng
-  &--má»›i {
+  // M├í┬╗ΓÇ║i - xanh d├å┬░├å┬íng
+  &--m├í┬╗ΓÇ║i {
     background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
     color: #fff;
   }
 
-  // HÃ ng ngÃ y - xanh lÃ¡
-  &--hÃ ng-ngÃ y {
+  // H├â┬áng ng├â┬áy - xanh l├â┬í
+  &--h├â┬áng-ng├â┬áy {
     background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
     color: #fff;
   }
 
-  // ÄÃ£ lÆ°u - há»“ng
-  &--Ä‘Ã£-lÆ°u {
+  // ├ä┬É├â┬ú l├å┬░u - h├í┬╗ΓÇ£ng
+  &--├äΓÇÿ├â┬ú-l├å┬░u {
     background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
     color: #fff;
   }
 
-  // Ná»•i báº­t - vÃ ng gold
-  &--ná»•i-báº­t {
+  // N├í┬╗ΓÇói b├í┬║┬¡t - v├â┬áng gold
+  &--n├í┬╗ΓÇói-b├í┬║┬¡t {
     background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
     color: #000;
   }
@@ -1741,7 +1741,7 @@
   line-height: 1.4;
 }
 
-// Author info vá»›i avatar mini
+// Author info v├í┬╗ΓÇ║i avatar mini
 .video-card-author {
   display: flex;
   align-items: center;
@@ -1825,15 +1825,15 @@
     padding: 24px;
   }
 }
-/* VÃ¹ng scroll riÃªng cho má»—i section "Video ná»•i báº­t" / "Video hÃ ng ngÃ y" */
+/* V├â┬╣ng scroll ri├â┬¬ng cho m├í┬╗ΓÇöi section "Video n├í┬╗ΓÇói b├í┬║┬¡t" / "Video h├â┬áng ng├â┬áy" */
 .video-section-scroll {
-  max-height: 680px;      /* chiá»u cao hiá»ƒn thá»‹ â€“ báº¡n chá»‰nh 640 / 720 tuá»³ Ã½ */
+  max-height: 680px;      /* chi├í┬╗┬üu cao hi├í┬╗╞Æn th├í┬╗ΓÇ╣ ├óΓé¼ΓÇ£ b├í┬║┬ín ch├í┬╗ΓÇ░nh 640 / 720 tu├í┬╗┬│ ├â┬╜ */
   overflow-y: auto;
-  overflow-x: visible;    /* cho phÃ©p card lift ra ngoÃ i */
-  padding: 8px 6px 8px 4px;     /* padding trÃªn/dÆ°á»›i Ä‘á»ƒ card khÃ´ng bá»‹ cáº¯t khi lift */
+  overflow-x: visible;    /* cho ph├â┬⌐p card lift ra ngo├â┬ái */
+  padding: 8px 6px 8px 4px;     /* padding tr├â┬¬n/d├å┬░├í┬╗ΓÇ║i ├äΓÇÿ├í┬╗╞Æ card kh├â┬┤ng b├í┬╗ΓÇ╣ c├í┬║┬»t khi lift */
 }
 
-/* Custom scrollbar (Chrome, Edge, Safari) â€“ cho Ä‘áº¹p giá»‘ng Figma */
+/* Custom scrollbar (Chrome, Edge, Safari) ├óΓé¼ΓÇ£ cho ├äΓÇÿ├í┬║┬╣p gi├í┬╗ΓÇÿng Figma */
 .video-section-scroll::-webkit-scrollbar {
   width: 6px;
 }
@@ -1851,7 +1851,7 @@
   background: rgba(0, 0, 0, 0.28);
 }
 
-// ÄÃ£ loáº¡i bá» - duplicate vá»›i .video-scroll-nav á»Ÿ dÆ°á»›i
+// ├ä┬É├â┬ú lo├í┬║┬íi b├í┬╗┬Å - duplicate v├í┬╗ΓÇ║i .video-scroll-nav ├í┬╗┼╕ d├å┬░├í┬╗ΓÇ║i
 
 .video-chat-message {
   display: flex;
@@ -2025,7 +2025,7 @@
   }
 }
 
-// Animations cho emoji picker (dÃ¹ng chung)
+// Animations cho emoji picker (d├â┬╣ng chung)
 @keyframes emojiDropdownFadeIn {
   from {
     opacity: 0;

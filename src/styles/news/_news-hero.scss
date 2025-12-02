@@ -2,7 +2,14 @@
 
 // News page - Theo Figma Design
 .news-area {
-   background: #FFFFFF;
+   /* Scoped custom properties giữ nguyên màu hiện tại để dễ điều chỉnh sau này */
+   --news-bg: #FFFFFF;
+   --news-hero-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+   --news-hero-title: #FFFFFF;
+   --news-hero-btn-bg: #FFFFFF;
+   --news-hero-btn-text: #000000;
+
+   background: var(--news-bg);
    padding-top: 53px; // Header height
    
    // Hero Banner with Carousel
@@ -23,7 +30,7 @@
          left: 0;
          width: 100%;
          height: 100%;
-         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+         background: var(--news-hero-overlay);
       }
       
       .hero-content {
@@ -36,7 +43,7 @@
             font-weight: 800;
             font-size: 40px;
             line-height: 49px;
-            color: #FFFFFF;
+            color: var(--news-hero-title);
             margin-bottom: 20px;
          }
          
@@ -45,14 +52,14 @@
             align-items: center;
             gap: 12px;
             padding: 10px;
-            background: #FFFFFF;
+            background: var(--news-hero-btn-bg);
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
             border-radius: 10px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             font-size: 15px;
             line-height: 18px;
-            color: #000000;
+            color: var(--news-hero-btn-text);
             text-decoration: none;
             transition: all 0.3s ease;
             

@@ -1,4 +1,3 @@
-"use client"
 import HeaderIIP from "@/layouts/headers/HeaderIIP"
 import FooterIIP from "@/layouts/footers/FooterIIP"
 import Link from "next/link"
