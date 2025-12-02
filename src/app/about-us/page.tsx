@@ -13,6 +13,12 @@ export const metadata = {
 };
 
 // ============================================
+// STATIC GENERATION
+// ============================================
+// Force static generation at build time for better performance
+export const dynamic = 'force-static';
+
+// ============================================
 // PAGE: AboutUsPage
 // ============================================
 const AboutUsPage = () => {

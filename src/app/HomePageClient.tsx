@@ -20,10 +20,7 @@ export default function HomePageClient() {
   // ========== Hooks ==========
   const { currentLang } = useLanguage()
 
-  // ========== Effects ==========
-  useEffect(() => {
-    document.title = `${getTranslation(currentLang, 'pageTitle.home')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`
-  }, [currentLang])
+  // Note: Title is now handled by metadata in page.tsx
 
   // ========== Render ==========
   return (

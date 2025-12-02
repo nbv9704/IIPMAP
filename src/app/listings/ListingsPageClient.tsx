@@ -19,7 +19,7 @@ const ListingsPageClient = () => {
         <div className="container">
           <div className="text-center">
             <h2 className="mb-4">{getTranslation(currentLang, "menu.listings")}</h2>
-            <p className="text-muted">Coming Soon - Dang ph�t tri?n</p>
+            <p className="text-muted">Coming Soon - Đang phát triển</p>
           </div>
         </div>
       </div>

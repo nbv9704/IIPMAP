@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
-// Mock data - danh s�ch video IDs c� s?n
+// Mock data - danh sách video IDs có sẵn
 const MOCK_VIDEOS = [
   { userId: "@kcn_tien_son", postId: "00000000000000000001" },
   { userId: "@kcn_vsip", postId: "00000000000000000002" },
@@ -43,7 +43,7 @@ const VideoRedirectClient = () => {
           }}
         />
         <p style={{ color: "#4f5b8a", fontFamily: "Montserrat, sans-serif" }}>
-          Dang t?i video...
+          Đang tải video...
         </p>
       </div>
       <style jsx>{`

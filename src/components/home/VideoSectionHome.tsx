@@ -71,7 +71,6 @@ function VideoSectionHome() {
               views={video.views}
               duration={video.duration}
               author={video.title}
-              sectionSlug="explore"
             />
           ))}
         </div>

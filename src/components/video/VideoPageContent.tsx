@@ -4,18 +4,35 @@
 // IMPORTS
 // ============================================
 import { useEffect } from "react"
+import dynamic from "next/dynamic"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
 import ExploreSearchBar from "@/components/video/ExploreSearchBar"
-import ExploreView from "@/components/video/views/ExploreView"
-import SavedVideosView from "@/components/video/views/SavedVideosView"
-import FollowingView from "@/components/video/views/FollowingView"
-import NotificationsView from "@/components/video/views/NotificationsView"
-import ProfileView from "@/components/video/views/ProfileView"
-import MessagesView from "@/components/video/views/MessagesView"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import "@/styles/video.scss"
+
+// ============================================
+// DYNAMIC IMPORTS (Code Splitting)
+// ============================================
+const ExploreView = dynamic(() => import("@/components/video/views/ExploreView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
+const SavedVideosView = dynamic(() => import("@/components/video/views/SavedVideosView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
+const FollowingView = dynamic(() => import("@/components/video/views/FollowingView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
+const NotificationsView = dynamic(() => import("@/components/video/views/NotificationsView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
+const ProfileView = dynamic(() => import("@/components/video/views/ProfileView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
+const MessagesView = dynamic(() => import("@/components/video/views/MessagesView"), {
+  loading: () => <div className="video-loading">Loading...</div>
+})
 
 // ============================================
 // TYPES

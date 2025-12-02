@@ -37,7 +37,6 @@ const SavedVideosView = ({ section }: SavedVideosViewProps) => {
         <VideoHistoryGrid
           videos={savedVideos}
           className="video-history-grid--saved"
-          sectionSlug={section}
         />
       </div>
     </div>

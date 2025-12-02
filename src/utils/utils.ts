@@ -1,8 +1,4 @@
+// WOW.js animation removed - not used in the project
 export const animationCreate = () => {
-  if (typeof window !== "undefined") {
-    import("wowjs").then((module) => {
-      const WOW = module.default;
-      new WOW.WOW({live: false}).init()
-    });
-  }
+  // No-op function - kept for backward compatibility
 };

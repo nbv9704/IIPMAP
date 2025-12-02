@@ -8,13 +8,15 @@ import FooterIIP from "@/layouts/footers/FooterIIP"
 import CustomSelect from "@/components/common/CustomSelect"
 import Image from "next/image"
 import Link from "next/link"
-import { HiEye, HiChevronLeft, HiChevronRight, HiArrowsRightLeft, HiLocationMarker } from "react-icons/hi2"
+import { HiEye, HiChevronLeft, HiChevronRight, HiArrowsRightLeft } from "react-icons/hi2"
+import { HiLocationMarker } from "react-icons/hi"
 import VideoCardItem from "@/components/video/VideoCardItem"
 import { BiTimeFive, BiMoney } from "react-icons/bi"
 import { MdConstruction } from "react-icons/md"
 import { IoAirplane } from "react-icons/io5"
 import { BsClock, BsPlayCircle, BsImage, BsDownload } from "react-icons/bs"
 import { TbRulerMeasure } from "react-icons/tb"
+import { Mail, Calendar, MessageCircle, Phone } from "lucide-react"
 import styles from "./page.module.scss"
 
 type ZonePageParams = { slug?: string | string[] }
@@ -53,7 +55,7 @@ const ZoneDetailPageClient = ({ params }: ZoneDetailPageClientProps) => {
       <>
         <HeaderIIP />
         <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <h2>{slug ? "Zone not found" : "Loading..."}</h2>
+          <h2>{slug ? "Không tìm thấy khu công nghiệp" : "Đang tải..."}</h2>
         </div>
         <FooterIIP />
       </>
@@ -115,7 +117,6 @@ const ZoneDetailPageClient = ({ params }: ZoneDetailPageClientProps) => {
               duration="00:45"
               author="@iip"
               className={styles.videoCardItem}
-              sectionSlug="explore"
             />
             <VideoCardItem
               id={2}
@@ -127,7 +128,6 @@ const ZoneDetailPageClient = ({ params }: ZoneDetailPageClientProps) => {
               duration="01:20"
               author="@iip"
               className={styles.videoCardItem}
-              sectionSlug="explore"
             />
           </div>
         </section>
@@ -173,19 +173,19 @@ const ZoneDetailPageClient = ({ params }: ZoneDetailPageClientProps) => {
           <section className={styles.actionButtons}>
             <button className={styles.email}>
               <span>{getTranslation(currentLang, "zoneDetail.actions.email")}</span>
-              <span>??</span>
+              <Mail size={20} />
             </button>
             <button className={styles.booking}>
               <span>{getTranslation(currentLang, "zoneDetail.actions.booking")}</span>
-              <span>??</span>
+              <Calendar size={20} />
             </button>
             <button className={styles.chat}>
               <span>{getTranslation(currentLang, "zoneDetail.actions.chat")}</span>
-              <span>??</span>
+              <MessageCircle size={20} />
             </button>
             <button className={styles.call}>
               <span>{getTranslation(currentLang, "zoneDetail.actions.call")}</span>
-              <span>??</span>
+              <Phone size={20} />
             </button>
           </section>
 

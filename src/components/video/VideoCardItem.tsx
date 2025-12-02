@@ -5,6 +5,7 @@
 // ============================================
 import React, { useRef, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { VIDEO_PREVIEW, USER_ID } from "@/constants/video/config"
 
 // ============================================
@@ -124,7 +125,13 @@ const VideoCardItem = ({
          <div className="video-card-author">
             <div className="video-card-author-avatar">
                {authorAvatar ? (
-                  <img src={authorAvatar} alt={author} />
+                  <Image 
+                     src={authorAvatar} 
+                     alt={author}
+                     width={32}
+                     height={32}
+                     style={{ objectFit: 'cover' }}
+                  />
                ) : (
                   <span>{author.charAt(0).toUpperCase()}</span>
                )}

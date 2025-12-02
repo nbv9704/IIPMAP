@@ -10,13 +10,12 @@ import VideoCardItem, { VideoCardItemProps } from "./VideoCardItem"
 interface VideoHistoryGridProps {
    videos: VideoCardItemProps[]
    className?: string
-   sectionSlug?: string
 }
 
 // ============================================
 // COMPONENT: VideoHistoryGrid
 // ============================================
-const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "explore" }: VideoHistoryGridProps) => {
+const VideoHistoryGrid = ({ videos, className = "" }: VideoHistoryGridProps) => {
    // ========== Computed Values ==========
    const containerClass = ["video-history-grid", className].filter(Boolean).join(" ")
 
@@ -24,7 +23,7 @@ const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "explore" }: V
    return (
       <div className={containerClass}>
          {videos.map((video) => (
-            <VideoCardItem key={video.id} {...video} sectionSlug={sectionSlug} />
+            <VideoCardItem key={video.id} {...video} />
          ))}
       </div>
    )

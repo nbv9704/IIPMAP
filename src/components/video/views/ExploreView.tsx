@@ -36,7 +36,7 @@ const ExploreView = ({ section }: ExploreViewProps) => {
         </div>
 
         <div className="video-section-scroll">
-          <VideoHistoryGrid videos={featuredVideos} sectionSlug={section} />
+          <VideoHistoryGrid videos={featuredVideos} />
         </div>
       </div>
 
@@ -55,7 +55,6 @@ const ExploreView = ({ section }: ExploreViewProps) => {
           <VideoHistoryGrid
             videos={dailyVideos}
             className="video-history-grid--compact"
-            sectionSlug={section}
           />
         </div>
       </div>

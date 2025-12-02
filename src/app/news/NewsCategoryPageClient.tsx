@@ -14,7 +14,7 @@ import { getTranslation } from "@/utils/translations"
 // TYPES
 // ============================================
 interface NewsCategoryPageClientProps {
-  category?: string
+  category?: "qna" | "market" | "planning" | "activity"
   titleKey: string
   useWrapper?: boolean
 }

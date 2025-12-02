@@ -39,7 +39,6 @@ const FollowingView = ({ section }: FollowingViewProps) => {
           <div className="video-following-cards">
             <VideoHistoryGrid
               videos={user.videos}
-              sectionSlug={section}
               className="video-history-grid--following"
             />
           </div>

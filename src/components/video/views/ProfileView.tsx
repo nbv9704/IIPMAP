@@ -4,6 +4,7 @@
 // IMPORTS
 // ============================================
 import { useMemo } from "react"
+import Image from "next/image"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { HiLocationMarker } from "react-icons/hi"
 import { BiMoney, BiTimeFive } from "react-icons/bi"
@@ -28,7 +29,13 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
     <div className="video-profile-layout">
       <div className="video-profile-hero">
         <div className="video-profile-avatar">
-          <img src="/assets/video/avatar-placeholder.png" alt="Profile" />
+          <Image 
+            src="/assets/video/avatar-placeholder.png" 
+            alt="Profile"
+            width={120}
+            height={120}
+            style={{ objectFit: 'cover' }}
+          />
         </div>
         <div className="video-profile-details">
           <h1>KHU CÔNG NGHIỆP TIÊN SƠN - BẮC NINH</h1>
@@ -136,7 +143,6 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
         <VideoHistoryGrid
           videos={featuredVideos}
           className="video-history-grid--saved"
-          sectionSlug={section}
         />
       </div>
     </div>
