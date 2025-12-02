@@ -1,0 +1,40 @@
+// Import from existing variables
+@import '../variables-iip.scss';
+
+// CSS custom properties mapped từ token SCSS để dùng thống nhất (CSS/Tailwind)
+:root {
+  --iip-primary: #{$iip-primary};
+  --iip-primary-dark: #{$iip-primary-dark};
+  --iip-secondary: #{$iip-secondary};
+  --iip-gradient: #{$iip-gradient};
+  --iip-yellow: #{$iip-yellow};
+  --iip-white: #{$iip-white};
+  --iip-black: #{$iip-black};
+  --iip-gray: #{$iip-gray};
+  --iip-gray-light: #{$iip-gray-light};
+  --iip-text-dark: #{$iip-text-dark};
+
+  --iip-font-primary: #{$font-primary};
+
+  --iip-spacing-xs: #{$spacing-xs};
+  --iip-spacing-sm: #{$spacing-sm};
+  --iip-spacing-md: #{$spacing-md};
+  --iip-spacing-lg: #{$spacing-lg};
+  --iip-spacing-xl: #{$spacing-xl};
+
+  --iip-radius-sm: #{$radius-sm};
+  --iip-radius-md: #{$radius-md};
+  --iip-radius-lg: #{$radius-lg};
+  --iip-radius-full: #{$radius-full};
+
+  --iip-shadow-sm: #{$shadow-sm};
+  --iip-shadow-md: #{$shadow-md};
+  --iip-shadow-lg: #{$shadow-lg};
+  --iip-shadow-header: #{$shadow-header};
+
+  --iip-breakpoint-mobile: #{$breakpoint-mobile};
+  --iip-breakpoint-tablet: #{$breakpoint-tablet};
+  --iip-breakpoint-desktop: #{$breakpoint-desktop};
+}
+
+// Additional base variables can be added here

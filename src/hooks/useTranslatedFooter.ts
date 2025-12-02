@@ -1,7 +1,13 @@
+// ============================================
+// IMPORTS
+// ============================================
 import { useEffect, useState } from 'react';
 import { footerTranslations } from '@/utils/translations';
 import type { LanguageCode } from '@/hooks/useLanguage';
 
+// ============================================
+// TYPES
+// ============================================
 interface FooterLink {
   link: string;
   link_title: string;
@@ -14,10 +20,15 @@ interface FooterDataType {
   footer_link: FooterLink[];
 }
 
+// ============================================
+// HOOK: useTranslatedFooter
+// ============================================
 export const useTranslatedFooter = () => {
+  // ========== State ==========
   const [currentLang, setCurrentLang] = useState<LanguageCode>('vi');
   const [footerData, setFooterData] = useState<FooterDataType[]>([]);
 
+  // ========== Effects ==========
   useEffect(() => {
     const savedLang = (localStorage.getItem('language') as LanguageCode) || 'vi';
     setCurrentLang(savedLang);

@@ -1,0 +1,15 @@
+// =============================================
+// NEWS DETAIL PAGE STYLES - Main Entry Point
+// =============================================
+
+// Base styles
+@import 'news/news-detail-base';
+
+// Header, excerpt, actions, images, content
+@import 'news/news-detail-header';
+
+// Comments section
+@import 'news/news-detail-comments';
+
+// Related news section
+@import 'news/news-detail-related';

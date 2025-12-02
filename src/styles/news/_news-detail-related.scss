@@ -1,0 +1,355 @@
+/* Related News Section - Compact */
+.related-news-section {
+  padding: 40px 80px 50px;
+
+  .related-news-title {
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    color: #0051cb;
+    margin-bottom: 30px;
+  }
+
+  .related-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 40px;
+    justify-content: center;
+    max-width: 950px;
+    margin: 0 auto;
+  }
+}
+
+/* Related News Card - Thu nhỏ */
+.related-news-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  width: 280px;
+  height: 320px;
+  background: #ffffff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+    
+    .related-news-title-text {
+      color: #0149be;
+    }
+  }
+
+  .related-news-image {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  &:hover .related-news-image img {
+    transform: scale(1.05);
+  }
+
+  .related-news-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+    .related-news-category {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 18px;
+      color: #6b7280;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .related-news-title-text {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      color: #0051cb;
+      margin: 0 0 10px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+    
+    .related-news-excerpt {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 18px;
+      color: #6b7280;
+      margin: 0 0 12px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
+
+    .related-news-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+
+      .related-news-date {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+        color: #6b7280;
+      }
+
+      .related-news-bookmark {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+
+        i {
+          font-size: 16px;
+          color: #6b7280;
+        }
+
+        &:hover i {
+          color: #0051cb;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 1440px) {
+  .back-button-wrapper {
+    left: 40px;
+    top: 60px;
+  }
+
+  .news-detail-header {
+    padding: 60px 80px 0;
+  }
+
+  .news-detail-excerpt,
+  .news-detail-content {
+    padding: 0 80px;
+  }
+
+  .news-detail-actions {
+    padding: 0 100px;
+  }
+
+  .news-detail-image {
+    padding: 0 80px;
+  }
+
+  .news-detail-comments {
+    padding: 60px 80px;
+  }
+
+  .related-news-section {
+    padding: 60px 80px 80px;
+
+    .related-news-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      justify-content: center;
+    }
+  }
+
+  .related-news-card {
+    width: 100%;
+    max-width: 318px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .back-button-wrapper {
+    left: 30px;
+    top: 40px;
+  }
+
+  .news-detail-header {
+    padding: 40px 40px 0;
+
+    .news-detail-title {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  .news-detail-excerpt {
+    padding: 0 40px;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .news-detail-content {
+    padding: 0 40px;
+
+    p {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+
+  .news-detail-image {
+    padding: 0 40px;
+
+    .image-caption {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  .news-detail-comments {
+    padding: 40px;
+  }
+
+  .related-news-section {
+    padding: 40px;
+
+    .related-news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      justify-content: center;
+    }
+  }
+  
+  .related-news-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-button-wrapper {
+    left: 20px;
+    top: 30px;
+
+    .back-button {
+      font-size: 20px;
+    }
+  }
+
+  .news-detail-header {
+    padding: 30px 20px 0;
+
+    .news-detail-title {
+      font-size: 24px;
+      line-height: 32px;
+      text-align: left;
+    }
+  }
+
+  .news-detail-excerpt {
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .news-detail-actions {
+    padding: 0 20px;
+    gap: 20px;
+
+    .action-btn {
+      i {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .news-detail-content {
+    padding: 0 20px;
+
+    p {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  .news-detail-image {
+    padding: 0 20px;
+
+    .image-caption {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .news-detail-comments {
+    padding: 30px 20px;
+
+    .comments-title {
+      font-size: 24px;
+    }
+  }
+
+  .comment-item {
+    .comment-content {
+      .comment-user {
+        font-size: 20px;
+        line-height: 26px;
+      }
+
+      .comment-text {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      .comment-meta {
+        .comment-date,
+        .comment-reply {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .related-news-section {
+    padding: 30px 20px;
+
+    .related-news-title {
+      font-size: 24px;
+    }
+
+    .related-news-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      justify-content: center;
+    }
+  }
+  
+  .related-news-card {
+    max-width: 100%;
+  }
+}

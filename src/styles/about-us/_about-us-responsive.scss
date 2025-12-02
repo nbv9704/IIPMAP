@@ -1,0 +1,133 @@
+﻿@media (max-width: 1200px) {
+  .about-stats {
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  
+  .about-intro-section {
+    padding: 40px 40px;
+    
+    .about-intro-content {
+      flex-direction: column;
+      gap: 40px;
+      
+      .intro-image {
+        width: 100%;
+        max-width: 546px;
+      }
+    }
+  }
+  
+  .about-why-section .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    
+    .why-card .why-circle {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .about-hero-section .about-hero-content h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .about-stats .about-stat-item .stat-number {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .mission-circle-container {
+    width: 100%;
+    max-width: 600px;
+    
+    .mission-main-circle {
+      width: 600px;
+      height: 600px;
+    }
+  }
+  
+  .about-customers-section {
+    padding: 40px 20px;
+    
+    .customers-grid {
+      flex-direction: column;
+      
+      .customer-card {
+        max-width: 567px;
+        margin: 0 auto;
+      }
+    }
+  }
+  
+  .contact-form .form-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-section {
+    height: auto;
+    min-height: 500px;
+    padding-bottom: 200px;
+    
+    .about-hero-content h1 {
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+  
+  .about-stats {
+    flex-direction: column;
+    gap: 20px;
+    bottom: 30px;
+    
+    .about-stat-item {
+      min-width: auto;
+      
+      .stat-divider {
+        width: 120px;
+      }
+    }
+  }
+  
+  .about-mission-section {
+    height: auto;
+    min-height: 600px;
+    padding: 40px 20px;
+  }
+  
+  .mission-circle-container {
+    display: none;
+  }
+  
+  .mission-nav-btn {
+    display: none;
+  }
+  
+  .about-why-section {
+    padding: 40px 20px;
+    
+    .why-grid {
+      grid-template-columns: 1fr;
+      
+      .why-card .why-circle {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+  
+  .about-contact-section .contact-form-wrapper {
+    padding: 30px 20px;
+  }
+  
+  .about-partners-section {
+    padding: 40px 20px;
+  }
+}

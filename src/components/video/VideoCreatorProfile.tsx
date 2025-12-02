@@ -1,3 +1,6 @@
+// ============================================
+// IMPORTS & TYPES
+// ============================================
 "use client"
 
 interface CreatorVideo {
@@ -20,7 +23,11 @@ interface VideoCreatorProfileProps {
   };
 }
 
+// ============================================
+// COMPONENT: VideoCreatorProfile
+// ============================================
 const VideoCreatorProfile = ({ videos, creator }: VideoCreatorProfileProps) => {
+  // ========== Stats Data ==========
   const stats = [
     { key: "price", label: creator.price, icon: <MoneyIcon /> },
     { key: "area", label: creator.area, icon: <AreaIcon /> },

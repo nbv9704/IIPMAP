@@ -1,4 +1,4 @@
-@import '../../../styles-iip/variables-iip.scss';
+@import '../../../styles/variables-iip.scss';
 
 .container {
   position: relative;
@@ -14,7 +14,7 @@
   gap: 30px;
   padding: 36px 51px 0;
   margin-bottom: 30px;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .heroImageContainer {
@@ -183,82 +183,23 @@
     }
   }
 
-  .videoCard {
-    position: relative;
+  // Override VideoCardItem styles to maintain zone detail sizing
+  .videoCardItem {
     width: 180px;
-    height: 355px;
-    border-radius: 18px;
-    overflow: hidden;
-    cursor: pointer;
     flex-shrink: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    // Hover animation - subtle lift + play icon
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 81, 203, 0.2);
-      
-      .playIcon {
-        transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
-        background: #0051CB;
-        color: #FFFFFF;
-        box-shadow: 0 4px 12px rgba(0, 81, 203, 0.4);
-      }
+
+    :global(.video-card-media) {
+      width: 180px;
+      height: 355px;
+      aspect-ratio: unset;
     }
 
-    .videoLabel {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      z-index: 2;
-      transition: transform 0.3s ease;
+    :global(.video-card-badge) {
+      display: none;
     }
 
-    .playIcon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: #0051CB;
-      z-index: 2;
-      transition: all 0.3s ease;
-    }
-
-    .videoMeta {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
-      display: flex;
-      justify-content: space-between;
-      color: #FFFFFF;
-      font-size: 12px;
-      font-weight: 500;
-      z-index: 2;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-      z-index: 1;
+    :global(.video-card-info) {
+      display: none;
     }
   }
 }
@@ -558,6 +499,25 @@
     padding-bottom: 20px;
     padding-top: 5px;
     counter-reset: zone-counter;
+    
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #0051CB;
+      border-radius: 10px;
+      
+      &:hover {
+        background: #003d99;
+      }
+    }
 
     .zoneCard {
       min-width: 450px;

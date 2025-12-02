@@ -1,0 +1,16 @@
+export const common = {
+  search: 'Search',
+  filter: 'Filter',
+  viewMore: 'View more',
+  viewAll: 'View all',
+  readMore: 'Read more',
+  save: 'Save',
+  share: 'Share',
+  like: 'Like',
+  comment: 'Comment',
+  follow: 'Follow',
+  following: 'Following',
+  noResults: 'No results found',
+  loading: 'Loading...',
+  error: 'An error occurred',
+}

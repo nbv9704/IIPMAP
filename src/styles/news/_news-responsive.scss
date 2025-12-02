@@ -1,0 +1,132 @@
+// Responsive
+@media (max-width: 1200px) {
+   .news-area {
+      .container {
+         padding: 0 40px;
+      }
+      
+      .news-grid-vertical {
+         grid-template-columns: repeat(2, 1fr);
+         gap: 40px;
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   .news-area {
+      .hero-banner {
+         height: 300px;
+         padding: 40px 20px;
+         
+         .hero-content h1 {
+            font-size: 28px;
+            line-height: 34px;
+         }
+      }
+      
+      .filter-section {
+         flex-direction: column;
+         gap: 20px;
+         
+         .filter-buttons {
+            flex-wrap: wrap;
+         }
+         
+         .search-box {
+            width: 100%;
+         }
+      }
+      
+      .news-list-horizontal .news-item-horizontal {
+         flex-direction: column;
+         
+         .news-image {
+            flex: none;
+            width: 100%;
+         }
+      }
+      
+      .news-grid-vertical {
+         grid-template-columns: 1fr;
+      }
+   }
+}
+
+// Override related-news-grid for news page (not news detail) - Giãn cards ra
+.news-area {
+   .related-news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px 50px; // Tăng gap giữa cards
+      justify-content: center;
+      margin-bottom: 60px;
+      max-width: 950px; // Tăng max-width để giãn ra
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px; // Tăng khoảng cách với title
+   }
+   
+   // Override card width for news page
+   .related-news-card {
+      width: 100%;
+      max-width: 280px; // Tăng từ 260px lên 280px
+      margin: 0 auto;
+   }
+}
+
+// Responsive for news page related grid
+@media (max-width: 1200px) {
+   .news-area .related-news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+   }
+}
+
+@media (max-width: 768px) {
+   .news-area .related-news-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+   }
+}
+
+// Search Section (without filters)
+.search-section {
+  display: flex;
+  justify-content: flex-end;
+  margin: 40px 0 30px;
+}
+
+// Carousel Indicators - Căn giữa và đẩy xuống dưới
+.news-area .hero-banner .carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  
+  .indicator {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    margin: 0;
+    
+    &.active {
+      background: #ffffff;
+      width: 60px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+  }
+}

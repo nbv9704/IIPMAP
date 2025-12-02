@@ -1,28 +1,26 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import UseSticky from "@/hooks/UseSticky";
 import { useState, useEffect } from "react";
 
+// ============================================
+// COMPONENT: ScrollToTop
+// ============================================
 const ScrollToTop = () => {
+   // ========== Hooks ==========
    const { sticky }: { sticky: boolean } = UseSticky();
 
+   // ========== State Management ==========
    const [showScroll, setShowScroll] = useState(false);
 
-   const checkScrollTop = () => {
-      if (!showScroll && window.pageYOffset > 400) {
-         setShowScroll(true);
-      } else if (showScroll && window.pageYOffset <= 400) {
-         setShowScroll(false);
-      }
-   };
-
+   // ========== Handlers ==========
    const scrollTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
    };
 
-   // useEffect(() => {
-   //    window.addEventListener("scroll", checkScrollTop);
-   //    return () => window.removeEventListener("scroll", checkScrollTop);
-   // }, []);
+   // ========== Effects ==========
    useEffect(() => {
       const checkScrollTop = () => {
          if (!showScroll && window.pageYOffset > 400) {
@@ -34,8 +32,9 @@ const ScrollToTop = () => {
 
       window.addEventListener("scroll", checkScrollTop);
       return () => window.removeEventListener("scroll", checkScrollTop);
-   }, [checkScrollTop]);
+   }, [showScroll]);
 
+   // ========== Render ==========
    return (
       <>
          <div onClick={scrollTop} className={`scroll-top ${sticky ? "active" : ""}`}>

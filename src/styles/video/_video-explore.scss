@@ -1,0 +1,156 @@
+// =============================================
+// VIDEO EXPLORE SEARCH (vex-search)
+// Connected style: search bar + dropdown nối liền, dropdown overlay
+// =============================================
+.vex-search {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 50;
+  height: 56px;
+}
+
+.vex-search__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+
+  &.open {
+    border-radius: 28px 28px 22px 22px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    z-index: 100;
+  }
+}
+
+.vex-search__input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 20px 0 24px;
+}
+
+.vex-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #111827;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+}
+
+.vex-search__btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4b5dff;
+  }
+}
+
+.vex-search__divider-line {
+  height: 1px;
+  margin: 0 16px;
+  background: linear-gradient(90deg, #4b5dff 0%, #ff4bb2 100%);
+  animation: divider-fade-in 0.3s ease;
+}
+
+.vex-search__dropdown {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 12px 0;
+  animation: dropdown-slide-in 0.35s ease;
+}
+
+.vex-search__section {
+  padding: 4px 0;
+}
+
+.vex-search__label {
+  padding: 10px 20px 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vex-search__divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 10px 16px;
+}
+
+.vex-search__item {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #00162f;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: #9ca3af;
+  }
+
+  span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    strong {
+      font-weight: 700;
+      color: #0051cb;
+    }
+  }
+}
+
+.vex-search__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0051cb 0%, #810cc4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}

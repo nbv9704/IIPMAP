@@ -1,7 +1,8 @@
-import { redirect } from "next/navigation"
+import VideoRedirectClient from "./VideoRedirectClient"
 
-const DEFAULT_SECTION = "kham-pha"
-
+// ============================================
+// PAGE: VideoPageRoot (server)
+// ============================================
 export default function VideoPageRoot() {
-  redirect(`/video/${DEFAULT_SECTION}`)
+  return <VideoRedirectClient />
 }

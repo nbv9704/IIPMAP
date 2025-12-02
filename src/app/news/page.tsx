@@ -1,22 +1,13 @@
-"use client"
-import { useEffect } from "react";
-import Wrapper from "@/layouts/Wrapper";
-import NewsArea from "@/components/news/NewsArea";
-import { useLanguage } from "@/hooks/useLanguage";
-import { getTranslation } from "@/utils/translations";
+// ============================================
+// IMPORTS
+// ============================================
+import NewsCategoryPageClient from "./NewsCategoryPageClient"
 
+// ============================================
+// PAGE: NewsPage (server)
+// ============================================
 const NewsPage = () => {
-   const { currentLang } = useLanguage();
-   
-   useEffect(() => {
-      document.title = `${getTranslation(currentLang, 'pageTitle.news')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
-   }, [currentLang]);
-   
-   return (
-      <Wrapper>
-         <NewsArea />
-      </Wrapper>
-   )
+  return <NewsCategoryPageClient titleKey="pageTitle.news" useWrapper />
 }
 
 export default NewsPage

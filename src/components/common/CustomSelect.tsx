@@ -1,6 +1,13 @@
 "use client"
+
+// ============================================
+// IMPORTS
+// ============================================
 import { useState, useRef, useEffect } from "react"
 
+// ============================================
+// TYPES
+// ============================================
 interface CustomSelectProps {
   placeholder: string
   options: string[]
@@ -8,7 +15,13 @@ interface CustomSelectProps {
   onChange?: (value: string) => void
 }
 
+// ============================================
+// COMPONENT
+// ============================================
 export default function CustomSelect({ placeholder, options, value, onChange }: CustomSelectProps) {
+  // ============================================
+  // STATE & REFS
+  // ============================================
   const [isOpen, setIsOpen] = useState(false)
   const [selectedValue, setSelectedValue] = useState(value || "")
   const dropdownRef = useRef<HTMLDivElement>(null)

@@ -1,34 +1,13 @@
-"use client";
-import React, { useEffect } from "react";
-import Wrapper from "@/layouts/Wrapper";
-import news_data_multilang, { getNewsItem } from "@/data-iip/NewsDataMultilang";
-import NewsDetailArea from "@/components/news/NewsDetailArea";
-import NewsNotFound from "@/components/news/NewsNotFound";
-import { useLanguage } from "@/hooks/useLanguage";
+// ============================================
+// IMPORTS
+// ============================================
+import NewsDetailPageClient from "./NewsDetailPageClient";
 
+// ============================================
+// PAGE: NewsDetailPage (server)
+// ============================================
 const NewsDetailPage = ({ params }: { params: { id: string } }) => {
-  const { currentLang } = useLanguage();
-  const newsItem = getNewsItem(parseInt(params.id), currentLang);
-
-  if (!newsItem) {
-    return (
-      <Wrapper>
-        <NewsNotFound />
-      </Wrapper>
-    );
-  }
-
-  useEffect(() => {
-    if (newsItem) {
-      document.title = `${newsItem.title} - IIPVIETNAM.COM`;
-    }
-  }, [newsItem]);
-
-  return (
-    <Wrapper>
-      <NewsDetailArea newsItem={newsItem} />
-    </Wrapper>
-  );
+  return <NewsDetailPageClient id={params.id} />;
 };
 
 export default NewsDetailPage;

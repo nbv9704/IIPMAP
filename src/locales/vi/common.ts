@@ -1,0 +1,16 @@
+export const common = {
+  search: 'Tìm kiếm',
+  filter: 'Lọc',
+  viewMore: 'Xem thêm',
+  viewAll: 'Xem tất cả',
+  readMore: 'Đọc thêm',
+  save: 'Lưu',
+  share: 'Chia sẻ',
+  like: 'Thích',
+  comment: 'Bình luận',
+  follow: 'Theo dõi',
+  following: 'Đang theo dõi',
+  noResults: 'Không tìm thấy kết quả',
+  loading: 'Đang tải...',
+  error: 'Có lỗi xảy ra',
+}

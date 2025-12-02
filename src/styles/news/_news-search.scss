@@ -1,0 +1,239 @@
+.news-area {
+   // Search Section (without filters)
+   .search-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 40px 0 30px;
+      
+      .search-box {
+         position: relative;
+         width: 450px;
+         
+         input {
+            width: 100%;
+            height: 52px;
+            padding: 0 60px 0 24px;
+            background: #FFFFFF;
+            border: 2px solid #e5e7eb;
+            border-radius: 26px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 20px;
+            color: #111827;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            
+            &::placeholder {
+               color: #9ca3af;
+               font-weight: 400;
+            }
+            
+            &:hover {
+               border-color: #d0d7e0;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+            
+            &:focus {
+               outline: none;
+               border-color: #0051CB;
+               box-shadow: 0 0 0 4px rgba(0, 81, 203, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+         }
+         
+         i {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            color: #6b7280;
+            pointer-events: none;
+            transition: color 0.3s ease;
+         }
+         
+         &:hover i {
+            color: #374151;
+         }
+      }
+   }
+   
+   // Section Title (inline with search) - Thu nhỏ hơn
+   .section-title {
+      margin: 0;
+      
+      h2 {
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 800;
+         font-size: 20px;
+         line-height: 26px;
+         color: #0051CB;
+         margin: 0;
+      }
+   }
+   
+   // News List Horizontal (Thu nhỏ hơn nữa)
+   .news-list-horizontal {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 50px;
+      
+      .news-item-horizontal {
+         display: flex;
+         gap: 30px;
+         text-decoration: none;
+         color: inherit;
+         transition: transform 0.3s ease;
+         padding-bottom: 24px;
+         border-bottom: 1px solid #e5e7eb;
+         
+         &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+         }
+         
+         &:hover {
+            transform: translateY(-4px);
+         }
+         
+         .news-image {
+            flex: 0 0 35%;
+            height: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            
+            img {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+            }
+         }
+         
+         .news-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            
+            .news-category {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 500;
+               font-size: 13px;
+               line-height: 18px;
+               color: #6b7280;
+               margin-bottom: 12px;
+            }
+            
+            h3 {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 700;
+               font-size: 20px;
+               line-height: 26px;
+               color: #0051CB;
+               margin: 0 0 12px 0;
+            }
+            
+            .news-excerpt {
+               font-family: 'Montserrat', sans-serif;
+               font-weight: 400;
+               font-size: 14px;
+               line-height: 20px;
+               color: #6b7280;
+               margin: 0 0 16px 0;
+               display: -webkit-box;
+               -webkit-line-clamp: 2;
+               line-clamp: 2;
+               -webkit-box-orient: vertical;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               flex-grow: 1;
+            }
+            
+            .news-footer {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               margin-top: 16px;
+               
+               .news-date {
+                  font-family: 'Montserrat', sans-serif;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 18px;
+                  color: #6b7280;
+               }
+               
+               .bookmark-btn {
+                  background: none;
+                  border: none;
+                  font-size: 24px;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  padding: 0;
+                  
+                  i {
+                     color: #000000;
+                  }
+                  
+                  &.active i {
+                     color: #0051CB;
+                  }
+                  
+                  &:hover {
+                     transform: scale(1.1);
+                  }
+               }
+            }
+         }
+      }
+   }
+   
+   // Pagination - Thu nhỏ
+   .pagination-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 60px;
+      
+      .page-btn {
+         width: 40px;
+         height: 40px;
+         background: #FFFFFF;
+         border: 1px solid #e5e7eb;
+         border-radius: 6px;
+         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+         font-family: 'Montserrat', sans-serif;
+         font-weight: 600;
+         font-size: 16px;
+         line-height: 20px;
+         color: #374151;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         
+         &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+            border-color: #0051CB;
+         }
+         
+         &.active {
+            background: #0051CB;
+            color: #FFFFFF;
+            border-color: #0051CB;
+         }
+         
+         &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            &:hover {
+               transform: none;
+               box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+               border-color: #e5e7eb;
+            }
+         }
+      }
+   }
+}

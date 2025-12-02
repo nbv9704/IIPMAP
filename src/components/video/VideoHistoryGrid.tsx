@@ -1,15 +1,26 @@
+// ============================================
+// IMPORTS
+// ============================================
 "use client"
 import VideoCardItem, { VideoCardItemProps } from "./VideoCardItem"
 
+// ============================================
+// TYPES
+// ============================================
 interface VideoHistoryGridProps {
    videos: VideoCardItemProps[]
    className?: string
    sectionSlug?: string
 }
 
-const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "kham-pha" }: VideoHistoryGridProps) => {
+// ============================================
+// COMPONENT: VideoHistoryGrid
+// ============================================
+const VideoHistoryGrid = ({ videos, className = "", sectionSlug = "explore" }: VideoHistoryGridProps) => {
+   // ========== Computed Values ==========
    const containerClass = ["video-history-grid", className].filter(Boolean).join(" ")
 
+   // ========== Render ==========
    return (
       <div className={containerClass}>
          {videos.map((video) => (

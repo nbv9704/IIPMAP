@@ -1,0 +1,379 @@
+@import '../variables-iip';
+
+$accent-like: #FE2C55;
+$accent-bookmark: #FFD700;
+$overlay-bg: $iip-black;
+$surface-ghost: rgba(255, 255, 255, 0.2);
+$surface-ghost-strong: rgba(255, 255, 255, 0.3);
+
+// =============================================
+// VIDEO DETAIL V2 - TikTok Style
+// =============================================
+
+.video-detail-v2-tiktok {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: $iip-black;
+}
+
+// =============================================
+// VIDEO PLAYER SECTION - Full Screen
+// =============================================
+.video-player-section-v2-tiktok {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $iip-black;
+}
+
+.video-player-v2-tiktok {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: $iip-black;
+}
+
+// =============================================
+// VIDEO INFO OVERLAY - Bottom
+// =============================================
+.video-info-overlay-v2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 100px; // Space for action buttons
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  color: $iip-white;
+  z-index: 10;
+}
+
+// Author Info
+.video-author-info-v2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .author-avatar-v2-tiktok {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid $iip-white;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .author-details-v2 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .author-name-v2-tiktok {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: $iip-white;
+      margin: 0;
+    }
+
+    .follow-btn-v2-tiktok {
+      padding: 6px 20px;
+      background: transparent;
+      color: $iip-white;
+      border: 2px solid $iip-white;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $iip-white;
+        color: $iip-black;
+      }
+    }
+  }
+}
+
+// Video Caption
+.video-caption-v2 {
+  .caption-text-v2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: $iip-white;
+    margin: 0;
+    max-width: 600px;
+  }
+}
+
+// =============================================
+// ACTION BUTTONS - Right Side (TikTok Style)
+// =============================================
+.video-actions-right-v2 {
+  position: absolute;
+  right: 12px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.action-btn-right-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  .action-icon-v2 {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $surface-ghost;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    color: $iip-white;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .action-count-v2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: $iip-white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    .action-icon-v2 {
+      background: $surface-ghost-strong;
+    }
+  }
+
+  // Like Button - Red when active
+  &.like-btn-v2-tiktok {
+    .action-icon-v2 {
+      svg {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2;
+      }
+    }
+
+    &:hover,
+    &.active {
+      .action-icon-v2 {
+        background: rgba(254, 44, 85, 0.2);
+
+        svg {
+          fill: $accent-like;
+          stroke: $accent-like;
+        }
+      }
+
+      .action-count-v2 {
+        color: $accent-like;
+      }
+    }
+  }
+
+  // Comment Button
+  &.comment-btn-v2-tiktok {
+    .action-icon-v2 {
+      svg {
+        fill: none;
+        stroke: $iip-white;
+        stroke-width: 2;
+      }
+    }
+
+    &:hover {
+      .action-icon-v2 {
+        background: $surface-ghost-strong;
+      }
+    }
+  }
+
+  // Bookmark Button - Yellow when active
+  &.bookmark-btn-v2-tiktok {
+    .action-icon-v2 {
+      svg {
+        fill: none;
+        stroke: $iip-white;
+        stroke-width: 2;
+      }
+    }
+
+    &:hover,
+    &.active {
+      .action-icon-v2 {
+        background: rgba(255, 215, 0, 0.2);
+
+        svg {
+          fill: $accent-bookmark;
+          stroke: $accent-bookmark;
+        }
+      }
+    }
+  }
+
+  // Share Button
+  &.share-btn-v2-tiktok {
+    .action-icon-v2 {
+      svg {
+        fill: none;
+        stroke: $iip-white;
+        stroke-width: 2;
+      }
+    }
+
+    &:hover {
+      .action-icon-v2 {
+        background: $surface-ghost-strong;
+      }
+    }
+  }
+}
+
+// =============================================
+// NAVIGATION ARROWS - Up/Down
+// =============================================
+.nav-arrow-v2 {
+  position: absolute;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: $surface-ghost;
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 50%;
+  color: $iip-white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &:hover {
+    background: $surface-ghost-strong;
+    transform: scale(1.1);
+  }
+
+  &.nav-up-v2 {
+    top: 50%;
+    transform: translateY(-60px);
+
+    &:hover {
+      transform: translateY(-60px) scale(1.1);
+    }
+  }
+
+  &.nav-down-v2 {
+    top: 50%;
+    transform: translateY(20px);
+
+    &:hover {
+      transform: translateY(20px) scale(1.1);
+    }
+  }
+}
+
+// =============================================
+// RESPONSIVE
+// =============================================
+@media (max-width: 768px) {
+  .video-main-v2 {
+    margin-left: 0;
+    left: 0;
+  }
+
+  .video-detail-v2-tiktok {
+    height: 100vh;
+  }
+
+  .video-info-overlay-v2 {
+    right: 80px;
+    padding: 16px;
+  }
+
+  .video-author-info-v2 {
+    .author-avatar-v2-tiktok {
+      width: 40px;
+      height: 40px;
+    }
+
+    .author-details-v2 {
+      .author-name-v2-tiktok {
+        font-size: 14px;
+      }
+
+      .follow-btn-v2-tiktok {
+        padding: 4px 16px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .video-caption-v2 {
+    .caption-text-v2 {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+
+  .video-actions-right-v2 {
+    right: 8px;
+    bottom: 60px;
+    gap: 16px;
+
+    .action-btn-right-v2 {
+      .action-icon-v2 {
+        width: 44px;
+        height: 44px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .action-count-v2 {
+        font-size: 11px;
+      }
+    }
+  }
+
+  .nav-arrow-v2 {
+    width: 36px;
+    height: 36px;
+    right: 12px;
+  }
+}
+

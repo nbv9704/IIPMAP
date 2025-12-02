@@ -1,23 +1,11 @@
-"use client"
-import { useEffect } from "react"
-import NewsArea from "@/components/news/NewsArea"
-import HeaderIIP from "@/layouts-iip/headers/HeaderIIP"
-import FooterIIP from "@/layouts-iip/footers/FooterIIP"
-import { useLanguage } from "@/hooks/useLanguage"
-import { getTranslation } from "@/utils/translations"
+// ============================================
+// IMPORTS
+// ============================================
+import NewsCategoryPageClient from "../news/NewsCategoryPageClient"
 
+// ============================================
+// PAGE: MarketNewsPage (server)
+// ============================================
 export default function MarketNewsPage() {
-  const { currentLang } = useLanguage()
-  
-  useEffect(() => {
-    document.title = `${getTranslation(currentLang, 'pageTitle.market')} - ${getTranslation(currentLang, 'pageTitle.siteName')}`;
-  }, [currentLang]);
-  
-  return (
-    <>
-      <HeaderIIP />
-      <NewsArea category="market" />
-      <FooterIIP />
-    </>
-  )
+  return <NewsCategoryPageClient category="market" titleKey="pageTitle.market" />
 }

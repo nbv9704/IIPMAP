@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# documentation (except README and PROJECT_STRUCTURE)
+*.md
+!README.md
+!PROJECT_STRUCTURE.md

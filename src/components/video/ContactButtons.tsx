@@ -1,6 +1,10 @@
+// ============================================
+// COMPONENT: ContactButtons
+// ============================================
 "use client"
 
 const ContactButtons = () => {
+   // ========== Render ==========
    return (
       <div className="contact-buttons-wrapper">
          {/* Email Button */}

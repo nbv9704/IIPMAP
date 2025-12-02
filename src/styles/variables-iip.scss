@@ -1,0 +1,49 @@
+// =============================================
+// IIP VARIABLES - Design System
+// =============================================
+
+// ========== Colors ==========
+$iip-primary: #0051CB;
+$iip-primary-dark: #0149BE;
+$iip-secondary: #810CC4;
+$iip-gradient: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
+$iip-yellow: #FFE24F;
+$iip-white: #FFFFFF;
+$iip-black: #000000;
+$iip-gray: #6F6E6E;
+$iip-gray-light: rgba(0, 0, 0, 0.7);
+$iip-text-dark: #292524;
+
+// ========== Typography ==========
+$font-primary: 'Montserrat', sans-serif;
+
+// Font Weights
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extrabold: 800;
+
+// ========== Spacing ==========
+$spacing-xs: 10px;
+$spacing-sm: 15px;
+$spacing-md: 20px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+
+// ========== Border Radius ==========
+$radius-sm: 10px;
+$radius-md: 20px;
+$radius-lg: 25px;
+$radius-full: 60px;
+
+// ========== Shadows ==========
+$shadow-sm: 0px 2px 10px rgba(0, 0, 0, 0.2);
+$shadow-md: 0px 4px 10px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0px 0px 10px rgba(0, 0, 0, 0.15);
+$shadow-header: 0px 0px 10px rgba(255, 255, 255, 0.2);
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1440px;
