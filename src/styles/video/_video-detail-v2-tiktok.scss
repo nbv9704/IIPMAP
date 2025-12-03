@@ -7,7 +7,7 @@ $surface-ghost: rgba(255, 255, 255, 0.2);
 $surface-ghost-strong: rgba(255, 255, 255, 0.3);
 
 // =============================================
-// VIDEO DETAIL V2 - TikTok Style
+// VIDEO DETAIL V2 - TikTok Style (Figma Spec)
 // =============================================
 
 .video-detail-v2-tiktok {
@@ -18,7 +18,7 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
 }
 
 // =============================================
-// VIDEO PLAYER SECTION - Full Screen
+// VIDEO PLAYER SECTION - Figma Spec Size
 // =============================================
 .video-player-section-v2-tiktok {
   position: relative;
@@ -35,6 +35,14 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   height: 100%;
   object-fit: contain;
   background: $iip-black;
+}
+
+// Override video-player-area for v2
+.video-detail-section .video-player-area {
+  width: 349px;
+  height: 623px;
+  background: #000000;
+  border-radius: 20px;
 }
 
 // =============================================

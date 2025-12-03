@@ -74,18 +74,19 @@
 }
 
 // =============================================
-// VIDEO PLAYER AREA - Khung đen chứa video (Figma Spec)
+// VIDEO PLAYER AREA - Khung đen chứa video (Thu nhỏ)
 // =============================================
 .video-player-area {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 349px;
-  height: 623px;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
   margin: 0 auto;
-  background: #000000;
-  border-radius: 20px;
+  background: #141414;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
