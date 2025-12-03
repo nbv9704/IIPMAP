@@ -76,21 +76,48 @@ export default function VideoDetailV2Client() {
             <div className="video-section video-detail-section">
               {/* Khung đen chứa video + actions + nav buttons */}
               <div className="video-player-area">
-                {/* Nút chuyển video bên trái */}
+                {/* Top-right action buttons */}
+                <div className="video-top-actions-v2">
+                  <button className="top-action-btn-v2 email-btn-v2" type="button" title="Email">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M2 5L10 11L18 5M2 5V15C2 15.5523 2.44772 16 3 16H17C17.5523 16 18 15.5523 18 15V5M2 5C2 4.44772 2.44772 4 3 4H17C17.5523 4 18 4.44772 18 5Z" stroke="white" strokeWidth="1.5"/>
+                    </svg>
+                    <span>Email</span>
+                  </button>
+                  <button className="top-action-btn-v2 schedule-btn-v2" type="button" title="Đặt lịch khảo sát">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <rect x="3" y="4" width="14" height="13" rx="2" stroke="white" strokeWidth="1.5"/>
+                      <path d="M3 8H17M7 2V4M13 2V4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                    <span>Đặt lịch khảo sát</span>
+                  </button>
+                  <button className="top-action-btn-v2 chat-btn-v2" type="button" title="Chat">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="7" stroke="white" strokeWidth="1.5"/>
+                      <circle cx="7" cy="10" r="1" fill="white"/>
+                      <circle cx="10" cy="10" r="1" fill="white"/>
+                      <circle cx="13" cy="10" r="1" fill="white"/>
+                    </svg>
+                    <span>Chat</span>
+                  </button>
+                  <button className="top-action-btn-v2 call-btn-v2" type="button" title="Call">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M3 4C3 3.44772 3.44772 3 4 3H6.5C6.77614 3 7 3.22386 7 3.5V7.5C7 7.77614 6.77614 8 6.5 8H4C3.44772 8 3 7.55228 3 7V4ZM17 16C17 16.5523 16.5523 17 16 17H13.5C13.2239 17 13 16.7761 13 16.5V12.5C13 12.2239 13.2239 12 13.5 12H16C16.5523 12 17 12.4477 17 13V16Z" stroke="white" strokeWidth="1.5"/>
+                      <path d="M7 5C7 5 9 3 13 5M13 15C13 15 11 17 7 15" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                    <span>Call</span>
+                  </button>
+                </div>
+
+                {/* Navigation Up/Down buttons */}
                 <button
-                  className="video-nav-btn video-nav-prev"
+                  className="video-nav-btn-v2 video-nav-up-v2"
                   onClick={handlePrev}
                   type="button"
                   aria-label="Video trước"
                 >
-                  <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-                    <path
-                      d="M14 6L4 6M4 6L9 1M4 6L9 11"
-                      stroke="#FFFFFF"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                    <path d="M8 1L14 7M8 1L2 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
 
@@ -184,9 +211,6 @@ export default function VideoDetailV2Client() {
                     </div>
                     <div className="author-details-v2">
                       <h3 className="author-name-v2-tiktok">KCN Tiên Sơn - Bắc Ninh</h3>
-                      <button className="follow-btn-v2-tiktok" type="button">
-                        Theo dõi
-                      </button>
                     </div>
                   </div>
                   <div className="video-caption-v2">
@@ -195,24 +219,21 @@ export default function VideoDetailV2Client() {
                       <br />
                       <span style={{ color: '#4fb3ff' }}>#kcn #bacninh #investment #realestate</span>
                     </p>
+                    <button className="view-post-btn-v2" type="button">
+                      Xem bài viết
+                    </button>
                   </div>
                 </div>
 
-                {/* Nút chuyển video bên phải */}
+                {/* Navigation Down button */}
                 <button
-                  className="video-nav-btn video-nav-next"
+                  className="video-nav-btn-v2 video-nav-down-v2"
                   onClick={handleNext}
                   type="button"
                   aria-label="Video tiếp theo"
                 >
-                  <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-                    <path
-                      d="M4 6L14 6M14 6L9 1M14 6L9 11"
-                      stroke="#FFFFFF"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                    <path d="M8 9L2 3M8 9L14 3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               </div>
