@@ -3,7 +3,7 @@
 // ============================================
 // IMPORTS
 // ============================================
-import { useMemo } from "react"
+import { useMemo, memo } from "react"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { generateFollowingUsers } from "@/constants/video/mockData"
 
@@ -48,4 +48,4 @@ const FollowingView = ({ section }: FollowingViewProps) => {
   )
 }
 
-export default FollowingView
+export default memo(FollowingView)

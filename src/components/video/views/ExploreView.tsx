@@ -6,7 +6,7 @@
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 import { generateFeaturedVideos, generateDailyVideos } from "@/constants/video/mockData"
-import { useMemo } from "react"
+import { useMemo, memo } from "react"
 
 // ============================================
 // TYPES
@@ -62,4 +62,4 @@ const ExploreView = ({ section }: ExploreViewProps) => {
   )
 }
 
-export default ExploreView
+export default memo(ExploreView)

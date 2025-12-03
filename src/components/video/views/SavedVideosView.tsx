@@ -3,7 +3,7 @@
 // ============================================
 // IMPORTS
 // ============================================
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 import { readSavedVideos } from "@/utils/videoStorage"
@@ -43,4 +43,4 @@ const SavedVideosView = ({ section }: SavedVideosViewProps) => {
   )
 }
 
-export default SavedVideosView
+export default memo(SavedVideosView)

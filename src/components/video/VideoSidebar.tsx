@@ -4,7 +4,7 @@
 // IMPORTS
 // ============================================
 import Link from "next/link"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback, useMemo, memo } from "react"
 
 // ============================================
 // TYPES
@@ -58,21 +58,27 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
   // ============================================
   
   // ========== Filter Recent Searches ==========
-  const recentResults = query
-    ? RECENT_SEARCHES.filter(s => s.toLowerCase().includes(query.toLowerCase()))
-    : RECENT_SEARCHES
+  const recentResults = useMemo(
+    () => query
+      ? RECENT_SEARCHES.filter(s => s.toLowerCase().includes(query.toLowerCase()))
+      : RECENT_SEARCHES,
+    [query]
+  )
 
   // ========== Filter Suggestions (exclude items in recent) ==========
-  const suggestions = query
-    ? SUGGESTIONS_DATA
-        .filter(item => {
-          const matchesQuery = item.q.toLowerCase().includes(query.toLowerCase())
-          const notInRecent = !RECENT_SEARCHES.some(r => r.toLowerCase() === item.q.toLowerCase())
-          return matchesQuery && notInRecent
-        })
-        .sort((a, b) => b.views - a.views)
-        .slice(0, 5)
-    : []
+  const suggestions = useMemo(
+    () => query
+      ? SUGGESTIONS_DATA
+          .filter(item => {
+            const matchesQuery = item.q.toLowerCase().includes(query.toLowerCase())
+            const notInRecent = !RECENT_SEARCHES.some(r => r.toLowerCase() === item.q.toLowerCase())
+            return matchesQuery && notInRecent
+          })
+          .sort((a, b) => b.views - a.views)
+          .slice(0, 5)
+      : [],
+    [query]
+  )
 
   const showDropdown = isOpen && (recentResults.length > 0 || suggestions.length > 0)
 
@@ -110,10 +116,10 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
   }
 
   // ========== Handle search selection ==========
-  const handleSelect = (value: string) => {
+  const handleSelect = useCallback((value: string) => {
     setQuery(value)
     setIsOpen(false)
-  }
+  }, [])
 
   // ============================================
   // RENDER
@@ -212,4 +218,4 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
   )
 }
 
-export default VideoSidebar
+export default memo(VideoSidebar)

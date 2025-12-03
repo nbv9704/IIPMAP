@@ -3,7 +3,7 @@
 // ============================================
 // IMPORTS
 // ============================================
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useCallback, memo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { VIDEO_PREVIEW, USER_ID } from "@/constants/video/config"
@@ -42,7 +42,7 @@ const VideoCardItem = ({
    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
    const [isPlaying, setIsPlaying] = useState(false)
 
-   const handleMouseEnter = () => {
+   const handleMouseEnter = useCallback(() => {
       if (videoRef.current) {
          timeoutRef.current = setTimeout(() => {
             videoRef.current?.play()
@@ -57,9 +57,9 @@ const VideoCardItem = ({
             }, VIDEO_PREVIEW.DURATION_MS)
          }, VIDEO_PREVIEW.DELAY_MS)
       }
-   }
+   }, [])
 
-   const handleMouseLeave = () => {
+   const handleMouseLeave = useCallback(() => {
       if (timeoutRef.current) {
          clearTimeout(timeoutRef.current)
       }
@@ -69,7 +69,7 @@ const VideoCardItem = ({
          videoRef.current.currentTime = 0
          setIsPlaying(false)
       }
-   }
+   }, [])
 
    // TODO: Thay id bằng postId thực tế từ backend
    const mockPostId = id.toString().padStart(20, '0')
@@ -130,6 +130,7 @@ const VideoCardItem = ({
                      alt={author}
                      width={32}
                      height={32}
+                     loading="lazy"
                      style={{ objectFit: 'cover' }}
                   />
                ) : (
@@ -143,4 +144,4 @@ const VideoCardItem = ({
    )
 }
 
-export default VideoCardItem
+export default memo(VideoCardItem)
