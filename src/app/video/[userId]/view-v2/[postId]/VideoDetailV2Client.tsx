@@ -6,8 +6,6 @@
 import { useParams } from "next/navigation"
 import Wrapper from "@/layouts/Wrapper"
 import VideoSidebar from "@/components/video/VideoSidebar"
-import VideoActions from "@/components/video/VideoActions"
-import VideoLeftActions from "@/components/video/VideoLeftActions"
 import VideoPlayer from "@/components/video/VideoPlayer"
 import { addSavedVideo, removeSavedVideo } from "@/utils/videoStorage"
 import "@/styles/video.scss"
@@ -20,7 +18,6 @@ export default function VideoDetailV2Client() {
   // GET PARAMS
   // ============================================
   const params = useParams()
-  const userId = params.userId as string
   const postId = params.postId as string
 
   // ============================================
@@ -59,26 +56,6 @@ export default function VideoDetailV2Client() {
 
   const handleNext = () => {
     console.log("Next video")
-  }
-
-  const handleEmail = () => {
-    console.log("Email clicked")
-  }
-
-  const handleChat = () => {
-    console.log("Chat clicked")
-  }
-
-  const handleCall = () => {
-    console.log("Call clicked")
-  }
-
-  const handleSchedule = () => {
-    console.log("Schedule clicked")
-  }
-
-  const handleViewProfile = () => {
-    console.log("View profile clicked")
   }
 
   // ============================================

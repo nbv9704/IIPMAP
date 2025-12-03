@@ -74,7 +74,7 @@
 }
 
 // =============================================
-// VIDEO PLAYER AREA - Khung đen chứa video
+// VIDEO PLAYER AREA - Khung đen chứa video (Thu nhỏ)
 // =============================================
 .video-player-area {
   position: relative;
@@ -82,11 +82,13 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 80px);
-  min-height: 700px;
+  max-width: 900px;
+  height: 600px;
+  margin: 0 auto;
   background: #141414;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .video-player-area video,
@@ -153,11 +155,11 @@
 }
 
 .video-nav-prev {
-  left: calc(50% - 280px);
+  left: 20px;
 }
 
 .video-nav-next {
-  right: calc(50% - 280px);
+  right: 20px;
 }
 
 // =============================================
@@ -252,6 +254,12 @@
     font-size: 13px;
   }
 
+  .video-player-area {
+    max-width: 100%;
+    height: 400px;
+    border-radius: 12px;
+  }
+
   .video-scroll-nav {
     right: 12px;
   }
@@ -264,5 +272,10 @@
       width: 16px;
       height: 10px;
     }
+  }
+
+  .video-nav-btn {
+    width: 40px;
+    height: 40px;
   }
 }
