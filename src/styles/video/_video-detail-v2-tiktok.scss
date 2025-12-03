@@ -148,11 +148,12 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $surface-ghost;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
     border-radius: 50%;
     color: $iip-white;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
     svg {
       width: 28px;
@@ -172,7 +173,8 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
 
     .action-icon-v2 {
-      background: $surface-ghost-strong;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -186,19 +188,27 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
       }
     }
 
-    &:hover,
     &.active {
       .action-icon-v2 {
-        background: rgba(254, 44, 85, 0.2);
+        background: rgba(254, 44, 85, 0.3);
+        box-shadow: 0 4px 16px rgba(254, 44, 85, 0.4);
 
         svg {
           fill: $accent-like;
           stroke: $accent-like;
+          animation: heartBeat 0.4s ease;
         }
       }
 
       .action-count-v2 {
         color: $accent-like;
+        font-weight: 700;
+      }
+    }
+
+    &:hover:not(.active) {
+      .action-icon-v2 {
+        background: rgba(254, 44, 85, 0.15);
       }
     }
   }
@@ -230,15 +240,21 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
       }
     }
 
-    &:hover,
     &.active {
       .action-icon-v2 {
-        background: rgba(255, 215, 0, 0.2);
+        background: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
 
         svg {
           fill: $accent-bookmark;
           stroke: $accent-bookmark;
         }
+      }
+    }
+
+    &:hover:not(.active) {
+      .action-icon-v2 {
+        background: rgba(255, 215, 0, 0.15);
       }
     }
   }
@@ -269,8 +285,8 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   right: 20px;
   width: 40px;
   height: 40px;
-  background: $surface-ghost;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
   border: none;
   border-radius: 50%;
   color: $iip-white;
@@ -280,9 +296,11 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background: $surface-ghost-strong;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
   }
 
@@ -302,6 +320,27 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     &:hover {
       transform: translateY(20px) scale(1.1);
     }
+  }
+}
+
+// =============================================
+// ANIMATIONS
+// =============================================
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

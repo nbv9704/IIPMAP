@@ -124,25 +124,102 @@ export default function VideoDetailV2Client() {
                   title="Khu công nghiệp Tiên Sơn - Bắc Ninh"
                 />
 
-                {/* Actions bên phải video (like, comment, bookmark, share) */}
-                <VideoActions
-                  video={{ ...videoData }}
-                  onPrev={handlePrev}
-                  onNext={handleNext}
-                  onBookmarkChange={handleBookmarkChange}
-                />
+                {/* Actions bên phải video (like, comment, bookmark, share) - TikTok Style */}
+                <div className="video-actions-right-v2">
+                  <button
+                    className={`action-btn-right-v2 like-btn-v2-tiktok ${videoData.bookmarked ? 'active' : ''}`}
+                    type="button"
+                    title="Thích"
+                  >
+                    <div className="action-icon-v2">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path
+                          d="M24.6 5.6C22.7 3.8 19.9 3.8 18 5.6L14 9.6L10 5.6C8.1 3.8 5.3 3.8 3.4 5.6C1.1 7.9 1.1 11.7 3.4 14L14 24.6L24.6 14C26.9 11.7 26.9 7.9 24.6 5.6Z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="action-count-v2">{(videoData.likes / 1000).toFixed(1)}k</span>
+                  </button>
 
-                {/* Actions bên trái video (avatar + email, chat, call, schedule) */}
-                <VideoLeftActions
-                  onEmail={handleEmail}
-                  onChat={handleChat}
-                  onCall={handleCall}
-                  onSchedule={handleSchedule}
-                  onViewProfile={handleViewProfile}
-                  username="KCN Tiên Sơn - Bắc Ninh"
-                  userId={`@${userId}`}
-                  location="Phường Đồng Nguyên, xã Đại Đồng, phường Tam Sơn, tỉnh Bắc Ninh"
-                />
+                  <button
+                    className="action-btn-right-v2 comment-btn-v2-tiktok"
+                    type="button"
+                    title="Bình luận"
+                  >
+                    <div className="action-icon-v2">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path
+                          d="M24 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H8L14 26L20 20H24C25.1 20 26 19.1 26 18V6C26 4.9 25.1 4 24 4Z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="action-count-v2">{(videoData.comments / 1000).toFixed(1)}k</span>
+                  </button>
+
+                  <button
+                    className={`action-btn-right-v2 bookmark-btn-v2-tiktok ${videoData.bookmarked ? 'active' : ''}`}
+                    onClick={() => handleBookmarkChange(!videoData.bookmarked)}
+                    type="button"
+                    title="Lưu"
+                  >
+                    <div className="action-icon-v2">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path
+                          d="M6 3C6 2.44772 6.44772 2 7 2H21C21.5523 2 22 2.44772 22 3V26L14 20L6 26V3Z"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    className="action-btn-right-v2 share-btn-v2-tiktok"
+                    type="button"
+                    title="Chia sẻ"
+                  >
+                    <div className="action-icon-v2">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path
+                          d="M17 4L24 11L17 18V14C12 14 8 15.5 5 20C6 15 9 10 17 9V4Z"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+
+                {/* Video Info Overlay - Bottom Left (TikTok Style) */}
+                <div className="video-info-overlay-v2">
+                  <div className="video-author-info-v2">
+                    <div className="author-avatar-v2-tiktok">
+                      <div style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #0051cb 0%, #810cc4 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        color: '#fff'
+                      }}>
+                        V
+                      </div>
+                    </div>
+                    <div className="author-details-v2">
+                      <h3 className="author-name-v2-tiktok">KCN Tiên Sơn - Bắc Ninh</h3>
+                      <button className="follow-btn-v2-tiktok" type="button">
+                        Theo dõi
+                      </button>
+                    </div>
+                  </div>
+                  <div className="video-caption-v2">
+                    <p className="caption-text-v2">
+                      Khu công nghiệp Tiên Sơn - Bắc Ninh với diện tích 402.82 ha
+                      <br />
+                      <span style={{ color: '#4fb3ff' }}>#kcn #bacninh #investment #realestate</span>
+                    </p>
+                  </div>
+                </div>
 
                 {/* Nút chuyển video bên phải */}
                 <button
