@@ -1,0 +1,221 @@
+// =============================================
+// TIKTOK VIDEO PLAYER - Custom Controls
+// =============================================
+
+.tiktok-video-player {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent; // Đổi từ đen sang trong suốt
+  cursor: pointer;
+  border-radius: 20px; // Match với container
+}
+
+.tiktok-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Fill toàn bộ container
+  display: block;
+  border-radius: 20px; // Bo góc video
+}
+
+// Overlay for tap to play/pause
+.tiktok-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 20px; // Match container
+  overflow: hidden;
+  
+  .play-icon {
+    animation: fadeIn 0.3s ease;
+  }
+}
+
+// Bottom controls
+.tiktok-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 0 0 20px 20px; // Bo tròn góc dưới
+  
+  .tiktok-video-player:hover & {
+    opacity: 1;
+  }
+}
+
+// Progress bar
+.progress-bar-container {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+// Bottom row (time + mute)
+.controls-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-display {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mute-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Volume control with slider
+.volume-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+  &:hover .volume-slider-container {
+    display: block;
+  }
+}
+
+.volume-slider-container {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 8px 18px 8px; // Extra padding bottom to bridge the gap
+  border-radius: 8px;
+  margin-bottom: 0; // Remove margin, use padding instead
+  animation: slideUp 0.2s ease;
+  display: none; // Hidden by default
+  
+  &:hover {
+    display: block; // Keep visible when hovering over slider
+  }
+}
+
+.volume-slider {
+  -webkit-appearance: slider-vertical;
+  width: 4px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  &::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+// Context menu
+.video-context-menu {
+  position: fixed;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+  z-index: 9999;
+  min-width: 150px;
+  
+  button {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #000;
+    transition: background 0.2s ease;
+    
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

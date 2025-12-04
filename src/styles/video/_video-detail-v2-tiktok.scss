@@ -2,175 +2,220 @@
 
 $accent-like: #FE2C55;
 $accent-bookmark: #FFD700;
-$overlay-bg: $iip-black;
-$surface-ghost: rgba(255, 255, 255, 0.2);
-$surface-ghost-strong: rgba(255, 255, 255, 0.3);
 
 // =============================================
-// VIDEO DETAIL V2 - TikTok Style (Figma Spec)
+// VIDEO DETAIL V2 - TikTok Style (Nền trắng)
 // =============================================
 
-.video-detail-v2-tiktok {
+// =============================================
+// VIDEO PLAYER CONTAINER - Không có khung đen
+// =============================================
+.video-player-container-v2 {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background: $iip-black;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: fit-content;
+  margin: 0 auto;
+  margin-left: 270px;  // Đẩy sang trái 100px
+  padding: 0;
 }
 
-// =============================================
-// VIDEO PLAYER SECTION - Figma Spec Size
-// =============================================
-.video-player-section-v2-tiktok {
+.video-player-wrapper-v2 {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 349px;
+  height: 623px;
+  border-radius: 20px;
+  overflow: hidden; // Quan trọng: clip tất cả nội dung bên trong
+  background: transparent; // Đổi từ đen sang trong suốt
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $iip-black;
-}
+  isolation: isolate; // Tạo stacking context mới
 
-.video-player-v2-tiktok {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: $iip-black;
-}
+  .video-single-player-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-// Override video-player-area for v2
-.video-detail-section .video-player-area {
-  width: 349px;
-  height: 623px;
-  background: #000000;
-  border-radius: 20px;
+  .video-single-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  // TikTok player fills entire container
+  .tiktok-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 // =============================================
-// VIDEO INFO OVERLAY - Bottom
+// VIDEO VIEWS BADGE - Góc trên trái video
 // =============================================
-.video-info-overlay-v2 {
+.video-views-badge-v2 {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 100px; // Space for action buttons
-  padding: 24px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-  color: $iip-white;
-  z-index: 10;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  z-index: 5;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #fff;
+  }
 }
 
-// Author Info
-.video-author-info-v2 {
+// =============================================
+// VIDEO INFO SECTION - Dưới video, nền trắng
+// =============================================
+.video-info-section-v2 {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.video-author-row-v2 {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 
-  .author-avatar-v2-tiktok {
-    width: 48px;
-    height: 48px;
+  .author-avatar-small-v2 {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid $iip-white;
     flex-shrink: 0;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   }
 
-  .author-details-v2 {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .author-name-v2-tiktok {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: $iip-white;
-      margin: 0;
-    }
-
-    .follow-btn-v2-tiktok {
-      padding: 6px 20px;
-      background: transparent;
-      color: $iip-white;
-      border: 2px solid $iip-white;
-      border-radius: 4px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: $iip-white;
-        color: $iip-black;
-      }
-    }
+  .author-name-v2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+    margin: 0;
   }
 }
 
-// Video Caption
-.video-caption-v2 {
-  .caption-text-v2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    color: $iip-white;
-    margin: 0;
-    max-width: 600px;
+.video-caption-text-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  margin: 0 0 16px 0;
+
+  .hashtags-v2 {
+    color: #4fb3ff;
+    font-weight: 500;
   }
 }
 
 // =============================================
-// ACTION BUTTONS - Right Side (Figma Spec)
+// ACTION BUTTONS - Right Side (Bên phải video)
 // =============================================
 .video-actions-right-v2 {
-  position: absolute;
-  right: 16px;
-  bottom: 100px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 30px;
-  z-index: 10;
+  padding-top: 80px; // Tăng padding-top để đẩy xuống
+}
+
+.action-avatar-v2 {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease;
+
+  // Nút + màu hồng ở góc dưới phải
+  &::after {
+    content: '+';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: #FF2D55;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
 }
 
 .action-btn-right-v2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
 
   .action-icon-v2 {
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+    background: #F1F1F2; // Background xám nhạt
+    border-radius: 50%;
     transition: all 0.2s ease;
 
     svg {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
+      fill: #161823 !important; // Fill đen cho icons không có stroke
+      stroke: #161823 !important; // Stroke đen cho Lucide icons
+      stroke-width: 2 !important;
     }
   }
 
   .action-count-v2 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #000000;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: #161823;
   }
 
   &:hover {
@@ -179,16 +224,15 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
 
   // Like Button - Red when active
   &.like-btn-v2-tiktok {
-    .action-icon-v2 svg {
-      fill: #000000;
-      stroke: 1.25px solid #000000;
-    }
-
     &.active {
-      .action-icon-v2 svg {
-        fill: $accent-like;
-        stroke: $accent-like;
+      .action-icon-v2 {
+        background: rgba(254, 44, 85, 0.15); // Background đỏ nhạt
         animation: heartBeat 0.4s ease;
+        
+        svg {
+          fill: $accent-like;
+          stroke: $accent-like;
+        }
       }
       
       .action-count-v2 {
@@ -197,54 +241,81 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     }
   }
 
-  // Comment Button
-  &.comment-btn-v2-tiktok {
-    .action-icon-v2 svg {
-      fill: #000000;
-      stroke: none;
-    }
-  }
-
   // Bookmark Button - Yellow when active
   &.bookmark-btn-v2-tiktok {
-    .action-icon-v2 svg {
-      fill: #000000;
-      stroke: none;
-    }
-
-    &.active .action-icon-v2 svg {
-      fill: $accent-bookmark;
-    }
-  }
-
-  // Share Button
-  &.share-btn-v2-tiktok {
-    .action-icon-v2 svg {
-      fill: #000000;
-      stroke: 1.3333px solid #000000;
+    &.active {
+      .action-icon-v2 {
+        background: rgba(255, 193, 7, 0.15); // Background vàng nhạt
+        animation: bookmarkPop 0.3s ease;
+        
+        svg {
+          fill: $accent-bookmark;
+          stroke: $accent-bookmark;
+        }
+      }
+      
+      .action-count-v2 {
+        color: $accent-bookmark;
+      }
     }
   }
 }
 
 // =============================================
-// TOP ACTION BUTTONS (Figma Spec)
+// ANIMATIONS
+// =============================================
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bookmarkPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// =============================================
+// TOP ACTION BUTTONS - Absolute position, ngang hàng với search bar
 // =============================================
 .video-top-actions-v2 {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  left: calc(100% + 60px); // Cách video player 100px về bên phải
   display: flex;
-  gap: 15px;
-  z-index: 10;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
+  z-index: 20;
 }
 
 .top-action-btn-v2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 10px 16px;
   border: none;
   border-radius: 5px;
   font-family: 'Montserrat', sans-serif;
@@ -254,17 +325,22 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; // Text trong 1 dòng
 
   svg {
-    width: 17px;
-    height: 12px;
+    flex-shrink: 0;
   }
 
   &.email-btn-v2 {
-    width: 77px;
+    min-width: 77px;
     height: 32px;
     background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
     color: #EBF5FF;
+    
+    svg {
+      width: 17px;
+      height: 12px;
+    }
     
     &:hover {
       transform: translateY(-2px);
@@ -273,27 +349,30 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   }
 
   &.schedule-btn-v2 {
-    width: 134.27px;
-    height: 33.48px;
+    min-width: 134px;
+    height: 33px;
     background: #FFFFFF;
     color: #000000;
+    border: 1px solid #e5e7eb;
     
     svg {
-      width: 15.27px;
-      height: 13.48px;
+      width: 15px;
+      height: 13px;
     }
     
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      border-color: #0149BE;
     }
   }
 
   &.chat-btn-v2 {
-    width: 71px;
+    min-width: 71px;
     height: 36px;
     background: #FFFFFF;
     color: #000000;
+    border: 1px solid #e5e7eb;
     
     svg {
       width: 16px;
@@ -303,14 +382,16 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      border-color: #0149BE;
     }
   }
 
   &.call-btn-v2 {
-    width: 68px;
+    min-width: 68px;
     height: 36px;
     background: #FFFFFF;
     color: #000000;
+    border: 1px solid #e5e7eb;
     padding: 10px 20px;
     
     svg {
@@ -321,16 +402,17 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      border-color: #0149BE;
     }
   }
 }
 
 // =============================================
-// NAVIGATION ARROWS - Up/Down (Figma Spec)
+// NAVIGATION ARROWS - Up/Down (Mép trái)
 // =============================================
 .video-nav-btn-v2 {
   position: absolute;
-  right: 20px;
+  left: -60px;
   width: 27px;
   height: 22px;
   background: #EBF5FF;
@@ -346,6 +428,7 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   svg {
     width: 16px;
     height: 10px;
+    stroke: #000;
   }
 
   &:hover {
@@ -354,50 +437,70 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
   }
 
   &.video-nav-up-v2 {
-    top: 50%;
-    transform: translateY(-50px) rotate(180deg);
-
-    &:hover {
-      transform: translateY(-50px) rotate(180deg) scale(1.1);
-    }
+    top: 40%;
   }
 
   &.video-nav-down-v2 {
-    top: 50%;
-    transform: translateY(20px);
+    top: 55%;
+  }
+}
 
-    &:hover {
-      transform: translateY(20px) scale(1.1);
+// =============================================
+// VIEW POST BUTTON - Trong cụm action buttons
+// =============================================
+.view-post-btn-v2-action {
+  .action-icon-v2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    
+    svg {
+      fill: none !important;
+      stroke: #fff !important;
     }
   }
 }
 
 // =============================================
-// VIEW POST BUTTON (Figma Spec)
+// FLOATING CHAT BUTTON - Góc dưới bên phải
 // =============================================
-.view-post-btn-v2 {
-  margin-top: 12px;
-  width: 150px;
-  height: 33px;
-  padding: 10px;
-  background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
+.floating-chat-btn-v2 {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   border: none;
-  border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #FFFFFF;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: pulse 2s infinite;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(1, 73, 190, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.6);
   }
 }
 
@@ -425,93 +528,509 @@ $surface-ghost-strong: rgba(255, 255, 255, 0.3);
 // =============================================
 // RESPONSIVE
 // =============================================
+@media (max-width: 1024px) {
+  .video-player-container-v2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-actions-right-v2 {
+    flex-direction: row;
+    padding-top: 0;
+    padding: 20px 0;
+  }
+
+  .video-nav-btn-v2 {
+    right: -50px;
+  }
+}
+
 @media (max-width: 768px) {
-  .video-main-v2 {
-    margin-left: 0;
-    left: 0;
-  }
-
-  .video-detail-v2-tiktok {
-    height: 100vh;
-  }
-
   .video-top-actions-v2 {
-    top: 12px;
-    right: 12px;
     gap: 8px;
     flex-wrap: wrap;
+    justify-content: center;
 
     .top-action-btn-v2 {
-      padding: 8px 14px;
-      font-size: 12px;
-
-      svg {
-        width: 16px;
-        height: 16px;
-      }
+      min-width: auto;
+      padding: 8px 12px;
+      font-size: 9px;
 
       span {
         display: none;
       }
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 
-  .video-info-overlay-v2 {
-    right: 70px;
-    padding: 16px;
+  .video-player-wrapper-v2 {
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
   }
 
-  .video-author-info-v2 {
-    .author-avatar-v2-tiktok {
+  .video-actions-right-v2 {
+    gap: 20px;
+
+    .action-avatar-v2 {
       width: 40px;
       height: 40px;
     }
 
-    .author-details-v2 {
-      .author-name-v2-tiktok {
+    .action-btn-right-v2 {
+      .action-icon-v2 {
+        width: 28px;
+        height: 28px;
+
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .action-count-v2 {
         font-size: 14px;
       }
     }
   }
 
-  .video-caption-v2 {
-    .caption-text-v2 {
-      font-size: 13px;
-      line-height: 18px;
-    }
-  }
-
-  .video-actions-right-v2 {
-    right: 12px;
-    bottom: 80px;
-    gap: 18px;
-
-    .action-btn-right-v2 {
-      .action-icon-v2 {
-        width: 36px;
-        height: 36px;
-
-        svg {
-          width: 28px;
-          height: 28px;
-        }
-      }
-
-      .action-count-v2 {
-        font-size: 12px;
-      }
-    }
-  }
-
   .video-nav-btn-v2 {
+    right: 10px;
     width: 32px;
-    height: 32px;
-    right: 12px;
+    height: 28px;
+  }
+
+  .video-info-section-v2 {
+    padding: 16px;
   }
 
   .view-post-btn-v2 {
-    padding: 8px 20px;
-    font-size: 13px;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .floating-chat-btn-v2 {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 }
 
+
+// =============================================
+// AVATAR WITH HOVER CARD & FOLLOW BUTTON
+// =============================================
+.action-avatar-wrapper-v2 {
+  position: relative;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.1);
+    
+    .action-avatar-v2 {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .avatar-follow-btn-v2 {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.avatar-follow-btn-v2 {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #FF2D55;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+  
+  &:hover:not(.animating) {
+    transform: scale(1.2) !important;
+    box-shadow: 0 2px 8px rgba(255, 45, 85, 0.4);
+  }
+  
+  &.animating {
+    animation: followBounce 0.4s ease;
+    pointer-events: none;
+  }
+  
+  &.following {
+    background: #00C853;
+    
+    &:hover:not(.animating) {
+      background: #FF2D55;
+      
+      &::before {
+        content: '×';
+        position: absolute;
+        font-size: 16px;
+      }
+      
+      // Hide checkmark on hover
+      color: transparent;
+    }
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@keyframes followBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profile-hover-card-v2 {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 12px);
+  width: 280px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 100;
+  animation: fadeInRight 0.2s ease;
+}
+
+.profile-card-header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.profile-card-avatar-v2 {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E74C3C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.profile-card-info-v2 {
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #000;
+  }
+  
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+}
+
+.profile-card-stats-v2 {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stat-item-v2 {
+  display: flex;
+  flex-direction: column;
+  
+  strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.profile-card-bio-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// =============================================
+// COMMENT/CHAT SIDEBAR
+// =============================================
+.comment-chat-sidebar-v2 {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  
+  &.open {
+    right: 0;
+  }
+}
+
+.sidebar-header-v2 {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  gap: 8px;
+}
+
+.tab-btn-v2 {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  
+  &.active {
+    color: #000;
+    border-bottom-color: #000;
+  }
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.close-sidebar-btn-v2 {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.sidebar-content-v2 {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.comments-list-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-item-v2 {
+  display: flex;
+  gap: 12px;
+}
+
+.comment-avatar-v2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.comment-body-v2 {
+  flex: 1;
+}
+
+.comment-header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  
+  strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+  }
+}
+
+.comment-date-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #999;
+}
+
+.comment-text-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.comment-reply-btn-v2 {
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.comment-actions-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    span {
+      font-size: 12px;
+    }
+    
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.sidebar-input-v2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid #e5e5e5;
+  
+  input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    outline: none;
+    
+    &:focus {
+      border-color: #667eea;
+    }
+  }
+  
+  button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+    
+    &:hover {
+      background: #f5f5f5;
+    }
+    
+    &.send-btn-v2 {
+      background: #667eea;
+      color: #fff;
+      
+      &:hover {
+        background: #5568d3;
+      }
+    }
+  }
+}
