@@ -34,8 +34,9 @@
   border-radius: 20px; // Match container
   overflow: hidden;
   
-  .play-icon {
-    animation: fadeIn 0.3s ease;
+  // Transition icon (shows old state then fades out slowly)
+  .transition-icon {
+    animation: fadeInOut 0.8s ease forwards;
   }
 }
 
@@ -78,11 +79,39 @@
   transition: width 0.1s linear;
 }
 
-// Bottom row (time + mute)
+// Bottom row (play/pause + time + mute)
 .controls-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.play-pause-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  
+  &:hover {
+    transform: scale(1.15);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
 }
 
 .time-display {
@@ -124,6 +153,25 @@
   }
 }
 
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
 // Volume control with slider
 .volume-control {
   position: relative;
@@ -135,49 +183,72 @@
   }
 }
 
+// Custom Volume Slider (vertical) - No input range
 .volume-slider-container {
   position: absolute;
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 8px 18px 8px; // Extra padding bottom to bridge the gap
-  border-radius: 8px;
-  margin-bottom: 0; // Remove margin, use padding instead
+  padding: 12px 8px;
+  border-radius: 12px;
+  margin-bottom: 8px;
   animation: slideUp 0.2s ease;
-  display: none; // Hidden by default
+  display: none;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  
+  // Invisible bridge để không mất hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 8px; // Match margin-bottom
+    background: transparent;
+  }
   
   &:hover {
-    display: block; // Keep visible when hovering over slider
+    display: block;
   }
 }
 
-.volume-slider {
-  -webkit-appearance: slider-vertical;
+.volume-slider-track {
+  position: relative;
   width: 4px;
-  height: 80px;
+  height: 90px;
   background: rgba(255, 255, 255, 0.3);
-  outline: none;
   border-radius: 2px;
-  cursor: pointer;
+  margin: 0 auto;
+}
+
+.volume-slider-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: height 0.05s ease;
+  pointer-events: none;
+}
+
+.volume-slider-thumb {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: bottom 0.05s ease, transform 0.2s ease;
+  pointer-events: none;
   
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  &::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
+  .volume-slider-container:hover & {
+    transform: translate(-50%, 50%) scale(1.15);
   }
 }
 

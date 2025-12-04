@@ -24,16 +24,27 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
   const [volume, setVolume] = useState(1)
   const [showVolumeSlider, setShowVolumeSlider] = useState(false)
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null)
+  const volumeSliderRef = useRef<HTMLDivElement>(null)
+  const [isDraggingVolume, setIsDraggingVolume] = useState(false)
+  const [showTransitionIcon, setShowTransitionIcon] = useState(false)
 
   // Toggle play/pause
   const togglePlay = () => {
     if (videoRef.current) {
+      // Show transition icon
+      setShowTransitionIcon(true)
+      
       if (isPlaying) {
         videoRef.current.pause()
       } else {
         videoRef.current.play()
       }
       setIsPlaying(!isPlaying)
+      
+      // Hide icon after animation (longer duration)
+      setTimeout(() => {
+        setShowTransitionIcon(false)
+      }, 800)
     }
   }
 
@@ -45,9 +56,14 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
     }
   }
 
-  // Change volume
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value)
+  // Custom volume slider handlers
+  const handleVolumeSliderClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!volumeSliderRef.current) return
+    const rect = volumeSliderRef.current.getBoundingClientRect()
+    const clickY = e.clientY - rect.top
+    const percentage = 1 - (clickY / rect.height) // Inverted because top = 100%
+    const newVolume = Math.max(0, Math.min(1, percentage))
+    
     setVolume(newVolume)
     if (videoRef.current) {
       videoRef.current.volume = newVolume
@@ -60,6 +76,48 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
       }
     }
   }
+
+  const handleVolumeSliderMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDraggingVolume(true)
+    handleVolumeSliderClick(e)
+  }
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingVolume || !volumeSliderRef.current) return
+      
+      const rect = volumeSliderRef.current.getBoundingClientRect()
+      const clickY = e.clientY - rect.top
+      const percentage = 1 - (clickY / rect.height)
+      const newVolume = Math.max(0, Math.min(1, percentage))
+      
+      setVolume(newVolume)
+      if (videoRef.current) {
+        videoRef.current.volume = newVolume
+        if (newVolume === 0) {
+          setIsMuted(true)
+          videoRef.current.muted = true
+        } else if (isMuted) {
+          setIsMuted(false)
+          videoRef.current.muted = false
+        }
+      }
+    }
+
+    const handleMouseUp = () => {
+      setIsDraggingVolume(false)
+    }
+
+    if (isDraggingVolume) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [isDraggingVolume, isMuted])
 
   // Context menu
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -169,12 +227,21 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
 
       {/* Tap to play/pause overlay */}
       <div className="tiktok-video-overlay" onClick={togglePlay}>
-        {!isPlaying && (
-          <div className="play-icon">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-              <circle cx="32" cy="32" r="32" fill="rgba(255, 255, 255, 0.9)" />
-              <path d="M26 20L44 32L26 44V20Z" fill="#000" />
-            </svg>
+        {/* Transition icon - show OLD state then fade out */}
+        {showTransitionIcon && (
+          <div className="transition-icon">
+            {!isPlaying ? (
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="32" fill="rgba(255, 255, 255, 0.9)" />
+                <path d="M26 20L44 32L26 44V20Z" fill="#000" />
+              </svg>
+            ) : (
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="32" fill="rgba(255, 255, 255, 0.9)" />
+                <rect x="24" y="20" width="6" height="24" rx="2" fill="#000" />
+                <rect x="34" y="20" width="6" height="24" rx="2" fill="#000" />
+              </svg>
+            )}
           </div>
         )}
       </div>
@@ -188,11 +255,26 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
           </div>
         </div>
 
-        {/* Time and mute */}
+        {/* Play/Pause + Time + Mute */}
         <div className="controls-bottom">
-          <span className="time-display">
-            {formatTime(currentTime)} / {formatTime(duration || 0)}
-          </span>
+          <div className="controls-left">
+            <button className="play-pause-btn" onClick={togglePlay} type="button">
+              {isPlaying ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <rect x="6" y="4" width="4" height="16" rx="1" />
+                  <rect x="14" y="4" width="4" height="16" rx="1" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
+            
+            <span className="time-display">
+              {formatTime(currentTime)} / {formatTime(duration || 0)}
+            </span>
+          </div>
           
           <div 
             className="volume-control"
@@ -212,17 +294,21 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
             </button>
             
             {showVolumeSlider && (
-              <div className="volume-slider-container">
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  className="volume-slider"
-                  orient="vertical"
-                />
+              <div 
+                ref={volumeSliderRef}
+                className="volume-slider-container"
+                onMouseDown={handleVolumeSliderMouseDown}
+              >
+                <div className="volume-slider-track">
+                  <div 
+                    className="volume-slider-fill" 
+                    style={{ height: `${volume * 100}%` }}
+                  />
+                  <div 
+                    className="volume-slider-thumb" 
+                    style={{ bottom: `${volume * 100}%` }}
+                  />
+                </div>
               </div>
             )}
           </div>
