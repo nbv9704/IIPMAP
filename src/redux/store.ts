@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
-import propertySlice from './features/propertySlice'
+import { configureStore } from "@reduxjs/toolkit";
+import { rootReducer } from "./rootReducer";
+import { industrialAreaApiSlice } from "./slice/industrialAreaApiSlice";
+import { videoApiSlice } from "./slice/videoApiSlice";
+import { newsApiSlice } from "./slice/newsApiSlice";
 
-const store = configureStore({
-   reducer: {
-      properties: propertySlice,
-   },
-   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      serializableCheck: false
-   }),
-})
-
-export default store;
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      industrialAreaApiSlice.middleware,
+      videoApiSlice.middleware,
+      newsApiSlice.middleware
+    ),
+});
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

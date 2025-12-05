@@ -6,6 +6,9 @@
 import { useState, useEffect, useMemo } from "react"
 import { PAGINATION } from "@/constants/video/config"
 import { generateNotifications } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
+import { useGetNotificationsQuery } from "@/redux/slice/videoApiSlice"
 
 // ============================================
 // TYPES
@@ -16,10 +19,42 @@ type NotificationType = "all" | "like" | "comment" | "message" | "follower"
 // COMPONENT
 // ============================================
 const NotificationsView = () => {
+  const { currentLang } = useLanguage()
   const [notificationFilter, setNotificationFilter] = useState<NotificationType>("all")
   const [notificationPage, setNotificationPage] = useState(1)
 
-  const notifications = useMemo(() => generateNotifications(), [])
+  // ✅ RTK Query API call (following VNG004's pattern)
+  const { data: apiNotifications, error: errorNotifications } = useGetNotificationsQuery(50)
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockNotifications = useMemo(() => generateNotifications(), [])
+  
+  // ✅ Determine data source
+  const USE_MOCK = !apiNotifications || errorNotifications
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToNotification = (notifs: typeof apiNotifications) => {
+    if (!notifs) return []
+    return notifs.map(n => ({
+      id: parseInt(n.id) || 0,
+      type: n.type,
+      user: n.fromUser?.displayName || "User",
+      actionKey: n.type === "like" ? "video.likedYourVideo" 
+        : n.type === "comment" ? "video.commentedOnYourVideo"
+        : n.type === "follow" ? "video.startedFollowingYou"
+        : "video.sentYouMessage",
+      video: n.videoId ? "Video title" : "",
+      timeValue: 1,
+      timeUnit: "video.hoursAgo",
+      read: n.isRead,
+    }))
+  }
+  
+  // ✅ Select data to display
+  const notifications = USE_MOCK ? mockNotifications : transformApiToNotification(apiNotifications)
+  
+  // 🔍 Debug logging
+  console.log("🔔 NotificationsView - Using:", USE_MOCK ? "📦 Mock" : "🌐 API")
 
   const filteredNotifications = useMemo(() => {
     if (notificationFilter === "all") return notifications
@@ -50,7 +85,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("all")}
           >
-            Tất cả hoạt động
+            {getTranslation(currentLang, "video.allActivity")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -58,7 +93,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("like")}
           >
-            Lượt thích
+            {getTranslation(currentLang, "video.likes")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -66,7 +101,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("comment")}
           >
-            Bình luận
+            {getTranslation(currentLang, "video.comments")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -74,7 +109,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("message")}
           >
-            Tin nhắn mới
+            {getTranslation(currentLang, "video.newMessages")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -82,7 +117,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("follower")}
           >
-            Người theo dõi
+            {getTranslation(currentLang, "video.followers")}
           </button>
         </div>
         <button
@@ -91,7 +126,7 @@ const NotificationsView = () => {
             console.log("Mark all as read")
           }}
         >
-          Đánh dấu đã đọc tất cả
+          {getTranslation(currentLang, "video.markAllRead")}
         </button>
       </div>
 
@@ -104,7 +139,7 @@ const NotificationsView = () => {
             <div className="video-notification-avatar">{notification.user.charAt(0)}</div>
             <div className="video-notification-content">
               <p>
-                <strong>{notification.user}</strong> {notification.action}
+                <strong>{notification.user}</strong> {getTranslation(currentLang, notification.actionKey)}
                 {notification.video && (
                   <>
                     {" "}
@@ -114,7 +149,9 @@ const NotificationsView = () => {
                   </>
                 )}
               </p>
-              <span className="video-notification-time">{notification.time}</span>
+              <span className="video-notification-time">
+                {notification.timeValue} {getTranslation(currentLang, notification.timeUnit)}
+              </span>
             </div>
             {!notification.read && <div className="video-notification-dot" />}
           </div>

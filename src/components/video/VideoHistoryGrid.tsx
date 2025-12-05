@@ -2,6 +2,7 @@
 // IMPORTS
 // ============================================
 "use client"
+import { memo, useMemo } from "react"
 import VideoCardItem, { VideoCardItemProps } from "./VideoCardItem"
 
 // ============================================
@@ -17,7 +18,10 @@ interface VideoHistoryGridProps {
 // ============================================
 const VideoHistoryGrid = ({ videos, className = "" }: VideoHistoryGridProps) => {
    // ========== Computed Values ==========
-   const containerClass = ["video-history-grid", className].filter(Boolean).join(" ")
+   const containerClass = useMemo(
+      () => ["video-history-grid", className].filter(Boolean).join(" "),
+      [className]
+   )
 
    // ========== Render ==========
    return (
@@ -29,4 +33,4 @@ const VideoHistoryGrid = ({ videos, className = "" }: VideoHistoryGridProps) => 
    )
 }
 
-export default VideoHistoryGrid
+export default memo(VideoHistoryGrid)

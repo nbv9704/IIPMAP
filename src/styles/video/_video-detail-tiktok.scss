@@ -1,0 +1,1166 @@
+@import '../variables-iip';
+
+$accent-like: #FE2C55;
+$accent-bookmark: #FFD700;
+
+// =============================================
+// VIDEO DETAIL V2 - TikTok Style (Nền trắng)
+// =============================================
+
+// =============================================
+// VIDEO PLAYER CONTAINER - Không có khung đen
+// =============================================
+.video-player-container-v2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: fit-content;
+  margin: 0 auto;
+  margin-left: 270px;  // Đẩy sang trái 100px
+  padding: 0;
+}
+
+// Wrapper for video player + navigation + actions (for easy repositioning)
+.video-player-section-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-left: 30px; // Di chuyển sang phải 20px
+}
+
+.video-player-wrapper-v2 {
+  position: relative;
+  width: 349px;
+  height: 623px;
+  border-radius: 20px;
+  overflow: hidden; // Quan trọng: clip tất cả nội dung bên trong
+  background: transparent; // Đổi từ đen sang trong suốt
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate; // Tạo stacking context mới
+
+  .video-single-player-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-single-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  // TikTok player fills entire container
+  .tiktok-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// =============================================
+// VIDEO VIEWS BADGE - Góc trên trái video
+// =============================================
+.video-views-badge-v2 {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  z-index: 5;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #fff;
+  }
+}
+
+// =============================================
+// VIDEO INFO SECTION - Dưới video, nền trắng
+// =============================================
+.video-info-section-v2 {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.video-author-row-v2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .author-avatar-small-v2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .author-name-v2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+  }
+}
+
+.video-caption-text-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  margin: 0 0 16px 0;
+
+  .hashtags-v2 {
+    color: #4fb3ff;
+    font-weight: 500;
+  }
+}
+
+// =============================================
+// ACTION BUTTONS - Right Side (Bên phải video)
+// =============================================
+.video-actions-right-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 80px; // Tăng padding-top để đẩy xuống
+}
+
+.action-avatar-v2 {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease;
+
+  // Nút + màu hồng ở góc dưới phải
+  &::after {
+    content: '+';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: #FF2D55;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+}
+
+.action-btn-right-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  .action-icon-v2 {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F1F2; // Background xám nhạt
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #161823 !important; // Fill đen cho icons không có stroke
+      stroke: #161823 !important; // Stroke đen cho Lucide icons
+      stroke-width: 2 !important;
+    }
+  }
+
+  .action-count-v2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: #161823;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  // Like Button - Red when active
+  &.like-btn-v2-tiktok {
+    &.active {
+      .action-icon-v2 {
+        background: rgba(254, 44, 85, 0.15); // Background đỏ nhạt
+        animation: heartBeat 0.4s ease;
+        
+        svg {
+          fill: $accent-like;
+          stroke: $accent-like;
+        }
+      }
+      
+      .action-count-v2 {
+        color: $accent-like;
+      }
+    }
+  }
+
+  // Bookmark Button - Yellow when active
+  &.bookmark-btn-v2-tiktok {
+    &.active {
+      .action-icon-v2 {
+        background: rgba(255, 193, 7, 0.15); // Background vàng nhạt
+        animation: bookmarkPop 0.3s ease;
+        
+        svg {
+          fill: $accent-bookmark;
+          stroke: $accent-bookmark;
+        }
+      }
+      
+      .action-count-v2 {
+        color: $accent-bookmark;
+      }
+    }
+  }
+}
+
+// =============================================
+// ANIMATIONS
+// =============================================
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bookmarkPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// =============================================
+// CONTACT ACTIONS DROPDOWN - Fixed to right edge
+// =============================================
+.contact-actions-dropdown-wrapper {
+  position: fixed;
+  top: 80px; // Below navbar
+  right: 20px; // Margin from right edge
+  z-index: 100;
+}
+
+.contact-actions-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(1, 73, 190, 0.3);
+  transition: all 0.2s ease;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(1, 73, 190, 0.4);
+  }
+}
+
+.contact-actions-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  animation: dropdownSlideDown 0.2s ease;
+}
+
+.dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: left;
+  
+  svg {
+    flex-shrink: 0;
+    stroke: #666;
+  }
+  
+  &:hover {
+    background: #f5f5f5;
+    
+    svg {
+      stroke: #0149BE;
+    }
+  }
+  
+  &.email-item:hover {
+    background: rgba(1, 73, 190, 0.1);
+  }
+  
+  &.schedule-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  &.chat-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+  }
+  
+  &.call-item:hover {
+    background: rgba(76, 175, 80, 0.1);
+  }
+}
+
+@keyframes dropdownSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================
+// SHARE MODAL - Compact horizontal layout
+// =============================================
+.share-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  // No animation - instant overlay
+}
+
+.share-modal-content {
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 24px 32px 32px;
+  animation: modalSlideUp 0.3s ease;
+}
+
+.share-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.share-close-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.share-options-row {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.share-option-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    
+    .share-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.share-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-option-circle span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================
+// TOP ACTION BUTTONS - Absolute position, ngang hàng với search bar (REMOVED - Now using dropdown)
+// =============================================
+.video-top-actions-v2 {
+  display: none; // Hidden, replaced by dropdown
+}
+
+// Old top-action-btn styles removed - now using dropdown
+
+// =============================================
+// NAVIGATION ARROWS - Up/Down (Mép trái)
+// =============================================
+.video-nav-btn-v2 {
+  position: absolute;
+  left: -60px;
+  width: 27px;
+  height: 22px;
+  background: #EBF5FF;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+
+  svg {
+    width: 16px;
+    height: 10px;
+    stroke: #000;
+  }
+
+  &:hover {
+    background: darken(#EBF5FF, 5%);
+    transform: scale(1.1);
+  }
+
+  &.video-nav-up-v2 {
+    top: 40%;
+  }
+
+  &.video-nav-down-v2 {
+    top: 55%;
+  }
+}
+
+// =============================================
+// VIEW POST BUTTON - Trong cụm action buttons
+// =============================================
+.view-post-btn-v2-action {
+  .action-icon-v2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    
+    svg {
+      fill: none !important;
+      stroke: #fff !important;
+    }
+  }
+}
+
+// =============================================
+// FLOATING CHAT BUTTON - Góc dưới bên phải
+// =============================================
+.floating-chat-btn-v2 {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: pulse 2s infinite;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.6);
+  }
+}
+
+// =============================================
+// ANIMATIONS
+// =============================================
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// =============================================
+// RESPONSIVE
+// =============================================
+@media (max-width: 1024px) {
+  .video-player-container-v2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-actions-right-v2 {
+    flex-direction: row;
+    padding-top: 0;
+    padding: 20px 0;
+  }
+
+  .video-nav-btn-v2 {
+    right: -50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-top-actions-v2 {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .top-action-btn-v2 {
+      min-width: auto;
+      padding: 8px 12px;
+      font-size: 9px;
+
+      span {
+        display: none;
+      }
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .video-player-wrapper-v2 {
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+  }
+
+  .video-actions-right-v2 {
+    gap: 20px;
+
+    .action-avatar-v2 {
+      width: 40px;
+      height: 40px;
+    }
+
+    .action-btn-right-v2 {
+      .action-icon-v2 {
+        width: 28px;
+        height: 28px;
+
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .action-count-v2 {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .video-nav-btn-v2 {
+    right: 10px;
+    width: 32px;
+    height: 28px;
+  }
+
+  .video-info-section-v2 {
+    padding: 16px;
+  }
+
+  .view-post-btn-v2 {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .floating-chat-btn-v2 {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+
+// =============================================
+// AVATAR WITH HOVER CARD & FOLLOW BUTTON
+// =============================================
+.action-avatar-wrapper-v2 {
+  position: relative;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.1);
+    
+    .action-avatar-v2 {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .avatar-follow-btn-v2 {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.avatar-follow-btn-v2 {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #FF2D55;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+  
+  &:hover:not(.animating) {
+    transform: scale(1.2) !important;
+    box-shadow: 0 2px 8px rgba(255, 45, 85, 0.4);
+  }
+  
+  &.animating {
+    animation: followBounce 0.4s ease;
+    pointer-events: none;
+  }
+  
+  &.following {
+    background: #00C853;
+    
+    &:hover:not(.animating) {
+      background: #FF2D55;
+      
+      &::before {
+        content: '×';
+        position: absolute;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      // Hide checkmark on hover
+      color: transparent;
+    }
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@keyframes followBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profile-hover-card-v2 {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 12px);
+  width: 280px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 100;
+  animation: fadeInRight 0.2s ease;
+}
+
+.profile-card-header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.profile-card-avatar-v2 {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E74C3C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.profile-card-info-v2 {
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #000;
+  }
+  
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+}
+
+.profile-card-stats-v2 {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stat-item-v2 {
+  display: flex;
+  flex-direction: column;
+  
+  strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.profile-card-bio-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// =============================================
+// COMMENT/CHAT SIDEBAR
+// =============================================
+.comment-chat-sidebar-v2 {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  
+  &.open {
+    right: 0;
+  }
+}
+
+.sidebar-header-v2 {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  gap: 8px;
+}
+
+.tab-btn-v2 {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  
+  &.active {
+    color: #000;
+    border-bottom-color: #000;
+  }
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.close-sidebar-btn-v2 {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.sidebar-content-v2 {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.comments-list-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-item-v2 {
+  display: flex;
+  gap: 12px;
+}
+
+.comment-avatar-v2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.comment-body-v2 {
+  flex: 1;
+}
+
+.comment-header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  
+  strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+  }
+}
+
+.comment-date-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #999;
+}
+
+.comment-text-v2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.comment-reply-btn-v2 {
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.comment-actions-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    span {
+      font-size: 12px;
+    }
+    
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.sidebar-input-v2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid #e5e5e5;
+  
+  input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    outline: none;
+    
+    &:focus {
+      border-color: #667eea;
+    }
+  }
+  
+  button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+    
+    &:hover {
+      background: #f5f5f5;
+    }
+    
+    &.send-btn-v2 {
+      background: #667eea;
+      color: #fff;
+      
+      &:hover {
+        background: #5568d3;
+      }
+    }
+  }
+}

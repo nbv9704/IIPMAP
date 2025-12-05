@@ -5,8 +5,8 @@
 'use client'
 
 import { Provider } from "react-redux";
-import store from "@/redux/store";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { store } from "@/redux/store";
 
 interface ClientProvidersProps {
   children: React.ReactNode;
@@ -14,10 +14,10 @@ interface ClientProvidersProps {
 
 export default function ClientProviders({ children }: ClientProvidersProps) {
   return (
-    <LanguageProvider>
-      <Provider store={store}>
+    <Provider store={store}>
+      <LanguageProvider>
         {children}
-      </Provider>
-    </LanguageProvider>
+      </LanguageProvider>
+    </Provider>
   );
 }

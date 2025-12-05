@@ -3,13 +3,15 @@
 // ============================================
 // IMPORTS
 // ============================================
-import { useState } from "react"
+import { useState, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import VideoCardItem from "@/components/video/VideoCardItem"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2"
 import { VIDEO_DATA, VIDEOS_PER_PAGE } from "@/constants"
+import { useGetFeaturedVideosQuery } from "@/redux/slice/videoApiSlice"
+import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 
 // ============================================
 // COMPONENT
@@ -23,12 +25,43 @@ function VideoSectionHome() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [slideDirection, setSlideDirection] = useState<"left" | "right">("right")
 
-  const videos = VIDEO_DATA
+  // ✅ RTK Query API call (following VNG004's pattern)
+  const { data: apiFeatured, error: errorFeatured } = useGetFeaturedVideosQuery(8)
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockVideos = VIDEO_DATA
+  
+  // ✅ Determine data source
+  const USE_MOCK = !apiFeatured || errorFeatured
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToCard = (videos: typeof apiFeatured): VideoCardItemProps[] => {
+    if (!videos) return []
+    return videos.map(v => ({
+      id: parseInt(v.id) || 0,
+      title: v.title,
+      location: v.location || "",
+      thumbnail: v.thumbnailUrl || v.videoUrl,
+      badge: v.isFeatured ? "Xu huong" : "Moi",
+      views: `${Math.floor(v.views / 1000)}k`,
+      duration: `00:${v.duration.toString().padStart(2, "0")}`,
+      author: v.title,
+    }))
+  }
+  
+  // ✅ Select data to display
+  const videos = USE_MOCK ? mockVideos : transformApiToCard(apiFeatured)
   const videosPerPage = VIDEOS_PER_PAGE
-  const totalPages = Math.ceil(videos.length / videosPerPage)
-  const currentVideos = videos.slice(videoPage * videosPerPage, (videoPage + 1) * videosPerPage)
+  
+  // 🔍 Debug logging
+  console.log("🎬 VideoSectionHome - Using:", USE_MOCK ? "📦 Mock" : "🌐 API")
+  const totalPages = useMemo(() => Math.ceil(videos.length / videosPerPage), [videos.length, videosPerPage])
+  const currentVideos = useMemo(
+    () => videos.slice(videoPage * videosPerPage, (videoPage + 1) * videosPerPage),
+    [videos, videoPage, videosPerPage]
+  )
 
-  const handleVideoPageChange = (direction: "prev" | "next") => {
+  const handleVideoPageChange = useCallback((direction: "prev" | "next") => {
     if (isAnimating) return
     setIsAnimating(true)
     setSlideDirection(direction === "next" ? "right" : "left")
@@ -41,7 +74,7 @@ function VideoSectionHome() {
       }
       setIsAnimating(false)
     }, 300)
-  }
+  }, [isAnimating, totalPages])
 
   return (
     <section className="video-section-home">

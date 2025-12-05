@@ -3,9 +3,13 @@
 // ============================================
 // IMPORTS
 // ============================================
-import { useMemo } from "react"
+import { useMemo, memo } from "react"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { generateFollowingUsers } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
+import { useGetFollowingUsersQuery } from "@/redux/slice/videoApiSlice"
+import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 
 // ============================================
 // TYPES
@@ -18,7 +22,34 @@ interface FollowingViewProps {
 // COMPONENT
 // ============================================
 const FollowingView = ({ section }: FollowingViewProps) => {
-  const followingUsers = useMemo(() => generateFollowingUsers(), [])
+  const { currentLang } = useLanguage()
+  
+  // ✅ RTK Query API call (following VNG004's pattern)
+  const { data: apiFollowing, error: errorFollowing } = useGetFollowingUsersQuery()
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockFollowing = useMemo(() => generateFollowingUsers(), [])
+  
+  // ✅ Determine data source
+  const USE_MOCK = !apiFollowing || errorFollowing
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToFollowing = (users: typeof apiFollowing) => {
+    if (!users) return []
+    return users.map(user => ({
+      id: parseInt(user.id) || 0,
+      username: user.username,
+      displayName: user.displayName,
+      avatar: user.avatar || user.displayName.charAt(0).toUpperCase(),
+      videos: [] as VideoCardItemProps[], // Will be populated from separate API call
+    }))
+  }
+  
+  // ✅ Select data to display
+  const followingUsers = USE_MOCK ? mockFollowing : transformApiToFollowing(apiFollowing)
+  
+  // 🔍 Debug logging
+  console.log("👥 FollowingView - Using:", USE_MOCK ? "📦 Mock" : "🌐 API")
 
   return (
     <>
@@ -34,7 +65,7 @@ const FollowingView = ({ section }: FollowingViewProps) => {
                 </div>
               </div>
             </div>
-            <button className="video-section-badge">Xem tất cả →</button>
+            <button className="video-section-badge">{getTranslation(currentLang, "video.viewAll")} →</button>
           </div>
           <div className="video-following-cards">
             <VideoHistoryGrid
@@ -48,4 +79,4 @@ const FollowingView = ({ section }: FollowingViewProps) => {
   )
 }
 
-export default FollowingView
+export default memo(FollowingView)

@@ -3,6 +3,10 @@
 // ============================================
 "use client"
 
+import { useLanguageContext } from "@/contexts/LanguageContext"
+import { getTranslation } from "@/utils/translations"
+import { getBadgeTranslationKey, getBadgeClass } from "@/utils/badgeHelpers"
+
 interface CreatorVideo {
   id: number;
   title: string;
@@ -27,6 +31,8 @@ interface VideoCreatorProfileProps {
 // COMPONENT: VideoCreatorProfile
 // ============================================
 const VideoCreatorProfile = ({ videos, creator }: VideoCreatorProfileProps) => {
+  const { currentLang } = useLanguageContext()
+  
   // ========== Stats Data ==========
   const stats = [
     { key: "price", label: creator.price, icon: <MoneyIcon /> },
@@ -74,10 +80,15 @@ const VideoCreatorProfile = ({ videos, creator }: VideoCreatorProfileProps) => {
         <div className="creator-grid-header">
         </div>
         <div className="video-history-grid creator-grid">
-          {videos.map(video => (
+          {videos.map((video) => {
+            const badgeKey = getBadgeTranslationKey(video.badge)
+            const badgeClass = getBadgeClass(video.badge)
+            const translatedBadge = getTranslation(currentLang, badgeKey, video.badge)
+            
+            return (
             <div className="video-card" key={video.id}>
               <div className="video-card-media">
-                <span className="video-card-badge">{video.badge}</span>
+                <span className={`video-card-badge video-card-badge--${badgeClass}`}>{translatedBadge}</span>
                 <video className="video-card-element" poster={video.thumbnail}>
                   <source src={video.thumbnail} type="video/mp4" />
                 </video>
@@ -96,7 +107,8 @@ const VideoCreatorProfile = ({ videos, creator }: VideoCreatorProfileProps) => {
                 </div>
               </div>
             </div>
-          ))}
+          )}
+          )}
         </div>
       </div>
     </div>

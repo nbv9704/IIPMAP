@@ -2,13 +2,14 @@
 // IMPORTS
 // ============================================
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { getAllNews } from "@/data/NewsDataMultilang"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
 import HeroBanner from "./HeroBanner"
 import NewsListHorizontal from "./NewsListHorizontal"
 import MostReadSection from "./MostReadSection"
+import { useGetFeaturedNewsQuery, useGetLatestNewsQuery, useGetMostReadNewsQuery } from "@/redux/slice/newsApiSlice"
 import "@/styles/news.scss"
 import "@/styles/news-detail.scss"
 
@@ -25,7 +26,41 @@ interface NewsAreaProps {
 const NewsArea = ({ category }: NewsAreaProps = {}) => {
    // ========== Hooks ==========
    const { currentLang } = useLanguage()
-   const news_data = getAllNews(currentLang)
+   
+   // ✅ RTK Query API calls (following VNG004's pattern)
+   const { data: apiFeatured, error: errorFeatured } = useGetFeaturedNewsQuery(3)
+   const { data: apiMostRead, error: errorMostRead } = useGetMostReadNewsQuery(3)
+   
+   // ✅ Mock data fallback (for testing phase)
+   const mockNews = useMemo(() => getAllNews(currentLang), [currentLang])
+   
+   // ✅ Determine data source
+   const USE_MOCK_FEATURED = !apiFeatured || errorFeatured
+   const USE_MOCK_MOST_READ = !apiMostRead || errorMostRead
+   
+   // ✅ Transform API data (when backend ready)
+   const transformApiToNews = (news: typeof apiFeatured) => {
+     if (!news) return []
+     return news.map(n => ({
+       id: parseInt(n.id) || 0,
+       title: n.title,
+       image: n.thumbnail || n.images?.[0] || "/assets/images/listing/img_01.jpg",
+       date: new Date(n.publishedAt).toLocaleDateString('vi-VN'),
+       excerpt: n.excerpt,
+       category: n.category,
+       likes: n.likes,
+       comments: n.comments,
+     }))
+   }
+   
+   // ✅ Select data to display
+   const news_data = mockNews // Use mock for main list (will be replaced with API pagination)
+   const heroBannerNews = USE_MOCK_FEATURED ? mockNews.slice(0, 3) : transformApiToNews(apiFeatured)
+   const mostReadNews = USE_MOCK_MOST_READ ? mockNews.slice(0, 3) : transformApiToNews(apiMostRead)
+   
+   // 🔍 Debug logging
+   console.log("📰 NewsArea - Featured:", USE_MOCK_FEATURED ? "📦 Mock" : "🌐 API")
+   console.log("📰 NewsArea - MostRead:", USE_MOCK_MOST_READ ? "📦 Mock" : "🌐 API")
    
    // ========== Constants ==========
    // Map category to filter ID
@@ -59,8 +94,6 @@ const NewsArea = ({ category }: NewsAreaProps = {}) => {
       setCurrentPage(1)
    }, [searchQuery])
    
-   const heroBannerNews = news_data.slice(0, 3)
-
    return (
       <div className="news-area">
          <HeroBanner news={heroBannerNews} />
@@ -122,7 +155,7 @@ const NewsArea = ({ category }: NewsAreaProps = {}) => {
                </button>
             </div>
 
-            <MostReadSection news={news_data.slice(0, 3)} />
+            <MostReadSection news={mostReadNews} />
          </div>
       </div>
    )

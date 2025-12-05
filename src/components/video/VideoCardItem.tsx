@@ -3,10 +3,13 @@
 // ============================================
 // IMPORTS
 // ============================================
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useCallback, memo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { VIDEO_PREVIEW, USER_ID } from "@/constants/video/config"
+import { useLanguageContext } from "@/contexts/LanguageContext"
+import { getTranslation } from "@/utils/translations"
+import { getBadgeTranslationKey, getBadgeClass } from "@/utils/badgeHelpers"
 
 // ============================================
 // TYPES
@@ -38,11 +41,16 @@ const VideoCardItem = ({
    authorAvatar,
    className = "",
 }: VideoCardItemProps) => {
+   const { currentLang } = useLanguageContext()
    const videoRef = useRef<HTMLVideoElement>(null)
    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
    const [isPlaying, setIsPlaying] = useState(false)
+   
+   const badgeKey = getBadgeTranslationKey(badge)
+   const badgeClass = getBadgeClass(badge)
+   const translatedBadge = getTranslation(currentLang, badgeKey, badge)
 
-   const handleMouseEnter = () => {
+   const handleMouseEnter = useCallback(() => {
       if (videoRef.current) {
          timeoutRef.current = setTimeout(() => {
             videoRef.current?.play()
@@ -57,9 +65,9 @@ const VideoCardItem = ({
             }, VIDEO_PREVIEW.DURATION_MS)
          }, VIDEO_PREVIEW.DELAY_MS)
       }
-   }
+   }, [])
 
-   const handleMouseLeave = () => {
+   const handleMouseLeave = useCallback(() => {
       if (timeoutRef.current) {
          clearTimeout(timeoutRef.current)
       }
@@ -69,7 +77,7 @@ const VideoCardItem = ({
          videoRef.current.currentTime = 0
          setIsPlaying(false)
       }
-   }
+   }, [])
 
    // TODO: Thay id bằng postId thực tế từ backend
    const mockPostId = id.toString().padStart(20, '0')
@@ -85,7 +93,7 @@ const VideoCardItem = ({
          onMouseLeave={handleMouseLeave}
       >
          <div className="video-card-media">
-            <div className={`video-card-badge video-card-badge--${badge.toLowerCase().replace(/\s+/g, '-')}`}>{badge}</div>
+            <div className={`video-card-badge video-card-badge--${badgeClass}`}>{translatedBadge}</div>
             <div className="video-card-duration">{duration}</div>
             <video 
                ref={videoRef}
@@ -130,6 +138,7 @@ const VideoCardItem = ({
                      alt={author}
                      width={32}
                      height={32}
+                     loading="lazy"
                      style={{ objectFit: 'cover' }}
                   />
                ) : (
@@ -143,4 +152,4 @@ const VideoCardItem = ({
    )
 }
 
-export default VideoCardItem
+export default memo(VideoCardItem)

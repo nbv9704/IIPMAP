@@ -1,0 +1,21 @@
+# .gitignore.local.example
+# Copy file này thành .gitignore.local để thêm các ignore rules cá nhân
+# File .gitignore.local sẽ không được commit
+
+# Personal scripts
+my-scripts/
+personal-notes/
+
+# IDE specific
+.idea/
+.vscode/settings.json
+
+# Personal documentation
+PERSONAL_*.md
+TODO_*.md
+NOTES_*.md
+
+# Temporary files
+*.tmp
+*.temp
+.scratch/

@@ -18,6 +18,18 @@
   margin: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  
+  // Đảm bảo không bị overflow
+  overflow: visible !important;
+  
+  // Media query cho màn hình nhỏ hơn (Mac, tablet)
+  @media (max-width: 1024px) {
+    max-width: calc(100% - 100px); // Giảm max-width để tránh tràn
+  }
+  
+  @media (max-width: 768px) {
+    max-width: calc(100% - 80px);
+  }
 }
 
 // Post header: Avatar + Title + Tags
@@ -25,6 +37,8 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  flex-wrap: wrap; // Cho phép wrap xuống dòng khi không đủ chỗ
+  max-width: 100%; // Đảm bảo không tràn
 }
 
 .video-left-actions .video-user-avatar-wrapper {
@@ -39,6 +53,8 @@
   gap: 6px;
   padding-top: 4px;
   max-width: 300px;
+  flex: 1; // Cho phép co giãn
+  min-width: 0; // Cho phép shrink nhỏ hơn content
 }
 
 .video-post-title {
@@ -61,7 +77,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  max-width: 260px;
+  max-width: 100%; // Thay đổi từ 260px sang 100%
+  word-break: break-word; // Cho phép break word nếu quá dài
 
   &:hover {
     opacity: 0.85;
@@ -126,10 +143,12 @@
 .video-left-actions .video-actions-main {
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
+  align-items: flex-start !important; // Thay đổi từ center sang flex-start
   gap: 20px !important;
   padding: 0 !important;
   background: transparent !important;
+  width: 100%; // Đảm bảo full width
+  max-width: 100%; // Không tràn
 }
 
 .video-left-actions .action-btn {

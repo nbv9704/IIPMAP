@@ -4,6 +4,8 @@
 // IMPORTS
 // ============================================
 import { AiOutlineInfoCircle } from "react-icons/ai"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -28,13 +30,15 @@ const ChatHeader = ({
   setShowPinnedPopup,
   setShowFilesPopup,
 }: ChatHeaderProps) => {
+  const { currentLang } = useLanguage()
+  
   return (
     <div className="video-chat-header">
       <div className="video-chat-user">
         <div className="video-chat-avatar">{conversation.avatar}</div>
         <div className="video-chat-user-info">
           <h4>{conversation.user}</h4>
-          <span>Đang hoạt động</span>
+          <span>{getTranslation(currentLang, "video.active")}</span>
         </div>
       </div>
       <div className="video-chat-menu-wrapper">
@@ -57,7 +61,7 @@ const ChatHeader = ({
                   setShowChatMenu(false)
                 }}
               >
-                Xem trang cá nhân
+                {getTranslation(currentLang, "video.viewProfile")}
               </button>
               <div className="video-chat-menu-divider" />
               {pinnedMessage && (
@@ -67,7 +71,7 @@ const ChatHeader = ({
                     setShowChatMenu(false)
                   }}
                 >
-                  Xem tin nhắn đã ghim
+                  {getTranslation(currentLang, "video.viewPinnedMessages")}
                 </button>
               )}
               <button
@@ -76,7 +80,7 @@ const ChatHeader = ({
                   setShowChatMenu(false)
                 }}
               >
-                File, phương tiện và liên kết
+                {getTranslation(currentLang, "video.filesMediaLinks")}
               </button>
               <div className="video-chat-menu-divider" />
               <button
@@ -86,7 +90,7 @@ const ChatHeader = ({
                 }}
                 className="video-chat-menu-danger"
               >
-                Xóa trò chuyện
+                {getTranslation(currentLang, "video.deleteConversation")}
               </button>
             </div>
           </>

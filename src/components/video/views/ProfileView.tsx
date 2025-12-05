@@ -10,6 +10,10 @@ import { HiLocationMarker } from "react-icons/hi"
 import { BiMoney, BiTimeFive } from "react-icons/bi"
 import { TbRulerMeasure, TbMountain } from "react-icons/tb"
 import { generateFeaturedVideos } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
+import { useGetUserProfileQuery, useGetVideosByUserQuery } from "@/redux/slice/videoApiSlice"
+import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 
 // ============================================
 // TYPES
@@ -23,7 +27,39 @@ interface ProfileViewProps {
 // COMPONENT
 // ============================================
 const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
-  const featuredVideos = useMemo(() => generateFeaturedVideos(), [])
+  const { currentLang } = useLanguage()
+  
+  // ✅ RTK Query API calls (following VNG004's pattern)
+  // TODO: Get actual userId from auth/context
+  const userId = "current-user-id"
+  const { data: apiProfile, error: errorProfile } = useGetUserProfileQuery(userId)
+  const { data: apiVideos, error: errorVideos } = useGetVideosByUserQuery(userId)
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockVideos = useMemo(() => generateFeaturedVideos(), [])
+  
+  // ✅ Determine data source
+  const USE_MOCK_VIDEOS = !apiVideos || errorVideos
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToCard = (videos: typeof apiVideos): VideoCardItemProps[] => {
+    if (!videos) return []
+    return videos.map(v => ({
+      id: parseInt(v.id) || 0,
+      title: v.title,
+      location: v.location || "",
+      thumbnail: v.thumbnailUrl || v.videoUrl,
+      badge: v.isFeatured ? "Xu huong" : "Moi",
+      views: `${Math.floor(v.views / 1000)}k`,
+      duration: `00:${v.duration.toString().padStart(2, "0")}`,
+    }))
+  }
+  
+  // ✅ Select data to display
+  const featuredVideos = USE_MOCK_VIDEOS ? mockVideos : transformApiToCard(apiVideos)
+  
+  // 🔍 Debug logging
+  console.log("👤 ProfileView - Using:", USE_MOCK_VIDEOS ? "📦 Mock" : "🌐 API")
 
   return (
     <div className="video-profile-layout">
@@ -44,10 +80,10 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             {isOwnProfile ? (
               <>
                 <button type="button" className="video-primary-btn">
-                  Chỉnh sửa trang cá nhân
+                  {getTranslation(currentLang, "video.editProfile")}
                 </button>
                 <button type="button" className="video-secondary-btn">
-                  Xem bài viết
+                  {getTranslation(currentLang, "video.viewPost")}
                 </button>
                 <button type="button" className="video-share-btn" aria-label="Share">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -77,13 +113,13 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             ) : (
               <>
                 <button type="button" className="video-primary-btn">
-                  Follow
+                  {getTranslation(currentLang, "video.followButton")}
                 </button>
                 <button type="button" className="video-secondary-btn">
-                  Message
+                  {getTranslation(currentLang, "video.message")}
                 </button>
                 <button type="button" className="video-outline-btn">
-                  Xem bài viết
+                  {getTranslation(currentLang, "video.viewPost")}
                 </button>
                 <button type="button" className="video-share-btn" aria-label="Share">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -129,7 +165,7 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             </div>
             <div className="video-profile-meta-item">
               <TbMountain />
-              <span>Quỹ đất: Còn</span>
+              <span>{getTranslation(currentLang, "video.landFund")}</span>
             </div>
             <div className="video-profile-meta-item">
               <BiTimeFive />
