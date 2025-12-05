@@ -3,7 +3,7 @@
 > Dự án Next.js 14 App Router với tối ưu SSR và kiến trúc clean code
 
 **Trạng thái**: ✅ Sẵn sàng Production  
-**Cập nhật**: 03/12/2025
+**Cập nhật**: 06/12/2025
 
 ---
 
@@ -100,6 +100,7 @@ Build Status: ✅ Thành công (zero errors)
 - ✅ Dynamic imports cho video views
 - ✅ SSG cho trang about-us
 - ✅ ISR cho trang news detail
+- ✅ Loading spinners đẹp cho video routes
 - ✅ Đã xóa 67 packages không dùng
 
 ---
@@ -109,10 +110,11 @@ Build Status: ✅ Thành công (zero errors)
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: SCSS + Tailwind CSS + Bootstrap
-- **State**: Redux Toolkit
+- **State**: Redux Toolkit + RTK Query
 - **Icons**: React Icons + Lucide React
 - **Forms**: React Hook Form + Yup
-- **i18n**: Custom Language Context
+- **i18n**: Custom Language Context (5 languages)
+- **API**: RTK Query với hybrid fallback pattern
 
 ---
 
@@ -154,6 +156,7 @@ Xem [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) để biết cấu trúc chi 
 - ✅ Server Component mặc định
 - ✅ Dùng next/image cho hình ảnh
 - ✅ Dynamic import cho components nặng
+- ✅ Thêm loading states cho async operations
 - ✅ Không dùng magic numbers (dùng constants)
 - ✅ Test build trước khi commit
 
@@ -163,6 +166,45 @@ npm run build        # Đảm bảo build thành công
 npm run lint         # Kiểm tra linting
 # Kiểm tra TypeScript errors trong IDE
 ```
+
+---
+
+## 🎨 Loading Components
+
+### Reusable Loading Spinners:
+
+**LoadingSpinner** (Tổng quát)
+```tsx
+import LoadingSpinner from '@/components/common/LoadingSpinner'
+
+<LoadingSpinner 
+  text="Loading..." 
+  size="medium"  // 'small' | 'medium' | 'large'
+  className="custom-class"
+/>
+```
+
+**VideoLoadingSpinner** (Cho video routes)
+```tsx
+import VideoLoadingSpinner from '@/components/video/VideoLoadingSpinner'
+
+<VideoLoadingSpinner />
+// Hiển thị: "Loading videos..." với medium size
+```
+
+**NavbarLoadingSpinner** (Cho navbar buttons)
+```tsx
+import NavbarLoadingSpinner from '@/components/common/NavbarLoadingSpinner'
+
+<NavbarLoadingSpinner text="Loading..." />
+// Compact design cho navbar
+```
+
+### Animation:
+- 3 vòng tròn xoay với màu gradient xanh (#0051CB → #4A90E2 → #7FB3FF)
+- Pulse animation cho text
+- Smooth transitions
+- Responsive design
 
 ---
 
