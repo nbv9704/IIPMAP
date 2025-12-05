@@ -5,6 +5,7 @@ import { memo } from "react"
 
 interface OptimizedImageProps extends Omit<ImageProps, 'loading'> {
   eager?: boolean
+  alt: string // Make alt required
 }
 
 const OptimizedImage = ({ eager = false, ...props }: OptimizedImageProps) => {

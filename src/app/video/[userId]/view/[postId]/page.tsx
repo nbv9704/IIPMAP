@@ -11,5 +11,5 @@ interface VideoDetailPageProps {
 }
 
 export default function VideoDetailPage({ params }: VideoDetailPageProps) {
-  return <VideoDetailPageClient userId={params.userId} postId={params.postId} />
+  return <VideoDetailPageClient />
 }
