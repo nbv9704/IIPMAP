@@ -14,10 +14,10 @@ interface ClientProvidersProps {
 
 export default function ClientProviders({ children }: ClientProvidersProps) {
   return (
-    <LanguageProvider>
-      <Provider store={store}>
+    <Provider store={store}>
+      <LanguageProvider>
         {children}
-      </Provider>
-    </LanguageProvider>
+      </LanguageProvider>
+    </Provider>
   );
 }
