@@ -15,23 +15,25 @@ import "@/styles/video.scss"
 // ============================================
 // DYNAMIC IMPORTS (Code Splitting)
 // ============================================
+import VideoLoadingSpinner from "@/components/video/VideoLoadingSpinner"
+
 const ExploreView = dynamic(() => import("@/components/video/views/ExploreView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 const SavedVideosView = dynamic(() => import("@/components/video/views/SavedVideosView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 const FollowingView = dynamic(() => import("@/components/video/views/FollowingView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 const NotificationsView = dynamic(() => import("@/components/video/views/NotificationsView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 const ProfileView = dynamic(() => import("@/components/video/views/ProfileView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 const MessagesView = dynamic(() => import("@/components/video/views/MessagesView"), {
-  loading: () => <div className="video-loading">Loading...</div>
+  loading: () => <VideoLoadingSpinner />
 })
 
 // ============================================
