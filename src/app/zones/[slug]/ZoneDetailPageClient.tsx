@@ -73,9 +73,12 @@ const ZoneDetailPageClient = ({ params }: ZoneDetailPageClientProps) => {
   }
 
   const getLocationName = (address: string) => {
-    const parts = address.split(/[,?]/)
-    const lastPart = parts[parts.length - 1].trim()
-    return lastPart.replace(/^(t?nh|th�nh ph?|tp\.|tp)\s+/i, "").trim()
+    // Extract only the main location (province/city) from full address
+    // Example: "Phường Tam Sơn, tỉnh Bắc Ninh" → "Bắc Ninh"
+    const parts = address.split(/[,、]/).map(p => p.trim())
+    const lastPart = parts[parts.length - 1]
+    // Remove prefixes like "tỉnh", "thành phố", "tp.", "tp", "県", "市", "省"
+    return lastPart.replace(/^(tỉnh|thành phố|tp\.|tp|県|市|省)\s*/i, "").trim()
   }
 
   const getShortAddress = (address: string) => {
