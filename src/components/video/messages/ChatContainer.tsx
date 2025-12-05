@@ -4,12 +4,13 @@
 // IMPORTS
 // ============================================
 import { useState, useMemo, useEffect } from "react"
-import { AiOutlineInfoCircle, AiOutlinePaperClip } from "react-icons/ai"
 import { generateChatMessages } from "@/constants/video/mockChatData"
 import { CHAT } from "@/constants/video/config"
 import ChatHeader from "@/components/video/messages/ChatHeader"
 import ChatMessages from "@/components/video/messages/ChatMessages"
 import ChatInput from "@/components/video/messages/ChatInput"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -38,6 +39,7 @@ interface ChatMessage {
 // COMPONENT
 // ============================================
 const ChatContainer = ({ conversation, conversationId }: ChatContainerProps) => {
+  const { currentLang } = useLanguage()
   const [messageInput, setMessageInput] = useState("")
   const [replyingTo, setReplyingTo] = useState<ChatMessage | null>(null)
   const [showChatMenu, setShowChatMenu] = useState(false)
@@ -109,12 +111,76 @@ const ChatContainer = ({ conversation, conversationId }: ChatContainerProps) => 
         setShowFilesPopup={setShowFilesPopup}
       />
 
-      {/* TODO: Implement popups - Files, Media, Links, Pinned Messages */}
+      {/* Files/Media/Links Popup */}
       {showFilesPopup && (
-        <div>Files Popup - TODO: Implement</div>
+        <>
+          <div className="video-popup-overlay" onClick={() => setShowFilesPopup(false)} />
+          <div className="video-files-popup">
+            <div className="video-popup-header">
+              <h3>{getTranslation(currentLang, "video.filesMediaLinks")}</h3>
+              <button onClick={() => setShowFilesPopup(false)}>✕</button>
+            </div>
+            <div className="video-popup-tabs">
+              <button 
+                className={filesPopupTab === 'files' ? 'active' : ''}
+                onClick={() => setFilesPopupTab('files')}
+              >
+                {getTranslation(currentLang, "video.files")}
+              </button>
+              <button 
+                className={filesPopupTab === 'media' ? 'active' : ''}
+                onClick={() => setFilesPopupTab('media')}
+              >
+                {getTranslation(currentLang, "video.media")}
+              </button>
+              <button 
+                className={filesPopupTab === 'links' ? 'active' : ''}
+                onClick={() => setFilesPopupTab('links')}
+              >
+                {getTranslation(currentLang, "video.links")}
+              </button>
+            </div>
+            <div className="video-popup-content">
+              <p style={{ textAlign: 'center', padding: '40px', color: '#999' }}>
+                {filesPopupTab === 'files' && getTranslation(currentLang, "video.noFiles")}
+                {filesPopupTab === 'media' && getTranslation(currentLang, "video.noMedia")}
+                {filesPopupTab === 'links' && getTranslation(currentLang, "video.noLinks")}
+              </p>
+            </div>
+          </div>
+        </>
       )}
+      
+      {/* Pinned Messages Popup */}
       {showPinnedPopup && (
-        <div>Pinned Messages Popup - TODO: Implement</div>
+        <>
+          <div className="video-popup-overlay" onClick={() => setShowPinnedPopup(false)} />
+          <div className="video-pinned-popup">
+            <div className="video-popup-header">
+              <h3>{getTranslation(currentLang, "video.pinnedMessages")}</h3>
+              <button onClick={() => setShowPinnedPopup(false)}>✕</button>
+            </div>
+            <div className="video-popup-content">
+              {pinnedMessage ? (
+                <div className="video-pinned-message-item">
+                  <div className="video-chat-message-bubble">
+                    <p>{pinnedMessage.text}</p>
+                    <span className="video-chat-message-time">
+                      {pinnedMessage.timestamp.toLocaleTimeString("vi-VN", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <p style={{ textAlign: 'center', padding: '40px', color: '#999' }}>
+                  {getTranslation(currentLang, "video.noPinnedMessages")}
+                </p>
+              )}
+            </div>
+          </div>
+        </>
       )}
 
       <ChatMessages

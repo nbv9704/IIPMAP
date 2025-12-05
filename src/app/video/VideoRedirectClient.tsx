@@ -2,22 +2,11 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
-// Mock data - danh sách video IDs có sẵn
-const MOCK_VIDEOS = [
-  { userId: "@kcn_tien_son", postId: "00000000000000000001" },
-  { userId: "@kcn_vsip", postId: "00000000000000000002" },
-  { userId: "@kcn_my_phuoc", postId: "00000000000000000003" },
-  { userId: "@kcn_long_hau", postId: "00000000000000000004" },
-  { userId: "@kcn_tan_binh", postId: "00000000000000000005" },
-]
-
 const VideoRedirectClient = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * MOCK_VIDEOS.length)
-    const randomVideo = MOCK_VIDEOS[randomIndex]
-    router.replace(`/video/${randomVideo.userId}/view/${randomVideo.postId}`)
+    router.replace("/video/explore")
   }, [router])
 
   return (
@@ -43,7 +32,7 @@ const VideoRedirectClient = () => {
           }}
         />
         <p style={{ color: "#4f5b8a", fontFamily: "Montserrat, sans-serif" }}>
-          Đang tải video...
+          Loading videos...
         </p>
       </div>
       <style jsx>{`

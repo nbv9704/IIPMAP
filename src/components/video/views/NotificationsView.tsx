@@ -6,6 +6,8 @@
 import { useState, useEffect, useMemo } from "react"
 import { PAGINATION } from "@/constants/video/config"
 import { generateNotifications } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -16,6 +18,7 @@ type NotificationType = "all" | "like" | "comment" | "message" | "follower"
 // COMPONENT
 // ============================================
 const NotificationsView = () => {
+  const { currentLang } = useLanguage()
   const [notificationFilter, setNotificationFilter] = useState<NotificationType>("all")
   const [notificationPage, setNotificationPage] = useState(1)
 
@@ -50,7 +53,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("all")}
           >
-            Tất cả hoạt động
+            {getTranslation(currentLang, "video.allActivity")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -58,7 +61,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("like")}
           >
-            Lượt thích
+            {getTranslation(currentLang, "video.likes")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -66,7 +69,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("comment")}
           >
-            Bình luận
+            {getTranslation(currentLang, "video.comments")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -74,7 +77,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("message")}
           >
-            Tin nhắn mới
+            {getTranslation(currentLang, "video.newMessages")}
           </button>
           <button
             className={`video-notification-filter ${
@@ -82,7 +85,7 @@ const NotificationsView = () => {
             }`}
             onClick={() => setNotificationFilter("follower")}
           >
-            Người theo dõi
+            {getTranslation(currentLang, "video.followers")}
           </button>
         </div>
         <button
@@ -91,7 +94,7 @@ const NotificationsView = () => {
             console.log("Mark all as read")
           }}
         >
-          Đánh dấu đã đọc tất cả
+          {getTranslation(currentLang, "video.markAllRead")}
         </button>
       </div>
 
@@ -104,7 +107,7 @@ const NotificationsView = () => {
             <div className="video-notification-avatar">{notification.user.charAt(0)}</div>
             <div className="video-notification-content">
               <p>
-                <strong>{notification.user}</strong> {notification.action}
+                <strong>{notification.user}</strong> {getTranslation(currentLang, notification.actionKey)}
                 {notification.video && (
                   <>
                     {" "}
@@ -114,7 +117,9 @@ const NotificationsView = () => {
                   </>
                 )}
               </p>
-              <span className="video-notification-time">{notification.time}</span>
+              <span className="video-notification-time">
+                {notification.timeValue} {getTranslation(currentLang, notification.timeUnit)}
+              </span>
             </div>
             {!notification.read && <div className="video-notification-dot" />}
           </div>

@@ -4,6 +4,8 @@
 // IMPORTS
 // ============================================
 import { useSearchWithSuggestions } from "@/hooks/video/useSearchWithSuggestions"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // CONSTANTS
@@ -25,6 +27,7 @@ const EXPLORE_ALL = [
 // COMPONENT
 // ============================================
 const ExploreSearchBar = () => {
+  const { currentLang } = useLanguage()
   const {
     query,
     setQuery,
@@ -48,7 +51,7 @@ const ExploreSearchBar = () => {
           <input
             type="text"
             className="vex-search__input"
-            placeholder="Tìm kiếm"
+            placeholder={getTranslation(currentLang, "video.searchPlaceholder")}
             value={query}
             onChange={(e) => {
               setQuery(e.target.value)
@@ -78,7 +81,7 @@ const ExploreSearchBar = () => {
             <div className="vex-search__dropdown">
               {recentResults.length > 0 && (
                 <div className="vex-search__section">
-                  <div className="vex-search__label">Recent Searches</div>
+                  <div className="vex-search__label">{getTranslation(currentLang, "video.recentSearches")}</div>
                   {recentResults.map((q, i) => {
                     const highlighted = highlightMatch(q, query)
                     return (
@@ -122,7 +125,7 @@ const ExploreSearchBar = () => {
               {suggestions.length > 0 && (
                 <div className="vex-search__section">
                   {recentResults.length > 0 && <div className="vex-search__divider" />}
-                  <div className="vex-search__label">Gợi ý</div>
+                  <div className="vex-search__label">{getTranslation(currentLang, "video.suggestions")}</div>
                   {suggestions.map((item, i) => {
                     const highlighted = highlightMatch(item.q, query)
                     return (

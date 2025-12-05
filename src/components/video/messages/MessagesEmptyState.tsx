@@ -1,9 +1,17 @@
 "use client"
 
 // ============================================
+// IMPORTS
+// ============================================
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
+
+// ============================================
 // COMPONENT
 // ============================================
 const MessagesEmptyState = () => {
+  const { currentLang } = useLanguage()
+  
   return (
     <div className="video-messages-empty-state">
       <div className="video-messages-empty-icon-large">
@@ -17,8 +25,8 @@ const MessagesEmptyState = () => {
           />
         </svg>
       </div>
-      <h3>Tin nhắn của bạn</h3>
-      <p>Chọn một cuộc trò chuyện để bắt đầu</p>
+      <h3>{getTranslation(currentLang, "video.yourMessages")}</h3>
+      <p>{getTranslation(currentLang, "video.selectConversation")}</p>
     </div>
   )
 }

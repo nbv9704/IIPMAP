@@ -4,6 +4,8 @@
 // IMPORTS
 // ============================================
 import { AiOutlinePaperClip } from "react-icons/ai"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -37,6 +39,8 @@ const ChatInput = ({
   conversation,
   onSendMessage,
 }: ChatInputProps) => {
+  const { currentLang } = useLanguage()
+  
   return (
     <div className="video-chat-input-wrapper">
       {replyingTo && (
@@ -44,8 +48,8 @@ const ChatInput = ({
           <div className="video-chat-reply-content">
             <div className="video-chat-reply-header">
               <span className="video-chat-reply-label">
-                Đang trả lời{" "}
-                {replyingTo.sender === "me" ? "chính mình" : conversation.user}
+                {getTranslation(currentLang, "video.replyingTo")}{" "}
+                {replyingTo.sender === "me" ? getTranslation(currentLang, "video.myself") : conversation.user}
               </span>
             </div>
             <p className="video-chat-reply-text">{replyingTo.text}</p>
@@ -75,7 +79,7 @@ const ChatInput = ({
         </button>
         <input
           type="text"
-          placeholder="Nhập tin nhắn..."
+          placeholder={getTranslation(currentLang, "video.typeMessage")}
           value={messageInput}
           onChange={(e) => setMessageInput(e.target.value)}
           onKeyPress={(e) => {

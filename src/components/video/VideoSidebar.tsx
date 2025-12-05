@@ -5,6 +5,8 @@
 // ============================================
 import Link from "next/link"
 import { useState, useRef, useEffect, useCallback, useMemo, memo } from "react"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -17,15 +19,14 @@ interface VideoSidebarProps {
 // CONSTANTS
 // ============================================
 
-// ========== Menu Items ==========
-const menuItems = [
-  { id: 1, label: "Khám phá", slug: "explore" },
-  { id: 2, label: "Đang theo dõi", slug: "following" },
-  { id: 3, label: "Xem cùng bản đồ", slug: "map-view" },
-  { id: 4, label: "Video đã lưu", slug: "saved" },
-  { id: 5, label: "Tin nhắn", slug: "messages" },
-  { id: 6, label: "Thông báo", slug: "notifications" },
-  { id: 7, label: "Hồ sơ cá nhân", slug: "profile" },
+// ========== Menu Items Base Structure ==========
+const menuItemsBase = [
+  { id: 1, labelKey: "video.explore", slug: "explore" },
+  { id: 2, labelKey: "video.following", slug: "following" },
+  { id: 3, labelKey: "video.saved", slug: "saved" },
+  { id: 4, labelKey: "video.messages", slug: "messages" },
+  { id: 5, labelKey: "video.notifications", slug: "notifications" },
+  { id: 6, labelKey: "video.profile", slug: "profile" },
 ]
 
 // ========== Search Mock Data ==========
@@ -47,6 +48,7 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
   // ============================================
   // STATE & REFS
   // ============================================
+  const { currentLang } = useLanguage()
   const hasUnreadNotifications = true
   
   const [query, setQuery] = useState("")
@@ -56,6 +58,15 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
   // ============================================
   // COMPUTED VALUES
   // ============================================
+  
+  // ========== Menu Items with Translations ==========
+  const menuItems = useMemo(
+    () => menuItemsBase.map(item => ({
+      ...item,
+      label: getTranslation(currentLang, item.labelKey)
+    })),
+    [currentLang]
+  )
   
   // ========== Filter Recent Searches ==========
   const recentResults = useMemo(
@@ -136,7 +147,7 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
               <input
                 type="text"
                 className="vsb-search__input"
-                placeholder="Tìm kiếm"
+                placeholder={getTranslation(currentLang, "common.search")}
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value)
@@ -158,7 +169,7 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
                 <div className="vsb-search__dropdown">
                   {recentResults.length > 0 && (
                     <div className="vsb-search__section">
-                      <div className="vsb-search__label">Recent Searches</div>
+                      <div className="vsb-search__label">{getTranslation(currentLang, "video.recentSearches")}</div>
                       {recentResults.map((item, i) => (
                         <button key={i} className="vsb-search__item" onClick={() => handleSelect(item)}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -174,7 +185,7 @@ const VideoSidebar = ({ activeSlug }: VideoSidebarProps) => {
                   {suggestions.length > 0 && (
                     <div className="vsb-search__section">
                       {recentResults.length > 0 && <div className="vsb-search__divider" />}
-                      <div className="vsb-search__label">Gợi ý</div>
+                      <div className="vsb-search__label">{getTranslation(currentLang, "video.suggestions")}</div>
                       {suggestions.map((item, i) => (
                         <button key={i} className="vsb-search__item" onClick={() => handleSelect(item.q)}>
                           {item.q.startsWith("@") ? (
