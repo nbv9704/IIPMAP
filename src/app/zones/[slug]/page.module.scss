@@ -303,7 +303,7 @@
 .actionButtons {
   display: flex;
   gap: 15px;
-  padding: 0 280px;
+  justify-content: center;
   margin-bottom: 40px;
 
   button {
