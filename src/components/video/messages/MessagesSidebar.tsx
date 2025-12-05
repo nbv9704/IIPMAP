@@ -4,6 +4,8 @@
 // IMPORTS
 // ============================================
 import { useState } from "react"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -31,12 +33,13 @@ const MessagesSidebar = ({
   selectedConversation,
   onSelectConversation,
 }: MessagesSidebarProps) => {
+  const { currentLang } = useLanguage()
   const [showMessagesMenu, setShowMessagesMenu] = useState(false)
 
   return (
     <div className="video-messages-sidebar">
       <div className="video-messages-sidebar-header">
-        <h3>Tin nhắn</h3>
+        <h3>{getTranslation(currentLang, "video.messages")}</h3>
         <div className="video-messages-menu-wrapper">
           <button
             className="video-messages-menu-btn"
@@ -61,7 +64,7 @@ const MessagesSidebar = ({
                     setShowMessagesMenu(false)
                   }}
                 >
-                  Đánh dấu tất cả đã đọc
+                  {getTranslation(currentLang, "video.markAllAsRead")}
                 </button>
               </div>
             </>

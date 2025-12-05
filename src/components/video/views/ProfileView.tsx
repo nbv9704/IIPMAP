@@ -10,6 +10,8 @@ import { HiLocationMarker } from "react-icons/hi"
 import { BiMoney, BiTimeFive } from "react-icons/bi"
 import { TbRulerMeasure, TbMountain } from "react-icons/tb"
 import { generateFeaturedVideos } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -23,6 +25,7 @@ interface ProfileViewProps {
 // COMPONENT
 // ============================================
 const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
+  const { currentLang } = useLanguage()
   const featuredVideos = useMemo(() => generateFeaturedVideos(), [])
 
   return (
@@ -44,10 +47,10 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             {isOwnProfile ? (
               <>
                 <button type="button" className="video-primary-btn">
-                  Chỉnh sửa trang cá nhân
+                  {getTranslation(currentLang, "video.editProfile")}
                 </button>
                 <button type="button" className="video-secondary-btn">
-                  Xem bài viết
+                  {getTranslation(currentLang, "video.viewPost")}
                 </button>
                 <button type="button" className="video-share-btn" aria-label="Share">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -77,13 +80,13 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             ) : (
               <>
                 <button type="button" className="video-primary-btn">
-                  Follow
+                  {getTranslation(currentLang, "video.followButton")}
                 </button>
                 <button type="button" className="video-secondary-btn">
-                  Message
+                  {getTranslation(currentLang, "video.message")}
                 </button>
                 <button type="button" className="video-outline-btn">
-                  Xem bài viết
+                  {getTranslation(currentLang, "video.viewPost")}
                 </button>
                 <button type="button" className="video-share-btn" aria-label="Share">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -129,7 +132,7 @@ const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
             </div>
             <div className="video-profile-meta-item">
               <TbMountain />
-              <span>Quỹ đất: Còn</span>
+              <span>{getTranslation(currentLang, "video.landFund")}</span>
             </div>
             <div className="video-profile-meta-item">
               <BiTimeFive />

@@ -27,6 +27,9 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
   const volumeSliderRef = useRef<HTMLDivElement>(null)
   const [isDraggingVolume, setIsDraggingVolume] = useState(false)
   const [showTransitionIcon, setShowTransitionIcon] = useState(false)
+  const [showCopiedToast, setShowCopiedToast] = useState(false)
+  const progressBarRef = useRef<HTMLDivElement>(null)
+  const [isDraggingProgress, setIsDraggingProgress] = useState(false)
 
   // Toggle play/pause
   const togglePlay = () => {
@@ -128,7 +131,12 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href)
     setContextMenu(null)
-    alert('Link copied!')
+    setShowCopiedToast(true)
+    
+    // Hide toast after 2 seconds
+    setTimeout(() => {
+      setShowCopiedToast(false)
+    }, 2000)
   }
 
   // Close context menu
@@ -170,14 +178,46 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
 
   // Seek video
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (videoRef.current) {
-      const rect = e.currentTarget.getBoundingClientRect()
+    if (videoRef.current && progressBarRef.current) {
+      const rect = progressBarRef.current.getBoundingClientRect()
       const clickX = e.clientX - rect.left
-      const percentage = clickX / rect.width
+      const percentage = Math.max(0, Math.min(1, clickX / rect.width))
       const newTime = percentage * videoRef.current.duration
       videoRef.current.currentTime = newTime
     }
   }
+
+  const handleProgressMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDraggingProgress(true)
+    handleProgressClick(e)
+  }
+
+  // Handle progress drag
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingProgress || !videoRef.current || !progressBarRef.current) return
+      
+      const rect = progressBarRef.current.getBoundingClientRect()
+      const clickX = e.clientX - rect.left
+      const percentage = Math.max(0, Math.min(1, clickX / rect.width))
+      const newTime = percentage * videoRef.current.duration
+      videoRef.current.currentTime = newTime
+    }
+
+    const handleMouseUp = () => {
+      setIsDraggingProgress(false)
+    }
+
+    if (isDraggingProgress) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [isDraggingProgress])
 
   // Format time (mm:ss)
   const formatTime = (seconds: number) => {
@@ -199,8 +239,16 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
   }, [])
 
   return (
-    <div className="tiktok-video-player" onContextMenu={handleContextMenu}>
-      <video
+    <>
+      {/* Copied Toast Notification */}
+      {showCopiedToast && (
+        <div className="copied-toast">
+          Copied
+        </div>
+      )}
+      
+      <div className="tiktok-video-player" onContextMenu={handleContextMenu}>
+        <video
         ref={videoRef}
         className="tiktok-video"
         poster={poster || videoUrl}
@@ -221,7 +269,13 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
           className="video-context-menu"
           style={{ top: contextMenu.y, left: contextMenu.x }}
         >
-          <button onClick={handleCopyLink}>📋 Copy Link</button>
+          <button onClick={handleCopyLink}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            Copy link
+          </button>
         </div>
       )}
 
@@ -249,9 +303,15 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
       {/* Bottom controls */}
       <div className="tiktok-video-controls">
         {/* Progress bar */}
-        <div className="progress-bar-container" onClick={handleProgressClick}>
+        <div 
+          ref={progressBarRef}
+          className="progress-bar-container" 
+          onMouseDown={handleProgressMouseDown}
+        >
           <div className="progress-bar-bg">
-            <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
+            <div className="progress-bar-fill" style={{ width: `${progress}%` }}>
+              <div className="progress-bar-thumb" />
+            </div>
           </div>
         </div>
 
@@ -314,7 +374,8 @@ function VideoPlayerTikTok({ videoUrl, poster, title }: VideoPlayerTikTokProps) 
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 

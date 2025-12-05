@@ -9,7 +9,7 @@ export const generateFeaturedVideos = (): VideoCardItemProps[] =>
     title: "Khu công nghiệp Tiên Sơn - Bắc Ninh",
     location: idx % 2 === 0 ? "Bắc Ninh" : "Hà Nội",
     thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-    badge: idx === 0 ? "Xu hướng" : "Mới",
+    badge: idx === 0 ? "Xu huong" : "Moi",
     views: `${28 + idx}k`,
     duration: formatDuration(14 + idx),
   }))
@@ -20,7 +20,7 @@ export const generateDailyVideos = (): VideoCardItemProps[] =>
     title: "Video mới từ IIPMap.AI",
     location: idx % 2 === 0 ? "Hà Nội" : "Bắc Giang",
     thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-    badge: idx % 3 === 0 ? "Hot" : "Hàng ngày",
+    badge: idx % 3 === 0 ? "Hot" : "Hang ngay",
     views: `${12 + idx}k`,
     duration: formatDuration(9 + idx),
   }))
@@ -31,7 +31,7 @@ export const generateSavedVideos = (): VideoCardItemProps[] =>
     title: "Khu công nghiệp Tiên Sơn - Bắc Ninh",
     location: idx % 2 === 0 ? "Bắc Ninh" : "Hải Dương",
     thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-    badge: "Đã lưu",
+    badge: "Da luu",
     views: `${22 + idx}k`,
     duration: formatDuration(12 + idx),
   }))
@@ -47,7 +47,7 @@ export const generateFollowingUsers = () => [
       title: "Video từ KCN Tiên Sơn",
       location: "Bắc Ninh",
       thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-      badge: idx === 0 ? "Mới" : "Hot",
+      badge: idx === 0 ? "Moi" : "Hot",
       views: `${15 + idx}k`,
       duration: formatDuration(20 + idx),
     })),
@@ -62,7 +62,7 @@ export const generateFollowingUsers = () => [
       title: "Video từ KCN VSIP",
       location: "Hải Phòng",
       thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-      badge: idx === 0 ? "Xu hướng" : "Mới",
+      badge: idx === 0 ? "Xu huong" : "Moi",
       views: `${25 + idx}k`,
       duration: formatDuration(15 + idx),
     })),
@@ -77,7 +77,7 @@ export const generateFollowingUsers = () => [
       title: "Video từ KCN Mỹ Phước",
       location: "Bình Dương",
       thumbnail: "/assets/video/khucongnghiepthainguyen.mp4",
-      badge: idx === 0 ? "Hot" : "Hàng ngày",
+      badge: idx === 0 ? "Hot" : "Hang ngay",
       views: `${18 + idx}k`,
       duration: formatDuration(25 + idx),
     })),
@@ -89,20 +89,16 @@ export const generateNotifications = () =>
     id: idx + 1,
     type: ["like", "comment", "message", "follower"][idx % 4],
     user: `Người dùng ${idx + 1}`,
-    action:
+    actionKey:
       idx % 4 === 0
-        ? "đã thích video của bạn"
+        ? "video.likedYourVideo"
         : idx % 4 === 1
-        ? "đã bình luận về video của bạn"
+        ? "video.commentedOnYourVideo"
         : idx % 4 === 2
-        ? "đã gửi tin nhắn cho bạn"
-        : "đã bắt đầu theo dõi bạn",
+        ? "video.sentYouMessage"
+        : "video.startedFollowingYou",
     video: idx % 4 === 0 || idx % 4 === 1 ? `Khu công nghiệp ${idx + 1}` : "",
-    time:
-      idx < 2
-        ? `${idx + 2} giờ trước`
-        : idx < 7
-        ? `${idx - 1} ngày trước`
-        : `${idx - 6} tuần trước`,
+    timeValue: idx < 2 ? idx + 2 : idx < 7 ? idx - 1 : idx - 6,
+    timeUnit: idx < 2 ? "video.hoursAgo" : idx < 7 ? "video.daysAgo" : "video.weeksAgo",
     read: idx > 2,
   }))

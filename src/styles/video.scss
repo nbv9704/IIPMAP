@@ -15,8 +15,8 @@
 // Sections, Profile, Notifications, Messages, Cards, Grids
 @import 'video/video-sections';
 
-// Video detail page (player, nav buttons)
-@import 'video/video-detail';
+// Video detail page (TikTok style)
+@import 'video/video-detail-tiktok';
 
 // TikTok-style custom video player
 @import 'video/video-player-tiktok';
@@ -26,9 +26,3 @@
 
 // Video left actions (avatar, title, tags, contact buttons, hover card)
 @import 'video/video-left-actions';
-
-// Video Detail V2 (new design - alternative version)
-@import 'video/video-detail-v2';
-
-// Video Detail V2 TikTok Style
-@import 'video/video-detail-v2-tiktok';

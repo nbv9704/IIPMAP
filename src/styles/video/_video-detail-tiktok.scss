@@ -22,6 +22,15 @@ $accent-bookmark: #FFD700;
   padding: 0;
 }
 
+// Wrapper for video player + navigation + actions (for easy repositioning)
+.video-player-section-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-left: 30px; // Di chuyển sang phải 20px
+}
+
 .video-player-wrapper-v2 {
   position: relative;
   width: 349px;
@@ -295,117 +304,233 @@ $accent-bookmark: #FFD700;
 }
 
 // =============================================
-// TOP ACTION BUTTONS - Absolute position, ngang hàng với search bar
+// CONTACT ACTIONS DROPDOWN - Fixed to right edge
 // =============================================
-.video-top-actions-v2 {
-  position: absolute;
-  top: 0;
-  left: calc(100% + 60px); // Cách video player 100px về bên phải
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  padding: 0;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
-  z-index: 20;
+.contact-actions-dropdown-wrapper {
+  position: fixed;
+  top: 80px; // Below navbar
+  right: 20px; // Margin from right edge
+  z-index: 100;
 }
 
-.top-action-btn-v2 {
+.contact-actions-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(1, 73, 190, 0.3);
+  transition: all 0.2s ease;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(1, 73, 190, 0.4);
+  }
+}
+
+.contact-actions-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  animation: dropdownSlideDown 0.2s ease;
+}
+
+.dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: left;
+  
+  svg {
+    flex-shrink: 0;
+    stroke: #666;
+  }
+  
+  &:hover {
+    background: #f5f5f5;
+    
+    svg {
+      stroke: #0149BE;
+    }
+  }
+  
+  &.email-item:hover {
+    background: rgba(1, 73, 190, 0.1);
+  }
+  
+  &.schedule-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  &.chat-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+  }
+  
+  &.call-item:hover {
+    background: rgba(76, 175, 80, 0.1);
+  }
+}
+
+@keyframes dropdownSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================
+// SHARE MODAL - Compact horizontal layout
+// =============================================
+.share-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
+  z-index: 10000;
+  // No animation - instant overlay
+}
+
+.share-modal-content {
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 24px 32px 32px;
+  animation: modalSlideUp 0.3s ease;
+}
+
+.share-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.share-close-btn {
+  width: 32px;
+  height: 32px;
   border: none;
-  border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  white-space: nowrap; // Text trong 1 dòng
-
-  svg {
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
+}
 
-  &.email-btn-v2 {
-    min-width: 77px;
-    height: 32px;
-    background: linear-gradient(95.81deg, #0149BE 1.22%, #810CC4 100%);
-    color: #EBF5FF;
-    
-    svg {
-      width: 17px;
-      height: 12px;
-    }
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(1, 73, 190, 0.3);
-    }
-  }
+.share-options-row {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
 
-  &.schedule-btn-v2 {
-    min-width: 134px;
-    height: 33px;
-    background: #FFFFFF;
-    color: #000000;
-    border: 1px solid #e5e7eb;
+.share-option-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
     
-    svg {
-      width: 15px;
-      height: 13px;
-    }
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-      border-color: #0149BE;
-    }
-  }
-
-  &.chat-btn-v2 {
-    min-width: 71px;
-    height: 36px;
-    background: #FFFFFF;
-    color: #000000;
-    border: 1px solid #e5e7eb;
-    
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-      border-color: #0149BE;
-    }
-  }
-
-  &.call-btn-v2 {
-    min-width: 68px;
-    height: 36px;
-    background: #FFFFFF;
-    color: #000000;
-    border: 1px solid #e5e7eb;
-    padding: 10px 20px;
-    
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-      border-color: #0149BE;
+    .share-icon {
+      transform: scale(1.1);
     }
   }
 }
+
+.share-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-option-circle span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================
+// TOP ACTION BUTTONS - Absolute position, ngang hàng với search bar (REMOVED - Now using dropdown)
+// =============================================
+.video-top-actions-v2 {
+  display: none; // Hidden, replaced by dropdown
+}
+
+// Old top-action-btn styles removed - now using dropdown
 
 // =============================================
 // NAVIGATION ARROWS - Up/Down (Mép trái)
@@ -686,7 +811,12 @@ $accent-bookmark: #FFD700;
       &::before {
         content: '×';
         position: absolute;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       
       // Hide checkmark on hover

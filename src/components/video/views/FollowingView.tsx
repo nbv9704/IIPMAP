@@ -6,6 +6,8 @@
 import { useMemo, memo } from "react"
 import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { generateFollowingUsers } from "@/constants/video/mockData"
+import { useLanguage } from "@/hooks/useLanguage"
+import { getTranslation } from "@/utils/translations"
 
 // ============================================
 // TYPES
@@ -18,6 +20,7 @@ interface FollowingViewProps {
 // COMPONENT
 // ============================================
 const FollowingView = ({ section }: FollowingViewProps) => {
+  const { currentLang } = useLanguage()
   const followingUsers = useMemo(() => generateFollowingUsers(), [])
 
   return (
@@ -34,7 +37,7 @@ const FollowingView = ({ section }: FollowingViewProps) => {
                 </div>
               </div>
             </div>
-            <button className="video-section-badge">Xem tất cả →</button>
+            <button className="video-section-badge">{getTranslation(currentLang, "video.viewAll")} →</button>
           </div>
           <div className="video-following-cards">
             <VideoHistoryGrid
