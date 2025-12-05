@@ -1,5 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
+import { industrialAreaApiSlice } from "./slice/industrialAreaApiSlice";
 
 export const rootReducer = combineReducers({
-    // Thêm các slice reducer ở đây
+    [industrialAreaApiSlice.reducerPath]: industrialAreaApiSlice.reducer
 });
