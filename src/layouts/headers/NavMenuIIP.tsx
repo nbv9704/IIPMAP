@@ -4,9 +4,8 @@
 "use client";
 import { useTranslatedMenu } from "@/hooks/useTranslatedMenu";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import NavbarLoadingSpinner from "@/components/common/NavbarLoadingSpinner";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 // ============================================
 // COMPONENT: NavMenuIIP
@@ -14,31 +13,11 @@ import NavbarLoadingSpinner from "@/components/common/NavbarLoadingSpinner";
 const NavMenuIIP = () => {
     // ========== Hooks ==========
     const pathname = usePathname();
-    const router = useRouter();
     const { menuData } = useTranslatedMenu();
     
     // ========== State ==========
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-    const [loadingRoute, setLoadingRoute] = useState<string | null>(null);
-
-    // ========== Effects ==========
-    // Reset loading state when pathname changes
-    useEffect(() => {
-        if (loadingRoute && pathname === loadingRoute) {
-            setLoadingRoute(null);
-        }
-    }, [pathname, loadingRoute]);
-
-    // ========== Handlers ==========
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
-        // Only show loading for Video route and if not already on that route
-        if (link === '/video' && pathname !== '/video') {
-            e.preventDefault();
-            setLoadingRoute(link);
-            router.push(link);
-        }
-    };
 
     // ========== Render ==========
     return (
@@ -52,20 +31,13 @@ const NavMenuIIP = () => {
                         onMouseEnter={() => menu.has_dropdown && setOpenDropdown(menu.id)}
                         onMouseLeave={() => menu.has_dropdown && setOpenDropdown(null)}
                     >
-                        {loadingRoute === menu.link ? (
-                            <div className="nav-link-iip loading">
-                                <NavbarLoadingSpinner text="Loading..." />
-                            </div>
-                        ) : (
-                            <Link 
-                                href={menu.link} 
-                                className={`nav-link-iip ${pathname === menu.link ? 'active' : ''}`}
-                                onClick={(e) => handleNavClick(e, menu.link)}
-                            >
-                                {menu.title}
-                                {menu.has_dropdown && <span className="dropdown-arrow">▼</span>}
-                            </Link>
-                        )}
+                        <Link 
+                            href={menu.link} 
+                            className={`nav-link-iip ${pathname === menu.link ? 'active' : ''}`}
+                        >
+                            {menu.title}
+                            {menu.has_dropdown && <span className="dropdown-arrow">▼</span>}
+                        </Link>
                         
                         {menu.has_dropdown && menu.sub_menus && openDropdown === menu.id && (
                             <ul className="dropdown-menu-iip">
