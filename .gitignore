@@ -35,10 +35,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# documentation (except README and PROJECT_STRUCTURE)
+# documentation (only push README)
 *.md
 !README.md
-!PROJECT_STRUCTURE.md
 
 # Personal helper scripts and guides (không push lên repo)
 push-and-mr.sh

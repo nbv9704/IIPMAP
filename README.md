@@ -7,48 +7,16 @@
 
 ---
 
-## 📚 Danh mục Tài liệu
+## 📚 Tài liệu Dự án
 
-### 🌟 Tài liệu Chính (Đọc đầu tiên):
+Dự án có các tài liệu kỹ thuật chi tiết (local only, không push lên GitHub):
+- Design patterns & best practices
+- Project structure & organization
+- Optimization reports & metrics
+- API implementation guides
+- Video routes documentation
 
-1. **[DESIGN_PATTERNS.md](./DESIGN_PATTERNS.md)** ⭐ **TÀI LIỆU CHÍNH**
-   - Tổ chức code & kiến trúc
-   - Component patterns & best practices
-   - Hướng dẫn tối ưu performance (Mục 9)
-   - Nguyên tắc clean code (Mục 8)
-   - **Đọc tài liệu này cho mọi công việc phát triển**
-
-2. **[README_OPTIMIZATION.md](./README_OPTIMIZATION.md)** 🚀
-   - Hướng dẫn tối ưu nhanh
-   - Tổng kết kết quả performance
-   - Lệnh development
-   - Checklist bảo trì
-
-3. **[PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)** 📁
-   - Cấu trúc project đầy đủ
-   - Tổ chức file
-   - Layout thư mục
-
-### 📖 Tài liệu Tính năng:
-
-4. **[VIDEO_ROUTES.md](./VIDEO_ROUTES.md)** 🎥
-   - Cấu trúc routing video
-   - URL patterns & navigation
-
-5. **[VIDEO_DETAIL_V2_TIKTOK.md](./VIDEO_DETAIL_V2_TIKTOK.md)** 📱
-   - Spec trang video detail
-   - Layout kiểu TikTok
-
-6. **[COMMENT_GUIDELINES.md](./COMMENT_GUIDELINES.md)** 💬
-   - Chuẩn comment code
-   - Style documentation
-
-### 📊 Báo cáo Kỹ thuật:
-
-7. **[FINAL_OPTIMIZATION_REPORT.md](./FINAL_OPTIMIZATION_REPORT.md)** 📈
-   - Báo cáo tối ưu hoàn chỉnh
-   - Metrics trước/sau
-   - Tất cả thay đổi được ghi nhận
+**Lưu ý**: Các file .md (trừ README.md) được giữ local để bảo mật thông tin kỹ thuật nội bộ.
 
 ---
 
@@ -146,8 +114,8 @@ Xem [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) để biết cấu trúc chi 
 ## 🎯 Hướng dẫn Development
 
 ### Trước khi Bắt đầu:
-1. Đọc [DESIGN_PATTERNS.md](./DESIGN_PATTERNS.md) - Đặc biệt Mục 8 & 9
-2. Kiểm tra [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) để biết vị trí file
+1. Xem cấu trúc project trong `src/` folder
+2. Tuân theo patterns hiện có trong codebase
 3. Tuân theo nguyên tắc clean code
 
 ### Khi Thêm Tính năng:
@@ -220,10 +188,10 @@ import NavbarLoadingSpinner from '@/components/common/NavbarLoadingSpinner'
 ## 📞 Hỗ trợ
 
 Câu hỏi về:
-- **Kiến trúc & Patterns**: Xem [DESIGN_PATTERNS.md](./DESIGN_PATTERNS.md)
-- **Performance**: Xem [README_OPTIMIZATION.md](./README_OPTIMIZATION.md)
-- **Cấu trúc Project**: Xem [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
-- **Tính năng Video**: Xem [VIDEO_ROUTES.md](./VIDEO_ROUTES.md)
+- **Kiến trúc & Patterns**: Xem code examples trong `src/components/`
+- **Performance**: Kiểm tra build output và bundle analyzer
+- **Cấu trúc Project**: Xem folder structure trong `src/`
+- **Tính năng Video**: Xem implementation trong `src/app/video/` và `src/components/video/`
 
 ---
 
