@@ -12,6 +12,8 @@ import { TbRulerMeasure, TbMountain } from "react-icons/tb"
 import { generateFeaturedVideos } from "@/constants/video/mockData"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
+import { useGetUserProfileQuery, useGetVideosByUserQuery } from "@/redux/slice/videoApiSlice"
+import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 
 // ============================================
 // TYPES
@@ -26,7 +28,38 @@ interface ProfileViewProps {
 // ============================================
 const ProfileView = ({ section, isOwnProfile = true }: ProfileViewProps) => {
   const { currentLang } = useLanguage()
-  const featuredVideos = useMemo(() => generateFeaturedVideos(), [])
+  
+  // ✅ RTK Query API calls (following VNG004's pattern)
+  // TODO: Get actual userId from auth/context
+  const userId = "current-user-id"
+  const { data: apiProfile, error: errorProfile } = useGetUserProfileQuery(userId)
+  const { data: apiVideos, error: errorVideos } = useGetVideosByUserQuery(userId)
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockVideos = useMemo(() => generateFeaturedVideos(), [])
+  
+  // ✅ Determine data source
+  const USE_MOCK_VIDEOS = !apiVideos || errorVideos
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToCard = (videos: typeof apiVideos): VideoCardItemProps[] => {
+    if (!videos) return []
+    return videos.map(v => ({
+      id: parseInt(v.id) || 0,
+      title: v.title,
+      location: v.location || "",
+      thumbnail: v.thumbnailUrl || v.videoUrl,
+      badge: v.isFeatured ? "Xu huong" : "Moi",
+      views: `${Math.floor(v.views / 1000)}k`,
+      duration: `00:${v.duration.toString().padStart(2, "0")}`,
+    }))
+  }
+  
+  // ✅ Select data to display
+  const featuredVideos = USE_MOCK_VIDEOS ? mockVideos : transformApiToCard(apiVideos)
+  
+  // 🔍 Debug logging
+  console.log("👤 ProfileView - Using:", USE_MOCK_VIDEOS ? "📦 Mock" : "🌐 API")
 
   return (
     <div className="video-profile-layout">

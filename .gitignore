@@ -39,3 +39,18 @@ next-env.d.ts
 *.md
 !README.md
 !PROJECT_STRUCTURE.md
+
+# Personal helper scripts and guides (không push lên repo)
+push-and-mr.sh
+push-and-mr.ps1
+QUICK_START_MR.md
+MERGE_REQUEST_GUIDE.md
+COMMIT_MESSAGE.md
+
+# Personal notes and analysis (không push lên repo)
+CURRENT_SITUATION_SUMMARY.md
+VIDEO_TRANSLATIONS_SESSION_SUMMARY.md
+FILES_TO_COMMIT.md
+
+# Local gitignore (cho personal customization)
+.gitignore.local

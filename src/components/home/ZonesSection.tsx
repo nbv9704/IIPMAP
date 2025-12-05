@@ -18,14 +18,23 @@ import { MdOutlineLandscape } from "react-icons/md";
 import { PROVINCES, AREA_OPTIONS, PRICE_OPTIONS } from "@/constants";
 import { useGetIndustrialAreaQuery } from "@/redux/slice/industrialAreaApiSlice";
 import { formatDate } from "@/utils/formatters";
+import { getAllZones } from "@/data/ZonesDataMultilang";
 
 function ZonesSection() {
   const { currentLang } = useLanguage();
   const [activeZoneTab, setActiveZoneTab] = useState<
     "all" | "industrial" | "cluster"
   >("all");
-  const { data, isLoading } = useGetIndustrialAreaQuery(5);
-  console.log("Data:", data);
+  
+  // ✅ API call (ready for backend)
+  const { data: apiData, isLoading, error } = useGetIndustrialAreaQuery(5);
+  
+  // ✅ TEMPORARY: Dùng mock data cho đến khi backend ready
+  // TODO: Remove mock fallback khi backend API hoàn thành
+  const mockZones = getAllZones(currentLang);
+  const USE_MOCK_DATA = !apiData || error;  // Dùng mock nếu API chưa có data
+  
+  console.log("🔍 Data source:", USE_MOCK_DATA ? "📦 Mock Data" : "🌐 Real API");
 
   return (
     <section className="zones-section">
@@ -84,8 +93,62 @@ function ZonesSection() {
 
       <div className="zones-content">
         <div className="zones-list">
-          {data?.map((data) => (
-            <Link href={`${data.slug}`} key={data.slug} className="zone-card">
+          {USE_MOCK_DATA ? (
+            // ✅ Render Mock Data (flattened structure from getAllZones)
+            mockZones.map((zone) => (
+              <Link href={`/zones/${zone.slug}`} key={zone.slug} className="zone-card">
+                <div className="zone-card-image">
+                  <Image
+                    src={zone.image}
+                    alt={zone.name}
+                    width={180}
+                    height={120}
+                  />
+                </div>
+                <div className="zone-card-content">
+                  <div className="zone-card-title">
+                    <h3>{zone.name}</h3>
+                  </div>
+                  <div className="zone-card-address">
+                    <HiOutlineMapPin />
+                    <span>{zone.address}</span>
+                  </div>
+                  <div className="zone-card-info">
+                    <div className="zone-info-item">
+                      <TbRulerMeasure />
+                      <span>{zone.area}</span>
+                    </div>
+                    <div className="zone-info-item">
+                      <MdOutlineLandscape />
+                      <span>{zone.land}</span>
+                    </div>
+                    <div className="zone-info-item">
+                      <HiOutlineCurrencyDollar />
+                      <span>{zone.price}</span>
+                    </div>
+                    <div className="zone-info-item">
+                      <HiOutlineClock />
+                      <span>{zone.timeline}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="zone-card-actions">
+                  <button className="zone-action-btn" aria-label="View location">
+                    <HiOutlineMapPin />
+                  </button>
+                  <button className="zone-action-btn" aria-label="Watch video">
+                    <HiOutlineVideoCamera />
+                  </button>
+                  <button className="zone-action-btn" aria-label="Share">
+                    <HiOutlineShare />
+                  </button>
+                </div>
+              </Link>
+            ))
+          ) : (
+            // ✅ Render API Data (when backend ready)
+            apiData.map((data) => (
+              <Link href={`/zones/${data.slug}`} key={data.slug} className="zone-card">
               <div className="zone-card-image">
                 <Image
                   src={
@@ -143,7 +206,8 @@ function ZonesSection() {
                 </button>
               </div>
             </Link>
-          ))}
+            ))
+          )}
         </div>
         <div className="zones-map">
           <Image

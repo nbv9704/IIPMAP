@@ -8,6 +8,8 @@ import VideoHistoryGrid from "@/components/video/VideoHistoryGrid"
 import { generateFollowingUsers } from "@/constants/video/mockData"
 import { useLanguage } from "@/hooks/useLanguage"
 import { getTranslation } from "@/utils/translations"
+import { useGetFollowingUsersQuery } from "@/redux/slice/videoApiSlice"
+import { VideoCardItemProps } from "@/components/video/VideoCardItem"
 
 // ============================================
 // TYPES
@@ -21,7 +23,33 @@ interface FollowingViewProps {
 // ============================================
 const FollowingView = ({ section }: FollowingViewProps) => {
   const { currentLang } = useLanguage()
-  const followingUsers = useMemo(() => generateFollowingUsers(), [])
+  
+  // ✅ RTK Query API call (following VNG004's pattern)
+  const { data: apiFollowing, error: errorFollowing } = useGetFollowingUsersQuery()
+  
+  // ✅ Mock data fallback (for testing phase)
+  const mockFollowing = useMemo(() => generateFollowingUsers(), [])
+  
+  // ✅ Determine data source
+  const USE_MOCK = !apiFollowing || errorFollowing
+  
+  // ✅ Transform API data (when backend ready)
+  const transformApiToFollowing = (users: typeof apiFollowing) => {
+    if (!users) return []
+    return users.map(user => ({
+      id: parseInt(user.id) || 0,
+      username: user.username,
+      displayName: user.displayName,
+      avatar: user.avatar || user.displayName.charAt(0).toUpperCase(),
+      videos: [] as VideoCardItemProps[], // Will be populated from separate API call
+    }))
+  }
+  
+  // ✅ Select data to display
+  const followingUsers = USE_MOCK ? mockFollowing : transformApiToFollowing(apiFollowing)
+  
+  // 🔍 Debug logging
+  console.log("👥 FollowingView - Using:", USE_MOCK ? "📦 Mock" : "🌐 API")
 
   return (
     <>

@@ -18,7 +18,7 @@ export const translations = {
       booking: 'Đặt Lịch',
       services: 'Dịch Vụ',
       contact: 'Liên Hệ',
-      siteName: 'IIPVIETNAM.COM',
+      siteName: 'IIPMAP.COM',
     },
     // Header
     header: {
@@ -307,7 +307,7 @@ export const translations = {
       booking: 'Booking',
       services: 'Services',
       contact: 'Contact',
-      siteName: 'IIPVIETNAM.COM',
+      siteName: 'IIPMAP.COM',
     },
     // Header
     header: {
@@ -596,7 +596,7 @@ export const translations = {
       booking: '予約',
       services: 'サービス',
       contact: 'お問い合わせ',
-      siteName: 'IIPVIETNAM.COM',
+      siteName: 'IIPMAP.COM',
     },
     // Header
     header: {
@@ -885,7 +885,7 @@ export const translations = {
       booking: '예약',
       services: '서비스',
       contact: '연락처',
-      siteName: 'IIPVIETNAM.COM',
+      siteName: 'IIPMAP.COM',
     },
     // Header
     header: {
@@ -1174,7 +1174,7 @@ export const translations = {
       booking: '预订',
       services: '服务',
       contact: '联系',
-      siteName: 'IIPVIETNAM.COM',
+      siteName: 'IIPMAP.COM',
     },
     // Header
     header: {
