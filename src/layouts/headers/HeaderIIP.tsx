@@ -26,13 +26,35 @@ import logo from "@/assets/images/fav-icon/icon.png";
 const HeaderIIP = () => {
    // ========== Hooks ==========
    const { sticky } = UseSticky();
-   const { currentLang, setCurrentLang } = useLanguage();
+   const { currentLang, setCurrentLang, isLoading } = useLanguage();
    const [isClient, setIsClient] = useState(false);
 
    // ========== Effects ==========
    useEffect(() => {
       setIsClient(true);
    }, []);
+
+   // ========== Loading State ==========
+   if (isLoading || !isClient) {
+      return (
+         <header className={`header-iip ${sticky ? "sticky" : ""}`}>
+            <div className="header-iip-container">
+               <div className="logo-iip">
+                  <Link href="/">
+                     <Image src={logo} alt="IIPMap.AI" width={30} height={29} />
+                  </Link>
+               </div>
+               <nav className="nav-iip">
+                  {/* Skeleton loader for menu */}
+                  <div style={{ width: '400px', height: '40px', background: '#f0f0f0', borderRadius: '4px' }} />
+               </nav>
+               <div className="header-iip-right">
+                  <div style={{ width: '200px', height: '40px', background: '#f0f0f0', borderRadius: '4px' }} />
+               </div>
+            </div>
+         </header>
+      );
+   }
 
    // ========== Language Options ==========
    const languages = [
