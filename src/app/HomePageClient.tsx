@@ -11,7 +11,6 @@ import HeroSection from "@/components/home/HeroSection"
 import AISearchSection from "@/components/home/AISearchSection"
 import VideoSectionHome from "@/components/home/VideoSectionHome"
 import ZonesSection from "@/components/home/ZonesSection"
-import SplineHero from '@/components/home/SplineHero';
 
 import "@/styles/video.scss"
 
@@ -37,7 +36,6 @@ export default function HomePageClient() {
         </section>
       </main>
       <FooterIIP />
-           <SplineHero />
     </div>
   )
 }
